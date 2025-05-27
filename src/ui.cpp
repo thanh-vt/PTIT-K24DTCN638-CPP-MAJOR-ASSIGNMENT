@@ -38,13 +38,13 @@ void UI::start() {
 
     while (true) {
         clearScreen();
-        std::cout << "=== Homework ===\n\n";
-        std::cout << "1. Sum of 1 to N\n";
-        std::cout << "2. Character case switch\n";
-        std::cout << "3. Factorial sum\n";
-        std::cout << "4. Odd-Even balanced number\n";
-        std::cout << "5. Lucky number\n";
-        std::cout << "51. Exit\n\n";
+        std::cout << "=== Homework ===" << std::endl << std::endl;
+        std::cout << "1. Sum of 1 to N" << std::endl;
+        std::cout << "2. Character case switch" << std::endl;
+        std::cout << "3. Factorial sum" << std::endl;
+        std::cout << "4. Odd-Even balanced number" << std::endl;
+        std::cout << "5. Lucky number" << std::endl;
+        std::cout << "51. Exit" << std::endl << std::endl;
         std::cout << "Enter your choice: ";
 
         int choice;
