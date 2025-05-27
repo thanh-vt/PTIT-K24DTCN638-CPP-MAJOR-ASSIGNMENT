@@ -11,6 +11,8 @@
 #include "ex3.h"
 #include "ex4.h"
 #include "ex5.h"
+#include "ex6.h"
+#include "ex7.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -44,7 +46,9 @@ void UI::start() {
         std::cout << "3. Factorial sum" << std::endl;
         std::cout << "4. Odd-Even balanced number" << std::endl;
         std::cout << "5. Lucky number" << std::endl;
-        std::cout << "51. Exit" << std::endl << std::endl;
+        std::cout << "6. Prime between a and b list" << std::endl;
+        std::cout << "7. Prime factorization of n list" << std::endl;
+        std::cout << "0. Exit" << std::endl << std::endl;
         std::cout << "Enter your choice: ";
 
         int choice;
@@ -82,7 +86,19 @@ void UI::start() {
                 ui5->start_loop();
                 break;
             }
-            case 51:
+            case 6: {
+                Ex6 ex6;
+                UI *ui6 = &ex6;
+                ui6->start_loop();
+                break;
+            }
+            case 7: {
+                Ex7 ex7;
+                UI *ui7 = &ex7;;
+                ui7->start_loop();
+                break;
+            }
+            case 0:
                 std::cout << "Exiting...\n";
                 return;
             default:
@@ -94,7 +110,7 @@ void UI::start() {
 
 void UI::start_loop() {
     char choice;
-    while (choice != 'q') {
+    while (choice != 'q' && choice != 'Q') {
         clearScreen();
         this->process();
         std::cout << "Press q to quit, or other key to continue.\n";

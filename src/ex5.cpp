@@ -6,12 +6,10 @@ Ex5::~Ex5() {
 }
 
 void Ex5::process() {
-    const int n = getQuantityInput(std::string("Enter N:"));
-    int sum = 0;
-    int product = 1;
-    for (int i = 1; i <= n; i++) {
-        product *= i;
-        sum += product;
+    const int x = getQuantityInput(std::string("Enter X:"));
+    if (x > 999999999) {
+        std::cerr << "X length must be less than 10";
+        return;
     }
-    std::cout << "S = 1 + 1.2 + 1.2.3 + ...+ 1.2.3...N = " << sum << std::endl;
+    std::cout << (x % 100 == 86) << std::endl;
 }
