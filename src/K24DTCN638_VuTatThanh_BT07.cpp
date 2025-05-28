@@ -1,14 +1,7 @@
-#include "ex7.h"
-
 #include <iostream>
 
 
-Ex7::~Ex7() {
-    std::cout << "Exercise 7 finished.\n";
-}
-
-
-void Ex7::process() {
+int main() {
     int n = getQuantityInput(std::string("Enter N:"));
     if (n <= 1) {
         std::cout << "N should be greater than 1." << std::endl;
@@ -37,4 +30,5 @@ void Ex7::process() {
     }
 
     std::cout << std::endl;
+    return 0;
 }

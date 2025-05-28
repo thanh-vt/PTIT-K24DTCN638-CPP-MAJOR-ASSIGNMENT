@@ -1,11 +1,6 @@
-#include "ex6.h"
-
 #include <cmath>
 #include <iostream>
 
-Ex6::~Ex6() {
-    std::cout << "Exercise 6 finished.\n";
-}
 
 bool Ex6::is_prime(const int n) {
     if (n < 2)
@@ -22,7 +17,7 @@ bool Ex6::is_prime(const int n) {
     return true;
 }
 
-void Ex6::process() {
+int main() {
     int a = getQuantityInput(std::string("Enter a:"));
     int b = getQuantityInput(std::string("Enter b:"));
     if (a > 1000000 || b > 1000000) {
@@ -39,4 +34,5 @@ void Ex6::process() {
         }
     }
     std::cout << std::endl;
+    return 0;
 }

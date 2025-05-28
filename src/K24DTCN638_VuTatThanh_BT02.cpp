@@ -1,13 +1,17 @@
-#include "ex2.h"
-
 #include <iostream>
 
-Ex2::~Ex2() {
-    std::cout << "Exercise 2 finished.\n";
+char convert_char();
+
+int main() {
+    std::ifstream file("K24DTCN638_VuTatThanh_BT02.txt"); // Mở file để đọc
+    if (!file) {
+        std::cerr << "Khong the mo file input K24DTCN638_VuTatThanh_BT01.txt\n";
+        return 1;
+    }
+    return 0;
 }
 
-void Ex2::process() {
-    std::cout << "Enter a character:" << std::endl;
+char convert_char() {
     char c;
     std::cin >> c;
     if (std::islower(c)) {
@@ -19,4 +23,5 @@ void Ex2::process() {
     } else {
         std::cerr << "Invalid character." << std::endl;
     }
+    return c;
 }
