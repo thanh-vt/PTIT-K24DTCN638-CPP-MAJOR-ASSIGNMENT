@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.31)
-project(homework)
+project(homework-K24DTCN638)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
