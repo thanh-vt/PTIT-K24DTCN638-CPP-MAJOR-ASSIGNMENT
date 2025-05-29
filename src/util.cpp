@@ -1,5 +1,4 @@
 #include "util.h"
-
 #include <iostream>
 
 char parse_char(const std::string &line) {
@@ -35,4 +34,14 @@ long parse_long(const std::string &line) {
         std::cerr << "So vuot qua pham vi long\n";
     }
     return -1;
+}
+
+std::vector<int> string_to_int_vector(const std::string& s, const size_t size) {
+    std::vector<int> result;
+    std::istringstream iss(s);
+    int number;
+    while (result.size() < size && iss >> number) {
+        result.push_back(number);
+    }
+    return result;
 }

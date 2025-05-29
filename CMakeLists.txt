@@ -7,58 +7,36 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Fully static linking
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static")
 
-add_executable(K24DTCN638_VuTatThanh_BT01 "${CMAKE_CURRENT_SOURCE_DIR}/src/K24DTCN638_VuTatThanh_BT01.cpp"
-        src/util.cpp
-        include/util.h)
-add_executable(K24DTCN638_VuTatThanh_BT02 "${CMAKE_CURRENT_SOURCE_DIR}/src/K24DTCN638_VuTatThanh_BT02.cpp"
-        src/util.cpp
-        include/util.h)
-add_executable(K24DTCN638_VuTatThanh_BT03 "${CMAKE_CURRENT_SOURCE_DIR}/src/K24DTCN638_VuTatThanh_BT03.cpp"
-        src/util.cpp
-        include/util.h)
-add_executable(K24DTCN638_VuTatThanh_BT04 "${CMAKE_CURRENT_SOURCE_DIR}/src/K24DTCN638_VuTatThanh_BT04.cpp"
-        src/util.cpp
-        include/util.h)
-add_executable(K24DTCN638_VuTatThanh_BT05 "${CMAKE_CURRENT_SOURCE_DIR}/src/K24DTCN638_VuTatThanh_BT05.cpp"
-        src/util.cpp
-        include/util.h)
-add_executable(K24DTCN638_VuTatThanh_BT06 "${CMAKE_CURRENT_SOURCE_DIR}/src/K24DTCN638_VuTatThanh_BT06.cpp"
-        src/util.cpp
-        include/util.h)
-add_executable(K24DTCN638_VuTatThanh_BT07 "${CMAKE_CURRENT_SOURCE_DIR}/src/K24DTCN638_VuTatThanh_BT07.cpp"
-        src/util.cpp
-        include/util.h)
-add_executable(K24DTCN638_VuTatThanh_BT08 "${CMAKE_CURRENT_SOURCE_DIR}/src/K24DTCN638_VuTatThanh_BT08.cpp"
-        src/util.cpp
-        include/util.h)
-
-target_include_directories(K24DTCN638_VuTatThanh_BT01 PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-target_include_directories(K24DTCN638_VuTatThanh_BT02 PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-target_include_directories(K24DTCN638_VuTatThanh_BT03 PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-target_include_directories(K24DTCN638_VuTatThanh_BT04 PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-target_include_directories(K24DTCN638_VuTatThanh_BT05 PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-target_include_directories(K24DTCN638_VuTatThanh_BT06 PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-target_include_directories(K24DTCN638_VuTatThanh_BT07 PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-target_include_directories(K24DTCN638_VuTatThanh_BT08 PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
+# Define common source files
+set(COMMON_SOURCES
+    src/util.cpp
+    include/util.h
 )
 
+# Set the number of exercises
+set(NUM_EXERCISES 13)
+
+# Generate exercise numbers from 01 to NUM_EXERCISES
+set(EXERCISE_NUMBERS "")
+foreach(I RANGE 1 ${NUM_EXERCISES})
+    string(REGEX REPLACE "^([0-9])$" "0\\1" I_PADDED "${I}")
+    list(APPEND EXERCISE_NUMBERS ${I_PADDED})
+endforeach()
+
+# Loop through exercise numbers to create executables
+foreach(NUM ${EXERCISE_NUMBERS})
+    add_executable(K24DTCN638_VuTatThanh_BT${NUM} 
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/K24DTCN638_VuTatThanh_BT${NUM}.cpp"
+        ${COMMON_SOURCES}
+    )
+    
+    target_include_directories(K24DTCN638_VuTatThanh_BT${NUM} PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+    )
+endforeach()
+
+# Copy test files
 file(GLOB TEST_FILES
-        "${CMAKE_SOURCE_DIR}/test/*.txt"
+    "${CMAKE_SOURCE_DIR}/test/*.txt"
 )
-
 file(COPY ${TEST_FILES} DESTINATION ${CMAKE_BINARY_DIR})

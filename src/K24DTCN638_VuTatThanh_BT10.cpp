@@ -1,11 +1,12 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string>
 #include "util.h"
-#include "K24DTCN638_VuTatThanh_BT07.h"
+#include "K24DTCN638_VuTatThanh_BT10.h"
 
 
 int main() {
-    std::string filename = "K24DTCN638_VuTatThanh_BT07.txt";
+    const std::string filename = "K24DTCN638_VuTatThanh_BT10.txt";
     std::ifstream file(filename); // Mở file để đọc
     if (!file) {
         std::cerr << "Khong the mo file input " << filename << std::endl;
@@ -27,40 +28,39 @@ int main() {
             std::cerr << "Khong co dong tiep theo" << std::endl;
             return 2;
         }
-        const long n = parse_long(line);
+        const int n = parse_int(line);
         if (n < 0) return 2;
         if (n < 1) {
             std::cout << "N phai lon hon hoac bang 1" << std::endl;
             return 2;
         }
-        if (n > 10000000000) {
-            std::cout << "N phai nho hon hoac bang 10000000000" << std::endl;
+        if (n > 1000000) {
+            std::cout << "N phai nho hon hoac bang 1000000" << std::endl;
             return 2;
         }
-        print_factorization(n);
+        if (!std::getline(file, line)) {
+            std::cerr << "Khong co dong tiep theo" << std::endl;
+            return 2;
+        }
+        const std::vector<int> A = string_to_int_vector(line, n);
+        std::cout << find_smallest_missing_positive(A, n) << std::endl;
     }
-
     file.close();
 
     return 0;
 }
 
-void print_factorization(long n) {
-    while (n % 2 == 0) {
-        std::cout << 2 << " ";
-        n /= 2;
-    }
+int find_smallest_missing_positive(const std::vector<int>& arr, const int n) {
+    std::vector<bool> present(n + 2, false); // đánh dấu số từ 1 đến n+1
 
-    for (long i = 3; i * i <= n; i += 2) {
-        while (n % i == 0) {
-            std::cout << i << " ";
-            n /= i;
+    for (const int x : arr) {
+        if (x >= 1 && x <= n + 1) {
+            present[x] = true;
         }
     }
 
-    if (n > 2) {
-        std::cout << n;
+    for (int i = 1; i <= n + 1; i++) {
+        if (!present[i]) return i;
     }
-
-    std::cout << std::endl;
+    return n + 1; // trường hợp này ít xảy ra vì đã kiểm tra hết
 }

@@ -1,11 +1,13 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <algorithm>
 #include "util.h"
-#include "K24DTCN638_VuTatThanh_BT07.h"
+#include "K24DTCN638_VuTatThanh_BT09.h"
 
 
 int main() {
-    std::string filename = "K24DTCN638_VuTatThanh_BT07.txt";
+    std::string filename = "K24DTCN638_VuTatThanh_BT09.txt";
     std::ifstream file(filename); // Mở file để đọc
     if (!file) {
         std::cerr << "Khong the mo file input " << filename << std::endl;
@@ -27,40 +29,37 @@ int main() {
             std::cerr << "Khong co dong tiep theo" << std::endl;
             return 2;
         }
-        const long n = parse_long(line);
+        const int n = parse_int(line);
         if (n < 0) return 2;
         if (n < 1) {
             std::cout << "N phai lon hon hoac bang 1" << std::endl;
             return 2;
         }
-        if (n > 10000000000) {
-            std::cout << "N phai nho hon hoac bang 10000000000" << std::endl;
+        if (n > 1000000) {
+            std::cout << "N phai nho hon hoac bang 1000000" << std::endl;
             return 2;
         }
-        print_factorization(n);
+        if (!std::getline(file, line)) {
+            std::cerr << "Khong co dong tiep theo" << std::endl;
+            return 2;
+        }
+        const std::vector<int> A = string_to_int_vector(line, n);
+        const int min_diff = find_min_diff(A);
+        std::cout << min_diff << std::endl;
     }
-
     file.close();
 
     return 0;
 }
 
-void print_factorization(long n) {
-    while (n % 2 == 0) {
-        std::cout << 2 << " ";
-        n /= 2;
-    }
-
-    for (long i = 3; i * i <= n; i += 2) {
-        while (n % i == 0) {
-            std::cout << i << " ";
-            n /= i;
+int find_min_diff(std::vector<int> A) {
+    sort(A.begin(), A.end());
+    int min_diff = INT_MAX;
+    for (int i = 0; i < A.size() - 1; i++) {
+        const int diff = A[i+1] - A[i];
+        if (diff < min_diff) {
+            min_diff = diff;
         }
     }
-
-    if (n > 2) {
-        std::cout << n;
-    }
-
-    std::cout << std::endl;
+    return min_diff;
 }

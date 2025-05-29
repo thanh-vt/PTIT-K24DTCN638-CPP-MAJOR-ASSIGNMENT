@@ -12,29 +12,30 @@ int main() {
     }
 
     std::string line;
-    int total_tests = 0;
-    while (std::getline(file, line)) {
+    if (!std::getline(file, line)) {
+        std::cerr << "Khong co dong tiep theo" << std::endl;
+        return 2;
+    }
+    int total_tests = parse_int(line);
+    if (total_tests < 1 || total_tests > 100) {
+        std::cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << std::endl;
+        return 2;
+    }
+    for (int i = 0; i < total_tests; i++) {
         // Xử lý dòng đọc được
-        if (total_tests == 0) {
-            total_tests = parse_int(line);
-            if (total_tests <= 1) {
-                return 2;
-            }
-            if (total_tests > 20) {
-                std::cerr << "So luong test khong vuot qua 20" << std::endl;
-                return 2;
-            }
-        } else {
-            const int x = parse_int(line);
-            if (x < 0) {
-                return 2;
-            }
-            if (x > 999999999) {
-                std::cerr << "x khong vuot qua 9 chu so" << std::endl;
-                return 2;
-            }
-            std::cout << (x % 100 == 86) << std::endl;
+        if (!std::getline(file, line)) {
+            std::cerr << "Khong co dong tiep theo" << std::endl;
+            return 2;
         }
+        const int x = parse_int(line);
+        if (x < 0) {
+            return 2;
+        }
+        if (x > 999999999) {
+            std::cerr << "x khong vuot qua 9 chu so" << std::endl;
+            return 2;
+        }
+        std::cout << (x % 100 == 86) << std::endl;
     }
 
     file.close();

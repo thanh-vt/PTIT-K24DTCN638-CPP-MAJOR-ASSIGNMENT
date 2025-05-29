@@ -13,17 +13,18 @@ int main() {
     }
 
     std::string line;
-    if (std::getline(file, line)) {
+    if (!std::getline(file, line)) {
         // Xử lý dòng đọc được
-        const int n = parse_int(line);
-        if (n < 0) return 2;
-        if (n > 20) {
-            std::cerr << "n phai nho hon 20" << std::endl;
-            return 2;
-        }
-        std::cout << sum_products(n) << std::endl;
+        std::cerr << "Khong co dong tiep theo" << std::endl;
+        return 2;
     }
-
+    const int n = parse_int(line);
+    if (n < 0) return 2;
+    if (n > 20) {
+        std::cerr << "N phai nho hon 20" << std::endl;
+        return 2;
+    }
+    std::cout << sum_products(n) << std::endl;
     file.close();
 
     return 0;

@@ -14,44 +14,41 @@ int main() {
     }
 
     std::string line;
-    int total_tests = 0;
-    int idx = 0;
-    std::vector<int> squares;
-    while (std::getline(file, line)) {
-        // Xử lý dòng đọc được
-        if (total_tests == 0) {
-            total_tests = parse_int(line);
-            if (total_tests < 1 || total_tests > 100) {
-                std::cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << std::endl;
-                return 2;
-            }
-            squares = sieve();
-        } else {
-            if (idx < total_tests) {
-                const long n = parse_long(line);
-                if (n < 0) return 2;
-                if (n < 1) {
-                    std::cout << "N phai lon hon hoac bang 1" << std::endl;
-                    return 2;
-                }
-                if (n > 1000000) {
-                    std::cout << "N phai nho hon hoac bang 1000000" << std::endl;
-                    return 2;
-                }
-                bool first = true;
-
-                for (const int x : squares) {
-                    if (x > n) break;
-                    if (!first) std::cout << " ";
-                    std::cout << x;
-                    first = false;
-                }
-                std::cout << "\n";
-                idx++;
-            }
-        }
+    if (!std::getline(file, line)) {
+        std::cerr << "Khong co dong tiep theo" << std::endl;
+        return 2;
     }
+    int total_tests = parse_int(line);
+    if (total_tests < 1 || total_tests > 100) {
+        std::cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << std::endl;
+        return 2;
+    }
+    const std::vector<int> squares = sieve();
+    for (int i = 0; i < total_tests; i++) {
+        if (!std::getline(file, line)) {
+            std::cerr << "Khong co dong tiep theo" << std::endl;
+            return 2;
+        }
+        const long n = parse_long(line);
+        if (n < 0) return 2;
+        if (n < 1) {
+            std::cout << "N phai lon hon hoac bang 1" << std::endl;
+            return 2;
+        }
+        if (n > 1000000) {
+            std::cout << "N phai nho hon hoac bang 1000000" << std::endl;
+            return 2;
+        }
+        bool first = true;
 
+        for (const int x : squares) {
+            if (x > n) break;
+            if (!first) std::cout << " ";
+            std::cout << x;
+            first = false;
+        }
+        std::cout << "\n";
+    }
     file.close();
 
     return 0;
