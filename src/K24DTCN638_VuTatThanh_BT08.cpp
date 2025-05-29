@@ -5,7 +5,7 @@
 
 
 int main() {
-    std::string filename = "K24DTCN638_VuTatThanh_BT07.txt";
+    std::string filename = "K24DTCN638_VuTatThanh_BT08.txt";
     std::ifstream file(filename); // Mở file để đọc
     if (!file) {
         std::cerr << "Khong the mo file input " << filename << std::endl;

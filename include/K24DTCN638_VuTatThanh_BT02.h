@@ -1,0 +1,6 @@
+#ifndef K24DTCN638_VUTATTHANH_BT02_H
+#define K24DTCN638_VUTATTHANH_BT02_H
+
+char convert_char(char c);
+
+#endif //K24DTCN638_VUTATTHANH_BT02_H

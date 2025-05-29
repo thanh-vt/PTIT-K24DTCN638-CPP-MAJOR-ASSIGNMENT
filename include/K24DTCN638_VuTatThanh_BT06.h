@@ -1,0 +1,6 @@
+#ifndef K24DTCN638_VUTATTHANH_BT06_H
+#define K24DTCN638_VUTATTHANH_BT06_H
+
+bool is_prime(int n);
+
+#endif //K24DTCN638_VUTATTHANH_BT06_H

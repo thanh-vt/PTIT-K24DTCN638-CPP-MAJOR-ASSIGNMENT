@@ -1,27 +1,45 @@
+#include <fstream>
 #include <iostream>
-
-char convert_char();
+#include "util.h"
+#include "K24DTCN638_VuTatThanh_BT02.h"
 
 int main() {
-    std::ifstream file("K24DTCN638_VuTatThanh_BT02.txt"); // Mở file để đọc
+    std::string filename = "K24DTCN638_VuTatThanh_BT02.txt";
+    std::ifstream file(filename); // Mở file để đọc
     if (!file) {
-        std::cerr << "Khong the mo file input K24DTCN638_VuTatThanh_BT01.txt\n";
+        std::cerr << "Khong the mo file input " << filename << std::endl;
         return 1;
     }
+
+    std::string line;
+    int total_tests = 0;
+    while (std::getline(file, line)) {
+        // Xử lý dòng đọc được
+        if (total_tests == 0) {
+            total_tests = parse_int(line);
+            if (total_tests <= 1) {
+                return 2;
+            }
+        } else {
+            const char c = parse_char(line);
+            if (c < 0) {
+                return 2;
+            }
+            std::cout << convert_char(c) << std::endl;
+        }
+    }
+
+    file.close();
+
     return 0;
 }
 
-char convert_char() {
-    char c;
-    std::cin >> c;
+char convert_char(const char c) {
     if (std::islower(c)) {
-        char upper_char = std::toupper(c);
-        std::cout << "Uppercase equivalent: " << upper_char << std::endl;
-    } else if (std::isupper(c)) {
-        char lower_char = std::tolower(c);
-        std::cout << "Lower case equivalent: " << lower_char << std::endl;
-    } else {
-        std::cerr << "Invalid character." << std::endl;
+        return static_cast<char>(std::toupper(c));
+    }
+    if (std::isupper(c)) {
+        return static_cast<char>(std::tolower(c));
     }
     return c;
 }

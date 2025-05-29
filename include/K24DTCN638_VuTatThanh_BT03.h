@@ -1,0 +1,6 @@
+#ifndef K24DTCN638_VUTATTHANH_BT03_H
+#define K24DTCN638_VUTATTHANH_BT03_H
+
+int sum_products(int n);
+
+#endif //K24DTCN638_VUTATTHANH_BT03_H
