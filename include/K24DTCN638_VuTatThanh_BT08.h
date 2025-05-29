@@ -1,6 +1,6 @@
 #ifndef K24DTCN638_VUTATTHANH_BT07_H
 #define K24DTCN638_VUTATTHANH_BT07_H
 
-void print_factorization(long n);
+std::vector<int> sieve();
 
 #endif //K24DTCN638_VUTATTHANH_BT07_H

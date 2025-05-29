@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "util.h"
-#include "K24DTCN638_VuTatThanh_BT07.h"
+#include "K24DTCN638_VuTatThanh_BT08.h"
 
 
 int main() {
@@ -15,6 +16,7 @@ int main() {
     std::string line;
     int total_tests = 0;
     int idx = 0;
+    std::vector<int> squares;
     while (std::getline(file, line)) {
         // Xử lý dòng đọc được
         if (total_tests == 0) {
@@ -23,6 +25,7 @@ int main() {
                 std::cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << std::endl;
                 return 2;
             }
+            squares = sieve();
         } else {
             if (idx < total_tests) {
                 const long n = parse_long(line);
@@ -31,11 +34,19 @@ int main() {
                     std::cout << "N phai lon hon hoac bang 1" << std::endl;
                     return 2;
                 }
-                if (n > 10000000000) {
-                    std::cout << "N phai nho hon hoac bang 10000000000" << std::endl;
+                if (n > 1000000) {
+                    std::cout << "N phai nho hon hoac bang 1000000" << std::endl;
                     return 2;
                 }
-                print_factorization(n);
+                bool first = true;
+
+                for (const int x : squares) {
+                    if (x > n) break;
+                    if (!first) std::cout << " ";
+                    std::cout << x;
+                    first = false;
+                }
+                std::cout << "\n";
                 idx++;
             }
         }
@@ -46,22 +57,24 @@ int main() {
     return 0;
 }
 
-void print_factorization(long n) {
-    while (n % 2 == 0) {
-        std::cout << 2 << " ";
-        n /= 2;
-    }
-
-    for (long i = 3; i * i <= n; i += 2) {
-        while (n % i == 0) {
-            std::cout << i << " ";
-            n /= i;
+std::vector<int> sieve() {
+    // Dùng thuật toán sàng nguyên tố Eratosthenes để tìm các số nguyên tố đến 1000 (vì 1000^2 = 1,000,000)
+    constexpr int MAX = 1000;
+    bool isPrime[MAX + 1];
+    std::vector<int> squares; // Lưu p^2 với p nguyên tố
+    std::fill(isPrime, isPrime + MAX + 1, true);
+    isPrime[0] = isPrime[1] = false; // Số 0 và số 1 không phải số nguyên tố nên ta đánh dấu false cho hai vị trí này ngay từ đầu
+    for (int i = 2; i * i <= MAX; i++) {
+        if (isPrime[i]) {
+            for (int j = i * i; j <= MAX; j += i) {
+                isPrime[j] = false;
+            }
         }
     }
-
-    if (n > 2) {
-        std::cout << n;
+    for (int i = 2; i <= MAX; i++) {
+        if (isPrime[i]) {
+            squares.push_back(i * i);
+        }
     }
-
-    std::cout << std::endl;
+    return squares;
 }
