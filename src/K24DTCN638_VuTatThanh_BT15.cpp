@@ -1,12 +1,13 @@
 #include <fstream>
-#include <iostream>
 #include <string>
+#include <iostream>
+#include <unordered_map>
 #include "util.h"
-#include "K24DTCN638_VuTatThanh_BT10.h"
+#include "K24DTCN638_VuTatThanh_BT15.h"
 
-
+// ĐẾM SỐ PHẦN TỬ LẶP LẠI
 int main() {
-    const std::string filename = "K24DTCN638_VuTatThanh_BT10.txt";
+    const std::string filename = "K24DTCN638_VuTatThanh_BT15.txt";
     std::ifstream file(filename); // Mở file để đọc
     if (!file) {
         std::cerr << "Khong the mo file input " << filename << std::endl;
@@ -31,36 +32,45 @@ int main() {
         const int n = parse_int(line);
         if (n < 0) return 2;
         if (n < 1) {
-            std::cout << "N phai lon hon hoac bang 1" << std::endl;
+            std::cerr << "n phai lon hon hoac bang 1" << std::endl;
             return 2;
         }
         if (n > 1000000) {
-            std::cout << "N phai nho hon hoac bang 1000000" << std::endl;
+            std::cerr << "n phai nho hon hoac bang 1000000" << std::endl;
             return 2;
         }
+
         if (!std::getline(file, line)) {
             std::cerr << "Khong co dong tiep theo" << std::endl;
             return 2;
         }
         const std::vector<int> A = string_to_int_vector(line, n);
-        std::cout << find_smallest_missing_positive(A, n) << std::endl;
+        for (int j = 0; j < n; j++) {
+            if (A[j] > 1000000) {
+                std::cerr << "A[i] phai nho hon hoac bang 1000000" << std::endl;
+                return 2;
+            }
+        }
+        const int count = count_array_duplicated_elements(A, n);
+
+        std::cout << count << std::endl;
     }
+
     file.close();
 
     return 0;
 }
 
-int find_smallest_missing_positive(const std::vector<int>& arr, const int n) {
-    std::vector<bool> present(n + 2, false); // đánh dấu số từ 1 đến n+1
+int count_array_duplicated_elements(const std::vector<int> &A, const int n) {
+    std::unordered_map<int, int> freq;
 
-    for (const int x : arr) {
-        if (x >= 1 && x <= n + 1) {
-            present[x] = true;
-        }
+    for (int i = 0; i < n; i++) {
+        freq[A[i]]++;
     }
 
-    for (int i = 1; i <= n + 1; i++) {
-        if (!present[i]) return i;
+    int count = 0;
+    for (const auto& p : freq) {
+        if (p.second >= 2) count += p.second;
     }
-    return n + 1; // trường hợp này ít xảy ra vì đã kiểm tra hết
+    return count;
 }

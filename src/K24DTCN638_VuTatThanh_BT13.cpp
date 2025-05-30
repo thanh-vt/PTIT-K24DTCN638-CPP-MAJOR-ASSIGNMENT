@@ -19,7 +19,7 @@ int main() {
         std::cerr << "Khong co dong tiep theo" << std::endl;
         return 2;
     }
-    int total_tests = parse_int(line);
+    const int total_tests = parse_int(line);
     if (total_tests < 1 || total_tests > 100) {
         std::cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << std::endl;
         return 2;
@@ -64,27 +64,22 @@ int main() {
 }
 
 void print_matrix_borders(const std::vector<std::vector<int> > &A, const int n) {
-    // In dòng đầu
+
+    // In dòng đầu đầy đủ
     for (int j = 0; j < n; j++) {
         std::cout << A[0][j];
         if (j < n - 1) std::cout << " ";
     }
     std::cout << std::endl;
 
-    // In các dòng giữa: chỉ in phần tử đầu và cuối, khoảng trắng ở giữa
+    // In các dòng giữa: phần tử đầu, 4 dấu cách, phần tử cuối
     for (int i = 1; i < n - 1; i++) {
-        std::cout << A[i][0] << " ";
-
-        // In khoảng trắng, số khoảng trắng = (2 * (N - 2) - 1)
-        // mỗi phần tử cách nhau 1 dấu cách, nên tổng khoảng trắng = (2 * (N - 2) - 1)
-        // Ví dụ với N=4: (2*2 -1) = 3 khoảng trắng
-        int spaces = 2 * (n - 2) - 1;
-        for (int k = 0; k < spaces; k++) std::cout << " ";
-
+        std::cout << A[i][0];
+        std::cout << "    ";  // 4 dấu cách
         std::cout << A[i][n - 1] << std::endl;
     }
 
-    // In dòng cuối cùng đầy đủ
+    // In dòng cuối đầy đủ
     for (int j = 0; j < n; j++) {
         std::cout << A[n - 1][j];
         if (j < n - 1) std::cout << " ";

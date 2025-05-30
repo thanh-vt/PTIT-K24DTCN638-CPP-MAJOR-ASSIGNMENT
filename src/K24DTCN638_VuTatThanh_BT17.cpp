@@ -1,11 +1,12 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string>
 #include "util.h"
-#include "K24DTCN638_VuTatThanh_BT07.h"
+#include "K24DTCN638_VuTatThanh_BT17.h"
 
-
+// ĐẦU CUỐI GIỐNG NHAU
 int main() {
-    std::string filename = "K24DTCN638_VuTatThanh_BT07.txt";
+    const std::string filename = "K24DTCN638_VuTatThanh_BT17.txt";
     std::ifstream file(filename); // Mở file để đọc
     if (!file) {
         std::cerr << "Khong the mo file input " << filename << std::endl;
@@ -27,17 +28,8 @@ int main() {
             std::cerr << "Khong co dong tiep theo" << std::endl;
             return 2;
         }
-        const long n = parse_long(line);
-        if (n < 0) return 2;
-        if (n < 1) {
-            std::cout << "N phai lon hon hoac bang 1" << std::endl;
-            return 2;
-        }
-        if (n > 10000000000) {
-            std::cout << "N phai nho hon hoac bang 10000000000" << std::endl;
-            return 2;
-        }
-        print_factorization(n);
+        const int count = count_substring_begin_end_equals(line);
+        std::cout << count << std::endl;
     }
 
     file.close();
@@ -45,22 +37,17 @@ int main() {
     return 0;
 }
 
-void print_factorization(long n) {
-    while (n % 2 == 0) {
-        std::cout << 2 << " ";
-        n /= 2;
+int count_substring_begin_end_equals(const std::string &S) {
+    std::vector<int> freq(26, 0);
+    for (const char c : S) {
+        freq[c - 'a']++;
     }
 
-    for (long i = 3; i * i <= n; i += 2) {
-        while (n % i == 0) {
-            std::cout << i << " ";
-            n /= i;
+    int result = 0;
+    for (const int f : freq) {
+        if (f > 0) {
+            result += static_cast<int>(f) * (f + 1) / 2;
         }
     }
-
-    if (n > 2) {
-        std::cout << n;
-    }
-
-    std::cout << std::endl;
+    return result;
 }

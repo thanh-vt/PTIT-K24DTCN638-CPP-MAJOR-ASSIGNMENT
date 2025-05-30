@@ -19,7 +19,7 @@ int main() {
         std::cerr << "Khong co dong tiep theo" << std::endl;
         return 2;
     }
-    int total_tests = parse_int(line);
+    const int total_tests = parse_int(line);
     if (total_tests < 1 || total_tests > 100) {
         std::cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << std::endl;
         return 2;

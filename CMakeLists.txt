@@ -14,7 +14,7 @@ set(COMMON_SOURCES
 )
 
 # Set the number of exercises
-set(NUM_EXERCISES 13)
+set(NUM_EXERCISES 17)
 
 # Generate exercise numbers from 01 to NUM_EXERCISES
 set(EXERCISE_NUMBERS "")
