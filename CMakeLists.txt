@@ -14,7 +14,7 @@ set(COMMON_SOURCES
 )
 
 # Set the number of exercises
-set(NUM_EXERCISES 19)
+set(NUM_EXERCISES 25)
 
 # Generate exercise numbers from 01 to NUM_EXERCISES
 set(EXERCISE_NUMBERS "")
@@ -37,6 +37,6 @@ endforeach()
 
 # Copy test files
 file(GLOB TEST_FILES
-    "${CMAKE_SOURCE_DIR}/test/*.txt"
+    "${CMAKE_SOURCE_DIR}/test/**"
 )
 file(COPY ${TEST_FILES} DESTINATION ${CMAKE_BINARY_DIR})

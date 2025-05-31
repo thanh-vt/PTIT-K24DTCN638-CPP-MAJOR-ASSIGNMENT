@@ -4,6 +4,27 @@
 #include <iostream>
 #include <regex>
 
+Gender parse_gender(const std::string &genderStr) {
+    if (genderStr == "Nam") {
+        return MALE;
+    }
+    if (genderStr == "Nu") {
+        return FEMALE;
+    }
+    throw std::invalid_argument("Gioi tinh khong hop le (Nam / Nu).");
+}
+
+std::string print_gender(const Gender gender) {
+    switch (gender) {
+        case MALE:
+            return "Nam";
+        case FEMALE:
+            return "Nu";
+        default:
+            return "";
+    }
+}
+
 std::string trim(const std::string& str) {
     const size_t first = str.find_first_not_of(" \t\n\r\f\v");
     if (first == std::string::npos)
@@ -13,7 +34,11 @@ std::string trim(const std::string& str) {
 }
 
 std::string normalize_and_validate_name(const std::string& input) {
-    std::string trimmed = trim(input);
+    return normalize_and_validate_name(input, 50);
+}
+
+std::string normalize_and_validate_name(const std::string& input, const int max_length) {
+    const std::string trimmed = trim(input);
     std::string result;
     int letterCount = 0;
     bool inSpace = false;
@@ -33,8 +58,8 @@ std::string normalize_and_validate_name(const std::string& input) {
         }
     }
 
-    if (letterCount > 50) {
-        throw std::length_error("Ho ten vuot qua 50 chu cai.");
+    if (letterCount > max_length) {
+        throw std::length_error(std::string("Ho ten vuot qua ") + std::to_string(max_length) + " chu cai.");
     }
 
     return result;
@@ -59,6 +84,16 @@ std::tm parse_date(const std::string& dateStr, const std::string& format) {
 
 std::tm parse_date(const std::string& dateStr) {
     return parse_date(dateStr, "%d/%m/%Y");
+}
+
+std::string print_date(const std::tm &date, const std::string &format) {
+    std::stringstream ss;
+    ss << std::put_time(&date, format.c_str());
+    return ss.str();
+}
+
+std::string print_date(const std::tm &date) {
+    return print_date(date, "%d/%m/%Y");
 }
 
 char parse_char(const std::string &line) {
@@ -92,6 +127,17 @@ long parse_long(const std::string &line) {
         std::cerr << "Chuoi khong phai so long hop le\n";
     } catch (const std::out_of_range &e) {
         std::cerr << "So vuot qua pham vi long\n";
+    }
+    return -1;
+}
+
+float parse_float(const std::string &line) {
+    try {
+        return std::stof(line);
+    } catch (const std::invalid_argument &e) {
+        std::cerr << "Chuoi khong phai so float hop le\n";
+    } catch (const std::out_of_range &e) {
+        std::cerr << "So vuot qua pham vi float\n";
     }
     return -1;
 }
