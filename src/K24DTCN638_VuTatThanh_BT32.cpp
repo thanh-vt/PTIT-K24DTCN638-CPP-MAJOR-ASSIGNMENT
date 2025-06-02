@@ -2,12 +2,14 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <set>
+#include <unordered_set>
 #include "util.h"
-#include "K24DTCN638_VuTatThanh_BT31.h"
+#include "K24DTCN638_VuTatThanh_BT32.h"
 
-// HỢP VÀ GIAO CỦA HAI DÃY SỐ -1
+// HỢP VÀ GIAO CỦA HAI DÃY SỐ -2
 int main() {
-    const std::string filename = "K24DTCN638_VuTatThanh_BT31.txt";
+    const std::string filename = "K24DTCN638_VuTatThanh_BT32.txt";
     std::ifstream file(filename); // Mở file để đọc
     if (!file) {
         std::cerr << "Khong the mo file input " << filename << std::endl;
@@ -30,7 +32,7 @@ int main() {
             return 2;
         }
         // Xử lý dòng đọc được
-        std::regex ws_re(" +");  // ttách chuỗi bởi khoảng trắng
+        std::regex ws_re(" +");  // tách chuỗi bởi khoảng trắng
         std::sregex_token_iterator iter(line.begin(), line.end(), ws_re, -1);
         std::sregex_token_iterator end;
         std::vector<std::string> result(iter, end);
@@ -73,15 +75,26 @@ int main() {
                 return 2;
             }
         }
-        std::vector<int> union_arr = find_union_array(A, B);
-        for (int e : union_arr) {
-            std::cout << e << " ";
+        std::set<int> unionSet;  // Dùng set để loại trùng và tự sắp xếp
+        std::unordered_set<int> Bset;  // Dùng để tra cứu nhanh cho intersection
+        std::set<int> intersectionSet;
+
+        for (int x : A) unionSet.insert(x);
+        for (int x : B) {
+            unionSet.insert(x);
+            Bset.insert(x); // Đưa B vào unordered_set để tìm nhanh
         }
+
+        for (int x : A) {
+            if (Bset.count(x)) {
+                intersectionSet.insert(x);
+            }
+        }
+
+        for (int x : unionSet) std::cout << x << " ";
         std::cout << std::endl;
-        std::vector<int> intersection_arr = find_intersection_array(A, B);
-        for (int e : intersection_arr) {
-            std::cout << e << " ";
-        }
+
+        for (int x : intersectionSet) std::cout << x << " ";
         std::cout << std::endl;
     }
     file.close();
