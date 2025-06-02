@@ -6,94 +6,96 @@
 
 // CỬA SỔ TRƯỢT
 int main() {
-    const std::string filename = "K24DTCN638_VuTatThanh_BT27.txt";
-    std::ifstream file(filename); // Mở file để đọc
+    using namespace std;
+    const string filename = "K24DTCN638_VuTatThanh_BT27.txt";
+    ifstream file(filename); // Mở file để đọc
     if (!file) {
-        std::cerr << "Khong the mo file input " << filename << std::endl;
+        cerr << "Khong the mo file input " << filename << endl;
         return 1;
     }
 
-    std::string line;
-    if (!std::getline(file, line)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    string line;
+    if (!getline(file, line)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
     const int N = parse_int(line);
     if (N < 0) return 2;
     if (N <= 3) {
-        std::cerr << "N phai lon hon 3" << std::endl;
+        cerr << "N phai lon hon 3" << endl;
         return 2;
     }
     if (N >= 100) {
-        std::cerr << "N phai nho hon 100" << std::endl;
+        cerr << "N phai nho hon 100" << endl;
         return 2;
     }
-    std::vector<std::vector<int>>A(N, std::vector<int>(N));
+    vector<vector<int>>A(N, vector<int>(N));
     for (int j = 0; j < N; ++j) {
-        if (!std::getline(file, line)) {
-            throw std::runtime_error("Khong co dong tiep theo");
+        if (!getline(file, line)) {
+            throw runtime_error("Khong co dong tiep theo");
         }
-        const std::vector<int> arr = string_to_int_vector(line, N);
+        const vector<int> arr = string_to_int_vector(line, N);
         for (int k = 0; k < N; ++k) {
             const int e = arr[k];
             if (e < 1) {
-                std::cerr << "Phan tu cua ma tran A phai la so nguyen duong" << std::endl;
+                cerr << "Phan tu cua ma tran A phai la so nguyen duong" << endl;
                 return 2;
             }
             if (e > 1000) {
-                std::cerr << "Phan tu cua ma tran A phai nho hon hoac bang 1000" << std::endl;
+                cerr << "Phan tu cua ma tran A phai nho hon hoac bang 1000" << endl;
             }
             A[j][k] = e;
         }
     }
-    if (!std::getline(file, line)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    if (!getline(file, line)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
     const int M = parse_int(line);
     if (M < 0) return 2;
     if (M < 1) {
-        std::cerr << "M phai lon hon 1" << std::endl;
+        cerr << "M phai lon hon 1" << endl;
         return 2;
     }
     if (M > 10) {
-        std::cerr << "M phai nho hon 10" << std::endl;
+        cerr << "M phai nho hon 10" << endl;
         return 2;
     }
-    std::vector<std::vector<int>>B(M, std::vector<int>(M));
+    vector<vector<int>>B(M, vector<int>(M));
     for (int j = 0; j < M; ++j) {
-        if (!std::getline(file, line)) {
-            throw std::runtime_error("Khong co dong tiep theo");
+        if (!getline(file, line)) {
+            throw runtime_error("Khong co dong tiep theo");
         }
-        const std::vector<int> arr = string_to_int_vector(line, N);
+        const vector<int> arr = string_to_int_vector(line, N);
         for (int k = 0; k < M; ++k) {
             const int e = arr[k];
             if (e < 0) {
-                std::cerr << "Phan tu cua ma tran B phai lon hon hoac bang 0" << std::endl;
+                cerr << "Phan tu cua ma tran B phai lon hon hoac bang 0" << endl;
                 return 2;
             }
             if (e > 20) {
-                std::cerr << "Phan tu cua ma tran B phai nho hon hoac bang 20" << std::endl;
+                cerr << "Phan tu cua ma tran B phai nho hon hoac bang 20" << endl;
             }
             B[j][k] = e;
         }
     }
     file.close();
-    const std::vector<std::vector<int>> result = print_convolution_matrix(A, B, M, N);
+    const vector<vector<int>> result = print_convolution_matrix(A, B, M, N);
     // In ra ma trận kết quả
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            std::cout << result[i][j];
-            if (j < N - 1) std::cout << " ";
+            cout << result[i][j];
+            if (j < N - 1) cout << " ";
         }
-        std::cout << std::endl;
+        cout << endl;
     }
     return 0;
 }
 
 std::vector<std::vector<int>> print_convolution_matrix(const std::vector<std::vector<int>> &A, const std::vector<std::vector<int>> &B, const int M, const int N) {
+    using namespace std;
     // Tạo ma trận kết quả
-    std::vector<std::vector<int>> result(N, std::vector<int>(N, 0));
+    vector<vector<int>> result(N, vector<int>(N, 0));
     // Tính tích chập
     for (int i = 0; i <= N - M; i += M) {
         for (int j = 0; j <= N - M; j += M) {

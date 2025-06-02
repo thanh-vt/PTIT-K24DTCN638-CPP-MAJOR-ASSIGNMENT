@@ -6,25 +6,26 @@
 
 // NHỎ NHẤT - LỚN NHẤT
 int main() {
-    std::string filename = "K24DTCN638_VuTatThanh_BT16.txt";
-    std::ifstream file(filename); // Mở file để đọc
+    using namespace std;
+    string filename = "K24DTCN638_VuTatThanh_BT16.txt";
+    ifstream file(filename); // Mở file để đọc
     if (!file) {
-        std::cerr << "Khong the mo file input " << filename << std::endl;
+        cerr << "Khong the mo file input " << filename << endl;
         return 1;
     }
 
-    std::string line;
-    if (!std::getline(file, line)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    string line;
+    if (!getline(file, line)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
     // Xử lý dòng đọc được
-    std::regex ws_re(" +");  // ttách chuỗi bởi khoảng trắng
-    std::sregex_token_iterator iter(line.begin(), line.end(), ws_re, -1);
-    std::sregex_token_iterator end;
-    std::vector<std::string> result(iter, end);
+    regex ws_re(" +");  // ttách chuỗi bởi khoảng trắng
+    sregex_token_iterator iter(line.begin(), line.end(), ws_re, -1);
+    sregex_token_iterator end;
+    vector<string> result(iter, end);
     if (result.size() != 2) {
-        std::cerr << "Input phai co 2 so a, b" << std::endl;
+        cerr << "Input phai co 2 so a, b" << endl;
         return 2;
     }
     int m = parse_int(result.at(0));
@@ -33,37 +34,38 @@ int main() {
         return 2;
     }
     if (m > 100) {
-        std::cerr << "m khong vuot qua 100\n";
+        cerr << "m khong vuot qua 100\n";
         return 2;
     }
     if (s > 900) {
-        std::cerr << "m khong vuot qua 900\n";
+        cerr << "m khong vuot qua 900\n";
         return 2;
     }
     if (s == 0) {
-        if (m == 1) std::cout << "0 0\n";
-        else std::cout << "-1 -1\n";
+        if (m == 1) cout << "0 0\n";
+        else cout << "-1 -1\n";
         return 0;
     }
 
     if (s > 9 * m) {
-        std::cout << "-1 -1\n";
+        cout << "-1 -1\n";
         return 0;
     }
-    std::cout << find_min(m, s) << " " << find_max(m, s) << std::endl;
+    cout << find_min(m, s) << " " << find_max(m, s) << endl;
 
     file.close();
 
     return 0;
 }
 
-std::string find_min(int m, int s) {
+std::string find_min(const int m, const int s) {
+    using namespace std;
     int sum = s;
-    std::string minNum(m, '0');
+    string minNum(m, '0');
     for (int i = 0; i < m; i++) {
         for (char d = (i == 0 ? '1' : '0'); d <= '9'; d++) {
-            int digit = d - '0';
-            int maxPossible = 9 * (m - i - 1);
+            const int digit = d - '0';
+            const int maxPossible = 9 * (m - i - 1);
             if (sum - digit <= maxPossible) {
                 minNum[i] = d;
                 sum -= digit;
@@ -74,12 +76,13 @@ std::string find_min(int m, int s) {
     return minNum;
 }
 
-std::string find_max(int m, int s) {
+std::string find_max(const int m, const int s) {
+    using namespace std;
     int sum = s;
-    std::string maxNum(m, '0');
+    string maxNum(m, '0');
     for (int i = 0; i < m; i++) {
         for (char d = '9'; d >= '0'; d--) {
-            int digit = d - '0';
+            const int digit = d - '0';
             if (sum - digit >= 0) {
                 maxNum[i] = d;
                 sum -= digit;

@@ -5,52 +5,53 @@
 #include "util.h"
 #include "K24DTCN638_VuTatThanh_BT13.h"
 
-
+// BIÊN CỦA MA TRẬN
 int main() {
-    const std::string filename = "K24DTCN638_VuTatThanh_BT13.txt";
-    std::ifstream file(filename); // Mở file để đọc
+    using namespace std;
+    const string filename = "K24DTCN638_VuTatThanh_BT13.txt";
+    ifstream file(filename); // Mở file để đọc
     if (!file) {
-        std::cerr << "Khong the mo file input " << filename << std::endl;
+        cerr << "Khong the mo file input " << filename << endl;
         return 1;
     }
 
-    std::string line;
-    if (!std::getline(file, line)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    string line;
+    if (!getline(file, line)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
     const int total_tests = parse_int(line);
     if (total_tests < 1 || total_tests > 100) {
-        std::cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << std::endl;
+        cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << endl;
         return 2;
     }
     for (int i = 0; i < total_tests; i++) {
-        if (!std::getline(file, line)) {
-            std::cerr << "Khong co dong tiep theo" << std::endl;
+        if (!getline(file, line)) {
+            cerr << "Khong co dong tiep theo" << endl;
             return 2;
         }
         const int n = parse_int(line);
         if (n < 0) return 2;
         if (n < 1) {
-            std::cerr << "n phai lon hon hoac bang 1" << std::endl;
+            cerr << "n phai lon hon hoac bang 1" << endl;
             return 2;
         }
         if (n > 100) {
-            std::cerr << "n phai nho hon hoac bang 100" << std::endl;
+            cerr << "n phai nho hon hoac bang 100" << endl;
             return 2;
         }
 
-        std::vector<std::vector<int> > A(n, std::vector<int>(n));
-        if (!std::getline(file, line)) {
-            std::cerr << "Khong co dong tiep theo" << std::endl;
+        vector<vector<int> > A(n, vector<int>(n));
+        if (!getline(file, line)) {
+            cerr << "Khong co dong tiep theo" << endl;
             return 2;
         }
-        const std::vector<int> arr = string_to_int_vector(line, n * n);
+        const vector<int> arr = string_to_int_vector(line, n * n);
         for (int j = 0; j < n; ++j) {
             for (int k = 0; k < n; ++k) {
                 const int e = arr[j * n + k];
                 if (e > 150) {
-                    std::cerr << "Phan tu phai nho hon hoac bang 150" << std::endl;
+                    cerr << "Phan tu phai nho hon hoac bang 150" << endl;
                     return 2;
                 }
                 A[j][k] = e;
@@ -64,25 +65,25 @@ int main() {
 }
 
 void print_matrix_borders(const std::vector<std::vector<int> > &A, const int n) {
-
+    using namespace std;
     // In dòng đầu đầy đủ
     for (int j = 0; j < n; j++) {
-        std::cout << A[0][j];
-        if (j < n - 1) std::cout << " ";
+        cout << A[0][j];
+        if (j < n - 1) cout << " ";
     }
-    std::cout << std::endl;
+    cout << endl;
 
     // In các dòng giữa: phần tử đầu, 4 dấu cách, phần tử cuối
     for (int i = 1; i < n - 1; i++) {
-        std::cout << A[i][0];
-        std::cout << "    ";  // 4 dấu cách
-        std::cout << A[i][n - 1] << std::endl;
+        cout << A[i][0];
+        cout << "    ";  // 4 dấu cách
+        cout << A[i][n - 1] << endl;
     }
 
     // In dòng cuối đầy đủ
     for (int j = 0; j < n; j++) {
-        std::cout << A[n - 1][j];
-        if (j < n - 1) std::cout << " ";
+        cout << A[n - 1][j];
+        if (j < n - 1) cout << " ";
     }
-    std::cout << std::endl;
+    cout << endl;
 }

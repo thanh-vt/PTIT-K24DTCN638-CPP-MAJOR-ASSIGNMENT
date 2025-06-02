@@ -9,25 +9,26 @@
 
 // KHAI BÁO LỚP PHÂN SỐ
 int main() {
-    const std::string filename = "K24DTCN638_VuTatThanh_BT22.txt";
-    std::ifstream file(filename); // Mở file để đọc
+    using namespace std;
+    const string filename = "K24DTCN638_VuTatThanh_BT22.txt";
+    ifstream file(filename); // Mở file để đọc
     if (!file) {
-        std::cerr << "Khong the mo file input " << filename << std::endl;
+        cerr << "Khong the mo file input " << filename << endl;
         return 1;
     }
-    std::string line;
-    std::string numeratorStr, denominatorStr;
-    if (!std::getline(file, line)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    string line;
+    string numeratorStr, denominatorStr;
+    if (!getline(file, line)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
     // Xử lý dòng đọc được
-    std::regex ws_re(" +");  // ttách chuỗi bởi khoảng trắng
-    std::sregex_token_iterator iter(line.begin(), line.end(), ws_re, -1);
-    std::sregex_token_iterator end;
-    std::vector<std::string> result(iter, end);
+    regex ws_re(" +");  // ttách chuỗi bởi khoảng trắng
+    sregex_token_iterator iter(line.begin(), line.end(), ws_re, -1);
+    sregex_token_iterator end;
+    vector<string> result(iter, end);
     if (result.size() != 2) {
-        std::cerr << "Input phai co 2 so nguyen duong" << std::endl;
+        cerr << "Input phai co 2 so nguyen duong" << endl;
         return 2;
     }
     numeratorStr = result.at(0);
@@ -35,9 +36,9 @@ int main() {
     file.close();
     try {
         Fraction fraction(numeratorStr, denominatorStr);
-        std::cout << fraction << std::endl;
-    } catch (const std::exception &ex) {
-        std::cerr << ex.what() << std::endl;
+        cout << fraction << endl;
+    } catch (const exception &ex) {
+        cerr << ex.what() << endl;
         return 2;
     }
 
@@ -48,11 +49,12 @@ Fraction::Fraction(const std::string &numeratorStr, const std::string &denominat
 }
 
 Fraction::Fraction(const int numerator, const int denominator): numerator(numerator), denominator(denominator) {
+    using namespace std;
     if (numerator < 0) {
-        throw std::invalid_argument("Tu so phai la so nguyen duong");
+        throw invalid_argument("Tu so phai la so nguyen duong");
     }
     if (denominator < 0) {
-        throw std::invalid_argument("Mau so phai la so nguyen duong");
+        throw invalid_argument("Mau so phai la so nguyen duong");
     }
     reduce();
 }

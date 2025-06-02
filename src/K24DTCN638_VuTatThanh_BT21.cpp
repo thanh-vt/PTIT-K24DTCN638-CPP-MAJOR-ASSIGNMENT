@@ -7,44 +7,45 @@
 
 // CẤU TRÚC NHÂN VIÊN
 int main() {
-    const std::string filename = "K24DTCN638_VuTatThanh_BT21.txt";
-    std::ifstream file(filename); // Mở file để đọc
+    using namespace std;
+    const string filename = "K24DTCN638_VuTatThanh_BT21.txt";
+    ifstream file(filename); // Mở file để đọc
     if (!file) {
-        std::cerr << "Khong the mo file input " << filename << std::endl;
+        cerr << "Khong the mo file input " << filename << endl;
         return 1;
     }
 
-    std::string fullname, genderStr, dateStr, address, taxCode, contractSignDateStr;
-    if (!std::getline(file, fullname)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    string fullname, genderStr, dateStr, address, taxCode, contractSignDateStr;
+    if (!getline(file, fullname)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
-    if (!std::getline(file, genderStr)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    if (!getline(file, genderStr)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
-    if (!std::getline(file, dateStr)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    if (!getline(file, dateStr)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
-    if (!std::getline(file, address)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    if (!getline(file, address)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
-    if (!std::getline(file, taxCode)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    if (!getline(file, taxCode)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
-    if (!std::getline(file, contractSignDateStr)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    if (!getline(file, contractSignDateStr)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
     file.close();
     try {
         Staff staff(fullname, genderStr, dateStr, address, taxCode, contractSignDateStr);
-        std::cout << staff << std::endl;
-    } catch (const std::exception &ex) {
-        std::cerr << ex.what() << std::endl;
+        cout << staff << endl;
+    } catch (const exception &ex) {
+        cerr << ex.what() << endl;
         return 2;
     }
 
@@ -53,16 +54,17 @@ int main() {
 
 Staff::Staff(const std::string &fullname, const std::string &genderStr, const std::string &dateStr,
                  const std::string &address, const std::string &taxCode, const std::string &contractSignDateStr) {
+    using namespace std;
     this->code = "00001";
     this->fullname = normalize_and_validate_name(fullname, 40);
     this->gender = parse_gender(genderStr);
     this->dateOfBirth = parse_date(dateStr);
     if (address.size() > 100) {
-        throw std::invalid_argument("Dia chi do dai khong vuot qua 100");
+        throw invalid_argument("Dia chi do dai khong vuot qua 100");
     }
     this->address = address;
-    if (taxCode.size() != 10 && std::all_of(taxCode.begin(), taxCode.end(), isdigit)) {
-        throw std::invalid_argument("Ma so thue phai gom 10 chu so");
+    if (taxCode.size() != 10 && all_of(taxCode.begin(), taxCode.end(), [](const unsigned char c){ return isdigit(c); })) {
+        throw invalid_argument("Ma so thue phai gom 10 chu so");
     }
     this->taxCode = taxCode;
     this->contractSignDate = parse_date(contractSignDateStr);

@@ -4,42 +4,44 @@
 #include "util.h"
 #include "K24DTCN638_VuTatThanh_BT04.h"
 
+// CÂN BẰNG CHẴN LẺ
 int main() {
-    std::string filename = "K24DTCN638_VuTatThanh_BT04.txt";
-    std::ifstream file(filename); // Mở file để đọc
+    using namespace std;
+    string filename = "K24DTCN638_VuTatThanh_BT04.txt";
+    ifstream file(filename); // Mở file để đọc
     if (!file) {
-        std::cerr << "Khong the mo file input " << filename << std::endl;
+        cerr << "Khong the mo file input " << filename << endl;
         return 1;
     }
 
-    std::string line;
-    if (!std::getline(file, line)) {
+    string line;
+    if (!getline(file, line)) {
         // Xử lý dòng đọc được
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
     const int n = parse_int(line);
     if (n < 0) return 2;
     if (n > 20) {
-        std::cerr << "N phai nho hon 20" << std::endl;
+        cerr << "N phai nho hon 20" << endl;
         return 2;
     }
     if (n % 2 == 0) {
-        const int start = static_cast<int>(std::pow(10, n - 1));
-        const int end = static_cast<int>(std::pow(10, n)) - 1;
+        const int start = static_cast<int>(pow(10, n - 1));
+        const int end = static_cast<int>(pow(10, n)) - 1;
         int count = 0;
         for (int num = start; num <= end; ++num) {
             if (has_equal_odd_even_digits(num)) {
                 count ++;
-                std::cout << num << " ";
+                cout << num << " ";
                 if (count % 10 == 0) {
-                    std::cout << std::endl;
+                    cout << endl;
                 }
             }
         }
-        std::cout << std::endl;
+        cout << endl;
     } else {
-        std::cerr << "N phai la so chan" << std::endl;
+        cerr << "N phai la so chan" << endl;
     }
 
     file.close();

@@ -5,38 +5,40 @@
 
 // LOẠI BỎ NGUYÊN ÂM
 int main() {
-    const std::string filename = "K24DTCN638_VuTatThanh_BT18.txt";
-    std::ifstream file(filename); // Mở file để đọc
+    using namespace std;
+    const string filename = "K24DTCN638_VuTatThanh_BT18.txt";
+    ifstream file(filename); // Mở file để đọc
     if (!file) {
-        std::cerr << "Khong the mo file input " << filename << std::endl;
+        cerr << "Khong the mo file input " << filename << endl;
         return 1;
     }
 
-    std::string line;
-    if (!std::getline(file, line)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    string line;
+    if (!getline(file, line)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
     if (line.size() > 100) {
-        std::cerr << "S phai co do dai nho hon hoac bang 100" << std::endl;
+        cerr << "S phai co do dai nho hon hoac bang 100" << endl;
         return 2;
     }
 
-    std::cout << remove_vowels(line) << std::endl;
+    cout << remove_vowels(line) << endl;
     file.close();
 
     return 0;
 }
 
-bool isVowel(char c) {
+bool is_vowel(char c) {
     c = tolower(c);
     return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y';
 }
 
 std::string remove_vowels(const std::string &S) {
-    std::string result;
-    for (char c : S) {
-        if (!isVowel(c)) {
+    using namespace std;
+    string result;
+    for (const char c : S) {
+        if (!is_vowel(c)) {
             result += '.';
             result += tolower(c);
         }

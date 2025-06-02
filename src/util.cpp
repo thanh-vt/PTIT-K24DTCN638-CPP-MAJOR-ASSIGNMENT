@@ -1,17 +1,17 @@
-#include "util.h"
-
 #include <iomanip>
 #include <iostream>
 #include <regex>
+#include "util.h"
 
 Gender parse_gender(const std::string &genderStr) {
+    using namespace std;
     if (genderStr == "Nam") {
         return MALE;
     }
     if (genderStr == "Nu") {
         return FEMALE;
     }
-    throw std::invalid_argument("Gioi tinh khong hop le (Nam / Nu).");
+    throw invalid_argument("Gioi tinh khong hop le (Nam / Nu).");
 }
 
 std::string print_gender(const Gender gender) {
@@ -26,8 +26,9 @@ std::string print_gender(const Gender gender) {
 }
 
 std::string trim(const std::string& str) {
+    using namespace std;
     const size_t first = str.find_first_not_of(" \t\n\r\f\v");
-    if (first == std::string::npos)
+    if (first == string::npos)
         return ""; // Chuỗi toàn khoảng trắng
     const size_t last = str.find_last_not_of(" \t\n\r\f\v");
     return str.substr(first, (last - first + 1));
@@ -38,8 +39,9 @@ std::string normalize_and_validate_name(const std::string& input) {
 }
 
 std::string normalize_and_validate_name(const std::string& input, const int max_length) {
-    const std::string trimmed = trim(input);
-    std::string result;
+    using namespace std;
+    const string trimmed = trim(input);
+    string result;
     int letterCount = 0;
     bool inSpace = false;
 
@@ -54,12 +56,12 @@ std::string normalize_and_validate_name(const std::string& input, const int max_
                 inSpace = true;
             }
         } else {
-            throw std::invalid_argument("Ho ten khong duoc chua ky tu khac chu cai.");
+            throw invalid_argument("Ho ten khong duoc chua ky tu khac chu cai.");
         }
     }
 
     if (letterCount > max_length) {
-        throw std::length_error(std::string("Ho ten vuot qua ") + std::to_string(max_length) + " chu cai.");
+        throw length_error(string("Ho ten vuot qua ") + to_string(max_length) + " chu cai.");
     }
 
     return result;
@@ -71,12 +73,13 @@ bool is_leap_year(const int year) {
 
 
 std::tm parse_date(const std::string& dateStr, const std::string& format) {
-    std::tm tm = {};
-    std::istringstream ss(dateStr);
-    ss >> std::get_time(&tm, format.c_str());
+    using namespace std;
+    tm tm = {};
+    istringstream ss(dateStr);
+    ss >> get_time(&tm, format.c_str());
 
     if (ss.fail()) {
-        throw std::invalid_argument("Dinh dang ngay sinh khong hop le (dd/mm/yyyy).");
+        throw invalid_argument("Dinh dang ngay sinh khong hop le (dd/mm/yyyy).");
     }
     return tm;
 }
@@ -87,8 +90,9 @@ std::tm parse_date(const std::string& dateStr) {
 }
 
 std::string print_date(const std::tm &date, const std::string &format) {
-    std::stringstream ss;
-    ss << std::put_time(&date, format.c_str());
+    using namespace std;
+    stringstream ss;
+    ss << put_time(&date, format.c_str());
     return ss.str();
 }
 
@@ -97,65 +101,71 @@ std::string print_date(const std::tm &date) {
 }
 
 char parse_char(const std::string &line) {
+    using namespace std;
     if (line.size() != 1) {
-        std::cerr << "Chuoi khong phai chu cai hop le\n";
+        cerr << "Chuoi khong phai chu cai hop le" << endl;
         return -1;
     }
     const char c = line[0];
     if (isalpha(c)) {
         return c;
     }
-    std::cerr << "Chuoi khong phai chu cai hop le\n";
+    cerr << "Chuoi khong phai chu cai hop le" << endl;
     return -1;
 }
 
 int parse_int(const std::string &line) {
+    using namespace std;
     try {
-        return std::stoi(line);
-    } catch (const std::invalid_argument &e) {
-        std::cerr << "Chuoi khong phai so integer hop le\n";
-    } catch (const std::out_of_range &e) {
-        std::cerr << "So vuot qua pham vi integer\n";
+        return stoi(line);
+    } catch (const invalid_argument &e) {
+        cerr << "Chuoi khong phai so integer hop le" << endl;
+    } catch (const out_of_range &e) {
+        cerr << "So vuot qua pham vi integer" << endl;
     }
     return -1;
 }
 
 long parse_long(const std::string &line) {
+    using namespace std;
     try {
-        return std::stol(line);
-    } catch (const std::invalid_argument &e) {
-        std::cerr << "Chuoi khong phai so long hop le\n";
-    } catch (const std::out_of_range &e) {
-        std::cerr << "So vuot qua pham vi long\n";
+        return stol(line);
+    } catch (const invalid_argument &e) {
+        cerr << "Chuoi khong phai so long hop le\n";
+    } catch (const out_of_range &e) {
+        cerr << "So vuot qua pham vi long\n";
     }
     return -1;
 }
 
 float parse_float(const std::string &line) {
+    using namespace std;
     try {
-        return std::stof(line);
-    } catch (const std::invalid_argument &e) {
+        return stof(line);
+    } catch (const invalid_argument &e) {
         std::cerr << "Chuoi khong phai so float hop le\n";
-    } catch (const std::out_of_range &e) {
+    } catch (const out_of_range &e) {
         std::cerr << "So vuot qua pham vi float\n";
     }
     return -1;
 }
 
 double parse_double(const std::string &line) {
+    using namespace std;
     try {
-        return std::stod(line);
-    } catch (const std::invalid_argument &e) {
-        std::cerr << "Chuoi khong phai so double hop le\n";
-    } catch (const std::out_of_range &e) {
-        std::cerr << "So vuot qua pham vi double\n";
+        return stod(line);
+    } catch (const invalid_argument &e) {
+        cerr << "Chuoi khong phai so double hop le\n";
+    } catch (const out_of_range &e) {
+        cerr << "So vuot qua pham vi double\n";
     }
     return -1;
 }
 
 std::vector<int> string_to_int_vector(const std::string& s, const size_t size) {
-    std::vector<int> result;
-    std::istringstream iss(s);
+    using namespace std;
+    vector<int> result;
+    istringstream iss(s);
     int number;
     while (result.size() < size && iss >> number) {
         result.push_back(number);
@@ -164,8 +174,9 @@ std::vector<int> string_to_int_vector(const std::string& s, const size_t size) {
 }
 
 std::vector<long> string_to_long_vector(const std::string& s, const size_t size) {
-    std::vector<long> result;
-    std::istringstream iss(s);
+    using namespace std;
+    vector<long> result;
+    istringstream iss(s);
     long number;
     while (result.size() < size && iss >> number) {
         result.push_back(number);

@@ -1,7 +1,3 @@
-//
-// Created by pysga1996 on 02/06/2025.
-//
-
 #ifndef K24DTCN638_VUTATTHANH_BT48_H
 #define K24DTCN638_VUTATTHANH_BT48_H
 

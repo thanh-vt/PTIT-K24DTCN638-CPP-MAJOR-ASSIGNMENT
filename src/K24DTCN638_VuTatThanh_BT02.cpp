@@ -3,35 +3,37 @@
 #include "util.h"
 #include "K24DTCN638_VuTatThanh_BT02.h"
 
+// CHỮ HOA – CHỮ THƯỜNG
 int main() {
-    std::string filename = "K24DTCN638_VuTatThanh_BT02.txt";
-    std::ifstream file(filename); // Mở file để đọc
+    using namespace std;
+    const string filename = "K24DTCN638_VuTatThanh_BT02.txt";
+    ifstream file(filename); // Mở file để đọc
     if (!file) {
-        std::cerr << "Khong the mo file input " << filename << std::endl;
+        cerr << "Khong the mo file input " << filename << endl;
         return 1;
     }
 
-    std::string line;
-    if (!std::getline(file, line)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    string line;
+    if (!getline(file, line)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
     const int total_tests = parse_int(line);
     if (total_tests < 1 || total_tests > 100) {
-        std::cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << std::endl;
+        cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << endl;
         return 2;
     }
     for (int i = 0; i < total_tests; i++) {
         // Xử lý dòng đọc được
-        if (!std::getline(file, line)) {
-            std::cerr << "Khong co dong tiep theo" << std::endl;
+        if (!getline(file, line)) {
+            cerr << "Khong co dong tiep theo" << endl;
             return 2;
         }
         const char c = parse_char(line);
         if (c < 0) {
             return 2;
         }
-        std::cout << convert_char(c) << std::endl;
+        cout << convert_char(c) << endl;
     }
 
     file.close();
@@ -40,11 +42,11 @@ int main() {
 }
 
 char convert_char(const char c) {
-    if (std::islower(c)) {
-        return static_cast<char>(std::toupper(c));
+    if (islower(c)) {
+        return static_cast<char>(toupper(c));
     }
-    if (std::isupper(c)) {
-        return static_cast<char>(std::tolower(c));
+    if (isupper(c)) {
+        return static_cast<char>(tolower(c));
     }
     return c;
 }

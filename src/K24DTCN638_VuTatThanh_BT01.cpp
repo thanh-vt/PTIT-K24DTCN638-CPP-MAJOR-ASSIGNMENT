@@ -5,28 +5,30 @@
 #include "util.h"
 #include "K24DTCN638_VuTatThanh_BT01.h"
 
+// TÍNH TỔNG 1 ĐẾN N
 int main() {
-    std::string filename = "K24DTCN638_VuTatThanh_BT01.txt";
-    std::ifstream file(filename); // Mở file để đọc
+    using namespace std;
+    const string filename = "K24DTCN638_VuTatThanh_BT01.txt";
+    ifstream file(filename); // Mở file để đọc
     if (!file) {
-        std::cerr << "Khong the mo file input " << filename << std::endl;
+        cerr << "Khong the mo file input " << filename << endl;
         return 1;
     }
 
-    std::string line;
-    if (!std::getline(file, line)) {
-        std::cerr << "Khong co dong tiep theo" << std::endl;
+    string line;
+    if (!getline(file, line)) {
+        cerr << "Khong co dong tiep theo" << endl;
         return 2;
     }
     const int total_tests = parse_int(line);
     if (total_tests < 1 || total_tests > 100) {
-        std::cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << std::endl;
+        cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << endl;
         return 2;
     }
     for (int i = 0; i < total_tests; i++) {
         // Xử lý dòng đọc được
-        if (!std::getline(file, line)) {
-            std::cerr << "Khong co dong tiep theo" << std::endl;
+        if (!getline(file, line)) {
+            cerr << "Khong co dong tiep theo" << endl;
             return 2;
         }
         const int n = parse_int(line);
@@ -34,10 +36,10 @@ int main() {
             return 2;
         }
         if (n > 1000000000) {
-            std::cerr << "N khong qua 1000000000" << std::endl;
+            cerr << "N khong qua 1000000000" << endl;
             return 2;
         }
-        std::cout << sum_1_to_n(n) << std::endl;
+        cout << sum_1_to_n(n) << endl;
     }
 
     file.close();

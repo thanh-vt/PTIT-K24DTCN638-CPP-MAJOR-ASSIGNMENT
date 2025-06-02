@@ -3,25 +3,26 @@
 #include <iostream>
 #include "K24DTCN638_VuTatThanh_BT24.h"
 
-
+// SAO CHÉP TỆP TIN
 int main() {
-    std::ifstream in_file("PTIT.in");      // Mở tệp nguồn để đọc
-    std::ofstream out_file("PTIT.out");    // Mở tệp đích để ghi
+    using namespace std;
+    ifstream in_file("PTIT.in");      // Mở tệp nguồn để đọc
+    ofstream out_file("PTIT.out");    // Mở tệp đích để ghi
 
     // Kiểm tra tệp có mở thành công không
     if (!in_file) {
-        std::cerr << "Khong the mo file PTIT.in" << std::endl;
+        cerr << "Khong the mo file PTIT.in" << endl;
         return 1;
     }
 
     if (!out_file) {
-        std::cerr << "Khong the tao file PTIT.out" << std::endl;
+        cerr << "Khong the tao file PTIT.out" << endl;
         return 1;
     }
 
-    std::string line;
+    string line;
     while (getline(in_file, line)) {
-        out_file << line << std::endl;
+        out_file << line << endl;
     }
 
     in_file.close();
