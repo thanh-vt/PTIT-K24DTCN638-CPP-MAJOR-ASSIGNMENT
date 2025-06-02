@@ -3,6 +3,7 @@
 #include "util.h"
 #include "K24DTCN638_VuTatThanh_BT30.h"
 
+// TÁCH CHỮ SỐ
 int main() {
     const std::string filename = "K24DTCN638_VuTatThanh_BT30.txt";
     std::ifstream file(filename); // Mở file để đọc
