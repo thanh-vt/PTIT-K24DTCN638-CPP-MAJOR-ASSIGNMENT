@@ -240,7 +240,7 @@ std::string validate_ptit_clazz(const std::string &clazz) {
     static regex pattern(R"(^[A-Z](\d){2}(CQ|TX|DC)(BC|TT|PT|GA|QT|MR|ME|QC|TM|TC|KT|AC|KH|KD|CN|CE|CC|VN|AT|DT|VT|DK)(\d){2}-[A-Z]$)");
     // use static regex to avoid regex compilation in every function call
     if (!regex_match(clazz, pattern)) {
-        throw invalid_argument("Ten lop khong dung dinh dang ten lop PTIT: ^[A-Z](\\d){2}(CQ|TX|DC)CN(\\d){2}-[A-Z]$");
+        throw invalid_argument("Ten lop khong dung dinh dang ten lop cua PTIT: WDDXXYYDD-W trong do W la chu cai in hoa, D la chu so, XX la ma he, YY la ma nganh dao tao");
     }
     return clazz;
 }
