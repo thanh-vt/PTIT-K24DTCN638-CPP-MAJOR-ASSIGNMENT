@@ -50,7 +50,7 @@ int main() {
 Candidate::Candidate(const std::string &fullname, const std::string &dateStr, const std::string &subject1MarkStr,
                      const std::string &subject2MarkStr, const std::string &subject3MarkStr) {
     using namespace std;
-    this->fullname = normalize_and_validate_name(fullname);
+    this->fullname = trim_and_validate_name(fullname);
     this->dateOfBirth = parse_date(dateStr);
     this->subject1Mark = parse_float(subject1MarkStr);
     if (this->subject1Mark < 0) {

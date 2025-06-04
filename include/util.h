@@ -15,7 +15,11 @@ std::string print_gender(Gender gender);
 
 std::string trim(const std::string &str);
 
-std::string normalize_and_validate_name(const std::string &input);
+std::string trim_and_validate_name(const std::string &input);
+
+std::string trim_and_validate_name(const std::string& input, int max_length);
+
+std::string normalize_and_validate_name(const std::string& input);
 
 std::string normalize_and_validate_name(const std::string& input, int max_length);
 
@@ -42,5 +46,7 @@ double parse_double(const std::string &line);
 std::vector<int> string_to_int_vector(const std::string &s, size_t size);
 
 std::vector<long> string_to_long_vector(const std::string &s, size_t size);
+
+std::string validate_ptit_clazz(const std::string &clazz);
 
 #endif //UTIL_H

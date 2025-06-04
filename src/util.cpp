@@ -34,11 +34,11 @@ std::string trim(const std::string& str) {
     return str.substr(first, (last - first + 1));
 }
 
-std::string normalize_and_validate_name(const std::string& input) {
-    return normalize_and_validate_name(input, 50);
+std::string trim_and_validate_name(const std::string& input) {
+    return trim_and_validate_name(input, 50);
 }
 
-std::string normalize_and_validate_name(const std::string& input, const int max_length) {
+std::string trim_and_validate_name(const std::string& input, const int max_length) {
     using namespace std;
     const string trimmed = trim(input);
     string result;
@@ -64,6 +64,27 @@ std::string normalize_and_validate_name(const std::string& input, const int max_
         throw length_error(string("Ho ten vuot qua ") + to_string(max_length) + " chu cai.");
     }
 
+    return result;
+}
+
+std::string normalize_and_validate_name(const std::string& input) {
+    return normalize_and_validate_name(input, 50);
+}
+
+std::string normalize_and_validate_name(const std::string& input, const int max_length) {
+    using namespace std;
+    stringstream ss(trim_and_validate_name(input, max_length));
+    string word, result;
+
+    while (ss >> word) {
+        // Convert to lowercase
+        transform(word.begin(), word.end(), word.begin(), ::tolower);
+        // Capitalize first letter
+        word[0] = toupper(word[0]);
+        // Append to result
+        if (!result.empty()) result += " ";
+        result += word;
+    }
     return result;
 }
 
@@ -183,3 +204,15 @@ std::vector<long> string_to_long_vector(const std::string& s, const size_t size)
     }
     return result;
 }
+
+std::string validate_ptit_clazz(const std::string &clazz) {
+    using namespace std;
+    regex pattern(R"(^[A-Z](\d){2}(CQ|TX|DC)CN(\d){2}-[A-Z]$)");
+
+    if (!regex_match(clazz, pattern)) {
+        throw invalid_argument("Ten lop khong dung dinh dang ten lop PTIT: ^[A-Z](\\d){2}(CQ|TX|DC)CN(\\d){2}-[A-Z]$");
+    }
+    return clazz;
+}
+
+

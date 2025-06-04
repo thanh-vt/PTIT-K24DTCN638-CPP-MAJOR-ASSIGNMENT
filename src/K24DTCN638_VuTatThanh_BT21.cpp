@@ -56,7 +56,7 @@ Staff::Staff(const std::string &fullname, const std::string &genderStr, const st
                  const std::string &address, const std::string &taxCode, const std::string &contractSignDateStr) {
     using namespace std;
     this->code = "00001";
-    this->fullname = normalize_and_validate_name(fullname, 40);
+    this->fullname = trim_and_validate_name(fullname, 40);
     this->gender = parse_gender(genderStr);
     this->dateOfBirth = parse_date(dateStr);
     if (address.size() > 100) {
