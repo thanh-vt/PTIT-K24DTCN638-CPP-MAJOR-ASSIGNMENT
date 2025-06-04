@@ -29,8 +29,11 @@ int main() {
             cerr << "Khong co dong tiep theo" << endl;
             return 2;
         }
-        int n = parse_int(line);
-        if (n < 0) return 2;
+        const int n = parse_int(line);
+        if (n < 1) {
+            cerr << "n phai nho lon hon hoac bang 1" << endl;
+            return 2;
+        }
         if (n > 1000) {
             cerr << "n phai nho hon hoac bang 1000" << endl;
             return 2;

@@ -7,7 +7,7 @@
 // CÂN BẰNG CHẴN LẺ
 int main() {
     using namespace std;
-    string filename = "K24DTCN638_VuTatThanh_BT04.txt";
+    const string filename = "K24DTCN638_VuTatThanh_BT04.txt";
     ifstream file(filename); // Mở file để đọc
     if (!file) {
         cerr << "Khong the mo file input " << filename << endl;
@@ -21,9 +21,12 @@ int main() {
         return 2;
     }
     const int n = parse_int(line);
-    if (n < 0) return 2;
-    if (n > 20) {
-        cerr << "N phai nho hon 20" << endl;
+    if (n <= 1) {
+        cerr << "N phai lon hon 1" << endl;
+        return 2;
+    }
+    if (n >= 7) {
+        cerr << "N phai nho hon 7" << endl;
         return 2;
     }
     if (n % 2 == 0) {
@@ -42,6 +45,7 @@ int main() {
         cout << endl;
     } else {
         cerr << "N phai la so chan" << endl;
+        return 2;
     }
 
     file.close();

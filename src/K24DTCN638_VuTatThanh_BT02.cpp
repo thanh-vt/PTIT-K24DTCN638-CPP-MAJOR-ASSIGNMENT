@@ -30,9 +30,6 @@ int main() {
             return 2;
         }
         const char c = parse_char(line);
-        if (c < 0) {
-            return 2;
-        }
         cout << convert_char(c) << endl;
     }
 

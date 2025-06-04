@@ -21,9 +21,12 @@ int main() {
         return 2;
     }
     const int n = parse_int(line);
-    if (n < 0) return 2;
+    if (n <= 0) {
+        cerr << "N la so nguyen duong" << endl;
+        return 2;
+    }
     if (n > 20) {
-        cerr << "N phai nho hon 20" << endl;
+        cerr << "N phai nho hon hoac bang 20" << endl;
         return 2;
     }
     cout << sum_products(n) << endl;

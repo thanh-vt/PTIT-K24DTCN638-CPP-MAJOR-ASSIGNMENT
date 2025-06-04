@@ -30,7 +30,10 @@ int main() {
             return 2;
         }
         const int n = parse_int(line);
-        if (n < 0) return 2;
+        if (n < 1) {
+            cerr << "n phai nho lon hon hoac bang 1" << endl;
+            return 2;
+        }
         if (n > 100000) {
             cerr << "n phai nho hon hoac bang 100000" << endl;
             return 2;

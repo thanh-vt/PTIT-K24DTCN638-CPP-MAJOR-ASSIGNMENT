@@ -29,7 +29,6 @@ int main() {
             return 2;
         }
         const long n = parse_long(line);
-        if (n < 0) return 2;
         if (n < 1) {
             cout << "N phai lon hon hoac bang 1" << endl;
             return 2;

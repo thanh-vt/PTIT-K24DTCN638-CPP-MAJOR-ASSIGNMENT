@@ -40,13 +40,19 @@ int main() {
             return 2;
         }
         int n = parse_int(result[0]);
-        if (n < 0) return 2;
+        if (n < 1) {
+            cerr << "n phai lon hon hoac bang 1" << endl;
+            return 2;
+        }
         if (n > 100) {
             cerr << "n phai nho hon hoac bang 100" << endl;
             return 2;
         }
         int m = parse_int(result[1]);
-        if (m < 0) return 2;
+        if (m < 1) {
+            cerr << "m phai lon hon hoac bang 1" << endl;
+            return 2;
+        }
         if (m > 100) {
             cerr << "m phai nho hon hoac bang 100" << endl;
             return 2;

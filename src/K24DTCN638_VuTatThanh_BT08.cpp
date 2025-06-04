@@ -7,7 +7,7 @@
 // LIỆT KÊ SỐ CÓ BA ƯỚC SỐ
 int main() {
     using namespace std;
-    string filename = "K24DTCN638_VuTatThanh_BT08.txt";
+    const string filename = "K24DTCN638_VuTatThanh_BT08.txt";
     ifstream file(filename); // Mở file để đọc
     if (!file) {
         cerr << "Khong the mo file input " << filename << endl;
@@ -33,7 +33,6 @@ int main() {
             return 2;
         }
         const long n = parse_long(line);
-        if (n < 0) return 2;
         if (n < 1) {
             cout << "N phai lon hon hoac bang 1" << endl;
             return 2;

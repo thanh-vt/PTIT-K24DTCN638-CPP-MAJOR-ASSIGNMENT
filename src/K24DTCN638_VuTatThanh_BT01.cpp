@@ -32,7 +32,8 @@ int main() {
             return 2;
         }
         const int n = parse_int(line);
-        if (n < 0) {
+        if (n <= 0) {
+            cerr << "N la so nguyen duong" << endl;
             return 2;
         }
         if (n > 1000000000) {

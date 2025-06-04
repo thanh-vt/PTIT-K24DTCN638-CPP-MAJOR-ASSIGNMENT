@@ -20,7 +20,6 @@ int main() {
         return 2;
     }
     const int N = parse_int(line);
-    if (N < 0) return 2;
     if (N <= 3) {
         cerr << "N phai lon hon 3" << endl;
         return 2;
@@ -52,7 +51,6 @@ int main() {
         return 2;
     }
     const int M = parse_int(line);
-    if (M < 0) return 2;
     if (M < 1) {
         cerr << "M phai lon hon 1" << endl;
         return 2;

@@ -2,12 +2,26 @@
 #define UTIL_H
 #include <ctime>
 #include <string>
+#include <utility>
 #include <vector>
+
+class ExitCodeException : public std::exception {
+    int code;
+    std::string message;
+public:
+    explicit ExitCodeException(const int c, std::string m) : code(c), message(std::move(m)) {}
+    int getCode() const { return code; }
+    const char* what() const noexcept override {
+        return message.c_str();
+    }
+};
 
 enum Gender {
     MALE,
     FEMALE
   };
+
+void validation_termination();
 
 Gender parse_gender(const std::string &genderStr);
 

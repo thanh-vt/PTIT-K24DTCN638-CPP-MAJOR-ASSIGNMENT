@@ -14,7 +14,6 @@ int main() {
         cerr << "Khong the mo file input " << filename << endl;
         return 1;
     }
-
     string line;
     if (!getline(file, line)) {
         cerr << "Khong co dong tiep theo" << endl;
@@ -39,7 +38,6 @@ int main() {
             return 2;
         }
         int n = parse_int(result[0]);
-        if (n < 0) return 2;
         if (n < 1) {
             cerr << "n phai lon hon hoac bang 1" << endl;
             return 2;

@@ -8,7 +8,7 @@
 // LIỆT KÊ SỐ NGUYÊN TỐ - 1
 int main() {
     using namespace std;
-    string filename = "K24DTCN638_VuTatThanh_BT06.txt";
+    const string filename = "K24DTCN638_VuTatThanh_BT06.txt";
     ifstream file(filename); // Mở file để đọc
     if (!file) {
         cerr << "Khong the mo file input " << filename << endl;
@@ -31,11 +31,12 @@ int main() {
     }
     int a = parse_int(result.at(0));
     int b = parse_int(result.at(1));
-    if (a < 0 || b < 0) {
+    if (a < 1 || b < 1) {
+        cerr << "a, b la so nguyen duong" << endl;
         return 2;
     }
     if (a > 1000000 || b > 1000000) {
-        cerr << "a, b khong vuot qua 1000000.\n";
+        cerr << "a, b khong vuot qua 1000000" << endl;
         return 2;
     }
     if (a > b) {

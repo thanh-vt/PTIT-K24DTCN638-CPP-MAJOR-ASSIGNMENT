@@ -30,20 +30,25 @@ int main() {
     }
     int m = parse_int(result.at(0));
     int s = parse_int(result.at(1));
-    if (m < 0 || s < 0) {
+    if (m < 1) {
+        cerr << "m phai lon hon hoac bang 1" << endl;
         return 2;
     }
     if (m > 100) {
-        cerr << "m khong vuot qua 100\n";
+        cerr << "m khong vuot qua 100" << endl;
+        return 2;
+    }
+    if (s < 0) {
+        cerr << "s phai lon hon hoac bang 0" << endl;
         return 2;
     }
     if (s > 900) {
-        cerr << "m khong vuot qua 900\n";
+        cerr << "m khong vuot qua 900" << endl;
         return 2;
     }
     if (s == 0) {
-        if (m == 1) cout << "0 0\n";
-        else cout << "-1 -1\n";
+        if (m == 1) cout << "0 0" << endl;
+        else cout << "-1 -1" << endl;
         return 0;
     }
 

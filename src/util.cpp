@@ -3,6 +3,24 @@
 #include <regex>
 #include "util.h"
 
+void validation_termination() {
+    using namespace std;
+    // Try to get the current exception
+    if (auto eptr = std::current_exception()) {
+        try {
+            std::rethrow_exception(eptr);
+        } catch (const ExitCodeException &e) {
+            cerr << e.what() << endl;
+            std::exit(e.getCode());
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
+        } catch (...) {
+            cerr << "Unknown exception" << endl;
+        }
+    }
+    std::exit(EXIT_FAILURE); // fallback
+}
+
 Gender parse_gender(const std::string &genderStr) {
     using namespace std;
     if (genderStr == "Nam") {
@@ -25,7 +43,7 @@ std::string print_gender(const Gender gender) {
     }
 }
 
-std::string trim(const std::string& str) {
+std::string trim(const std::string &str) {
     using namespace std;
     const size_t first = str.find_first_not_of(" \t\n\r\f\v");
     if (first == string::npos)
@@ -34,18 +52,18 @@ std::string trim(const std::string& str) {
     return str.substr(first, (last - first + 1));
 }
 
-std::string trim_and_validate_name(const std::string& input) {
+std::string trim_and_validate_name(const std::string &input) {
     return trim_and_validate_name(input, 50);
 }
 
-std::string trim_and_validate_name(const std::string& input, const int max_length) {
+std::string trim_and_validate_name(const std::string &input, const int max_length) {
     using namespace std;
     const string trimmed = trim(input);
     string result;
     int letterCount = 0;
     bool inSpace = false;
 
-    for (const char c : trimmed) {
+    for (const char c: trimmed) {
         if (isalpha(c)) {
             result += c;
             letterCount++;
@@ -67,11 +85,11 @@ std::string trim_and_validate_name(const std::string& input, const int max_lengt
     return result;
 }
 
-std::string normalize_and_validate_name(const std::string& input) {
+std::string normalize_and_validate_name(const std::string &input) {
     return normalize_and_validate_name(input, 50);
 }
 
-std::string normalize_and_validate_name(const std::string& input, const int max_length) {
+std::string normalize_and_validate_name(const std::string &input, const int max_length) {
     using namespace std;
     stringstream ss(trim_and_validate_name(input, max_length));
     string word, result;
@@ -93,7 +111,7 @@ bool is_leap_year(const int year) {
 }
 
 
-std::tm parse_date(const std::string& dateStr, const std::string& format) {
+std::tm parse_date(const std::string &dateStr, const std::string &format) {
     using namespace std;
     tm tm = {};
     istringstream ss(dateStr);
@@ -106,7 +124,7 @@ std::tm parse_date(const std::string& dateStr, const std::string& format) {
 }
 
 
-std::tm parse_date(const std::string& dateStr) {
+std::tm parse_date(const std::string &dateStr) {
     return parse_date(dateStr, "%d/%m/%Y");
 }
 
@@ -123,67 +141,67 @@ std::string print_date(const std::tm &date) {
 
 char parse_char(const std::string &line) {
     using namespace std;
+    set_terminate(validation_termination);
     if (line.size() != 1) {
-        cerr << "Chuoi khong phai chu cai hop le" << endl;
-        return -1;
+        throw ExitCodeException(2, "Chuoi co nhieu hon 1 ky tu");
     }
     const char c = line[0];
     if (isalpha(c)) {
         return c;
     }
-    cerr << "Chuoi khong phai chu cai hop le" << endl;
-    return -1;
+    throw ExitCodeException(2, "Chuoi khong phai chu cai hop le");
 }
 
 int parse_int(const std::string &line) {
     using namespace std;
+    set_terminate(validation_termination);
     try {
         return stoi(line);
     } catch (const invalid_argument &e) {
-        cerr << "Chuoi khong phai so integer hop le" << endl;
+        throw ExitCodeException(2, "Chuoi khong phai so integer hop le");
     } catch (const out_of_range &e) {
-        cerr << "So vuot qua pham vi integer" << endl;
+        throw ExitCodeException(2, "So vuot qua pham vi integer");
     }
-    return -1;
 }
 
 long parse_long(const std::string &line) {
     using namespace std;
+    set_terminate(validation_termination);
     try {
         return stol(line);
     } catch (const invalid_argument &e) {
-        cerr << "Chuoi khong phai so long hop le\n";
+        throw ExitCodeException(2, "Chuoi khong phai so long hop le");
     } catch (const out_of_range &e) {
-        cerr << "So vuot qua pham vi long\n";
+        throw ExitCodeException(2, "So vuot qua pham vi long");
     }
     return -1;
 }
 
 float parse_float(const std::string &line) {
     using namespace std;
+    set_terminate(validation_termination);
     try {
         return stof(line);
     } catch (const invalid_argument &e) {
-        std::cerr << "Chuoi khong phai so float hop le\n";
+        throw ExitCodeException(2, "Chuoi khong phai so float hop le");
     } catch (const out_of_range &e) {
-        std::cerr << "So vuot qua pham vi float\n";
+        throw ExitCodeException(2, "So vuot qua pham vi float");
     }
-    return -1;
 }
 
 double parse_double(const std::string &line) {
     using namespace std;
+    set_terminate(validation_termination);
     try {
         return stod(line);
     } catch (const invalid_argument &e) {
-        cerr << "Chuoi khong phai so double hop le\n";
+        throw ExitCodeException(2, "Chuoi khong phai so double hop le");
     } catch (const out_of_range &e) {
-        cerr << "So vuot qua pham vi double\n";
+        throw ExitCodeException(2, "So vuot qua pham vi double");
     }
-    return -1;
 }
 
-std::vector<int> string_to_int_vector(const std::string& s, const size_t size) {
+std::vector<int> string_to_int_vector(const std::string &s, const size_t size) {
     using namespace std;
     vector<int> result;
     istringstream iss(s);
@@ -194,7 +212,7 @@ std::vector<int> string_to_int_vector(const std::string& s, const size_t size) {
     return result;
 }
 
-std::vector<long> string_to_long_vector(const std::string& s, const size_t size) {
+std::vector<long> string_to_long_vector(const std::string &s, const size_t size) {
     using namespace std;
     vector<long> result;
     istringstream iss(s);
@@ -237,12 +255,12 @@ std::string validate_ptit_clazz(const std::string &clazz) {
      * DK = Kỹ thuật Điều khiển và Tự động hóa
      *
      */
-    static regex pattern(R"(^[A-Z](\d){2}(CQ|TX|DC)(BC|TT|PT|GA|QT|MR|ME|QC|TM|TC|KT|AC|KH|KD|CN|CE|CC|VN|AT|DT|VT|DK)(\d){2}-[A-Z]$)");
+    static regex pattern(
+        R"(^[A-Z](\d){2}(CQ|TX|DC)(BC|TT|PT|GA|QT|MR|ME|QC|TM|TC|KT|AC|KH|KD|CN|CE|CC|VN|AT|DT|VT|DK)(\d){2}-[A-Z]$)");
     // use static regex to avoid regex compilation in every function call
     if (!regex_match(clazz, pattern)) {
-        throw invalid_argument("Ten lop khong dung dinh dang ten lop cua PTIT: WDDXXYYDD-W trong do W la chu cai in hoa, D la chu so, XX la ma he, YY la ma nganh dao tao");
+        throw invalid_argument(
+            "Ten lop khong dung dinh dang ten lop cua PTIT: WDDXXYYDD-W trong do W la chu cai in hoa, D la chu so, XX la ma he, YY la ma nganh dao tao");
     }
     return clazz;
 }
-
-
