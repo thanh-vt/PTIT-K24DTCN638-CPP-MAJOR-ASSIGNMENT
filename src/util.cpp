@@ -207,8 +207,38 @@ std::vector<long> string_to_long_vector(const std::string& s, const size_t size)
 
 std::string validate_ptit_clazz(const std::string &clazz) {
     using namespace std;
-    regex pattern(R"(^[A-Z](\d){2}(CQ|TX|DC)CN(\d){2}-[A-Z]$)");
-
+    /*
+     * Hệ:
+     * CQ = chính quy
+     * TX = từ xa
+     * DC = đại học cao đẳng
+     * Ngành:
+     * BC = Báo chí
+     * TT = Truyền thông đa phương tiện
+     * PT = Công nghệ đa phương tiện
+     * GA = Thiết kế và phát triển Game
+     * QT = Quản trị kinh doanh
+     * MR = Marketing
+     * ME = Marketing (chất lượng cao)
+     * QC = Quan hệ công chúng
+     * TM = Thương mại điện tử
+     * TC = Công nghệ tài chính - Fintech
+     * KT = Kế toán
+     * AC = Kế toán chất lượng cao
+     * KH = Khoa học máy tính
+     * KD = Kỹ thuật dữ liệu
+     * CN = Công nghệ thông tin
+     * CE = Công nghệ thông tin CLC
+     * CC = Cử nhân Công nghệ thông tin
+     * VN = Công nghệ thông tin Việt - Nhật
+     * AT = An toàn thông tin
+     * DT = Công nghệ kỹ thuật Điện, điện tử
+     * VT = Kỹ thuật Điện tử viễn thông
+     * DK = Kỹ thuật Điều khiển và Tự động hóa
+     *
+     */
+    static regex pattern(R"(^[A-Z](\d){2}(CQ|TX|DC)(BC|TT|PT|GA|QT|MR|ME|QC|TM|TC|KT|AC|KH|KD|CN|CE|CC|VN|AT|DT|VT|DK)(\d){2}-[A-Z]$)");
+    // use static regex to avoid regex compilation in every function call
     if (!regex_match(clazz, pattern)) {
         throw invalid_argument("Ten lop khong dung dinh dang ten lop PTIT: ^[A-Z](\\d){2}(CQ|TX|DC)CN(\\d){2}-[A-Z]$");
     }
