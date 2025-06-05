@@ -63,10 +63,7 @@ Staff::Staff(const std::string &fullname, const std::string &genderStr, const st
         throw invalid_argument("Dia chi do dai khong vuot qua 100");
     }
     this->address = address;
-    if (taxCode.size() != 10 && all_of(taxCode.begin(), taxCode.end(), [](const unsigned char c){ return isdigit(c); })) {
-        throw invalid_argument("Ma so thue phai gom 10 chu so");
-    }
-    this->taxCode = taxCode;
+    this->taxCode = validate_tax_code(taxCode);
     this->contractSignDate = parse_date(contractSignDateStr);
 }
 

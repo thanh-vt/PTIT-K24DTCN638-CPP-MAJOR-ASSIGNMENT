@@ -118,7 +118,7 @@ std::tm parse_date(const std::string &dateStr, const std::string &format) {
     ss >> get_time(&tm, format.c_str());
 
     if (ss.fail()) {
-        throw invalid_argument("Dinh dang ngay sinh khong hop le (dd/mm/yyyy).");
+        throw invalid_argument("Dinh dang ngay khong hop le (dd/mm/yyyy).");
     }
     return tm;
 }
@@ -263,4 +263,12 @@ std::string validate_ptit_clazz(const std::string &clazz) {
             "Ten lop khong dung dinh dang ten lop cua PTIT: WDDXXYYDD-W trong do W la chu cai in hoa, D la chu so, XX la ma he, YY la ma nganh dao tao");
     }
     return clazz;
+}
+
+std::string validate_tax_code(const std::string &taxCode) {
+    using namespace std;
+    if (taxCode.size() != 10 && all_of(taxCode.begin(), taxCode.end(), [](const unsigned char c){ return isdigit(c); })) {
+        throw invalid_argument("Ma so thue phai gom 10 chu so");
+    }
+    return taxCode;
 }

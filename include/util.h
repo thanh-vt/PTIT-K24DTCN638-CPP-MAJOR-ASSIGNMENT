@@ -63,4 +63,6 @@ std::vector<long> string_to_long_vector(const std::string &s, size_t size);
 
 std::string validate_ptit_clazz(const std::string &clazz);
 
+std::string validate_tax_code(const std::string &taxCode);
+
 #endif //UTIL_H

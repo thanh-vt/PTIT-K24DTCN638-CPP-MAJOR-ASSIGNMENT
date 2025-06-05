@@ -72,7 +72,6 @@ int main() {
 Student::Student(const std::string &fullname, const std::string &clazz, const std::string &dateStr,
                  const std::string &gpaMarkStr) {
     using namespace std;
-    using namespace std;
     ++counter;
     std::ostringstream oss;
     oss << "B20DCCN" << setw(3) << setfill('0') << counter;
