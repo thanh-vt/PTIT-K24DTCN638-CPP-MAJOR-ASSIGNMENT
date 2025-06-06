@@ -4,10 +4,9 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 #include "util.h"
 #include "K24DTCN638_VuTatThanh_BT36.h"
-
-#include <algorithm>
 
 
 // DANH SÁCH SINH VIÊN - 3
