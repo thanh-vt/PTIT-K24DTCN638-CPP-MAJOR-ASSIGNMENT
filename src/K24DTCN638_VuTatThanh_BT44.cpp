@@ -7,6 +7,9 @@
 #include "K24DTCN638_VuTatThanh_BT44.h"
 
 #include <algorithm>
+#include <map>
+
+std::map<std::string, std::string> major_alias_to_code;
 
 // LIỆT KÊ SINH VIÊN THEO NGÀNH
 int main() {
@@ -59,6 +62,10 @@ int main() {
             return 2;
         }
     }
+    major_alias_to_code["ke toan"] = "DCKT";
+    major_alias_to_code["cong nghe thong tin"] = "DCCN";
+    major_alias_to_code["an toan thong tin"] = "DCAT";
+    major_alias_to_code["vien thong"] = "DCKT";
     if (!getline(file, line)) {
         cerr << "Khong co dong tiep theo" << endl;
         return 2;
@@ -78,21 +85,27 @@ int main() {
     return 0;
 }
 
-void filter_students_by_major(std::vector<Student>& students, const std::string& majorAlias) {
+void filter_students_by_major(const std::vector<Student>& students, const std::string& majorAlias) {
     using namespace std;
     cout << "DANH SACH SINH VIEN NGANH " << majorAlias << ":" << endl;
-    for (const auto& sv : students) {
-        string majorAlias = sv.code.substr(3, 4); // Lấy ngành học từ mã sinh viên (4 chữ cái từ thứ 4 đến thứ 7)
-        transform(majorAlias.begin(), majorAlias.end(), majorAlias.begin(), ::tolower);
+    for (const auto& student : students) {
+        string studentMajorCode = student.code.substr(3, 4); // Lấy ngành học từ mã sinh viên (4 chữ cái từ thứ 4 đến thứ 7)
+        string normalizeMajorAlias = trim(majorAlias); // trim khoảng trắng chuỗi truy vấn
+        transform(normalizeMajorAlias.begin(), normalizeMajorAlias.end(), normalizeMajorAlias.begin(), ::tolower); // viết thường chuỗi truy vấn
 
-        if (majorAlias == major) {
+        if (major_alias_to_code.count(normalizeMajorAlias) == 0) {
+            throw invalid_argument("Nganh hoc khong hop le");
+        }
+        string majorCode = major_alias_to_code[normalizeMajorAlias];
+
+        if (studentMajorCode == majorCode) {
             // Kiểm tra điều kiện cho từng ngành
-            if (major == "DCKT" || // Kế toán
-                (major == "DCCN" && sv.clazz[0] != 'E') || // Công nghệ thông tin
-                (major == "DCAT" && sv.clazz[0] != 'E') || // An toàn thông tin
-                major == "DCVT" || // Viễn thông
-                major == "DCDT") { // Điện tử
-                cout << sv.code << " " << sv.fullname << " " << sv.clazz << " " << sv.email << endl;
+            if (majorCode == "DCKT" || // Kế toán
+                (majorCode == "DCCN" && student.clazz[0] != 'E') || // Công nghệ thông tin
+                (majorCode == "DCAT" && student.clazz[0] != 'E') || // An toàn thông tin
+                majorCode == "DCVT" || // Viễn thông
+                majorCode == "DCDT") { // Điện tử
+                cout << student.code << " " << student.fullname << " " << student.clazz << " " << student.email << endl;
                 }
         }
     }

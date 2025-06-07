@@ -10,6 +10,6 @@ struct Student {
     std::string email;
 };
 
-void filter_students_by_major(std::vector<Student>& students, const std::string& majorAlias);
+void filter_students_by_major(const std::vector<Student>& students, const std::string& majorAlias);
 
 #endif //K24DTCN638_VUTATTHANH_BT44_H
