@@ -62,10 +62,12 @@ int main() {
             return 2;
         }
     }
+    // ánh xạ tên chuyen ngành với mã chuyên nganh
     major_alias_to_code["ke toan"] = "DCKT";
     major_alias_to_code["cong nghe thong tin"] = "DCCN";
     major_alias_to_code["an toan thong tin"] = "DCAT";
     major_alias_to_code["vien thong"] = "DCKT";
+    major_alias_to_code["dien tu"] = "DCDT";
     if (!getline(file, line)) {
         cerr << "Khong co dong tiep theo" << endl;
         return 2;
@@ -94,7 +96,7 @@ void filter_students_by_major(const std::vector<Student>& students, const std::s
         transform(normalizeMajorAlias.begin(), normalizeMajorAlias.end(), normalizeMajorAlias.begin(), ::tolower); // viết thường chuỗi truy vấn
 
         if (major_alias_to_code.count(normalizeMajorAlias) == 0) {
-            throw invalid_argument("Nganh hoc khong hop le");
+            throw invalid_argument("Ten nganh hoc khong hop le");
         }
         string majorCode = major_alias_to_code[normalizeMajorAlias];
 
