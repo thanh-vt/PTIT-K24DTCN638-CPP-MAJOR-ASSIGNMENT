@@ -25,12 +25,12 @@ endforeach()
 
 # Loop through exercise numbers to create executables
 foreach(NUM ${EXERCISE_NUMBERS})
-    add_executable(K24DTCN638_VuTatThanh_BT${NUM} 
-        "${CMAKE_CURRENT_SOURCE_DIR}/src/K24DTCN638_VuTatThanh_BT${NUM}.cpp"
+    add_executable(b_${NUM}
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/b_${NUM}.cpp"
         ${COMMON_SOURCES}
     )
     
-    target_include_directories(K24DTCN638_VuTatThanh_BT${NUM} PRIVATE
+    target_include_directories(b_${NUM} PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
     )
 endforeach()

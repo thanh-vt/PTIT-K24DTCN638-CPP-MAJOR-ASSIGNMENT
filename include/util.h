@@ -4,12 +4,13 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <functional>
 
-class ExitCodeException : public std::exception {
+class exit_code_exception : public std::exception {
     int code;
     std::string message;
 public:
-    explicit ExitCodeException(const int c, std::string m) : code(c), message(std::move(m)) {}
+    explicit exit_code_exception(const int c, std::string m) : code(c), message(std::move(m)) {}
     int getCode() const { return code; }
     const char* what() const noexcept override {
         return message.c_str();
@@ -59,10 +60,20 @@ double parse_double(const std::string &line);
 
 std::vector<int> string_to_int_vector(const std::string &s, size_t size);
 
+std::vector<int> string_to_int_vector(const std::string &s, size_t size, const std::function<std::string(int, int)>& validate_func);
+
 std::vector<long> string_to_long_vector(const std::string &s, size_t size);
+
+std::vector<long> string_to_long_vector(const std::string &s, size_t size, const std::function<std::string(int, long)>& validate_func);
 
 std::string validate_ptit_clazz(const std::string &clazz);
 
-std::string validate_tax_code(const std::string &taxCode);
+std::string validate_tax_code(const std::string &tax_code);
+
+std::string validate_alphanumeric(const std::string &str);
+
+std::string validate_lower_alphanumeric(const std::string &str);
+
+std::string validate_upper_alphanumeric(const std::string &str);
 
 #endif //UTIL_H
