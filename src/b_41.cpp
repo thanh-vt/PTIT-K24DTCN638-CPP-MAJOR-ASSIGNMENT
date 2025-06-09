@@ -1,4 +1,3 @@
-#include <fstream>
 #include <string>
 #include <iomanip>
 #include <iostream>
@@ -8,15 +7,9 @@
 #include "util.h"
 #include "b_41.h"
 
-// TRẺ NHẤT – GIÀ NHẤT
 int main() {
     using namespace std;
-    const string filename = "K24DTCN638_VuTatThanh_BT40.txt";
-    ifstream file(filename); // Mở file để đọc
-    if (!file) {
-        cerr << "Khong the mo file input " << filename << endl;
-        return 1;
-    }
+    cout << "b_41: TRẺ NHẤT – GIÀ NHẤT" << endl;
     string line;
     if (!getline(file, line)) {
         cerr << "Khong co dong tiep theo" << endl;

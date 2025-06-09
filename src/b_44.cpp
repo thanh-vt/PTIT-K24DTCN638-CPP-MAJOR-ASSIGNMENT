@@ -9,16 +9,9 @@
 
 std::map<std::string, std::string> major_alias_to_code;
 
-// LIỆT KÊ SINH VIÊN THEO NGÀNH
 int main() {
     using namespace std;
-    const string filename = "K24DTCN638_VuTatThanh_BT44.txt";
-    ifstream file(filename); // Mở file để đọc
-    if (!file) {
-        cerr << "Khong the mo file input " << filename << endl;
-        return 1;
-    }
-
+    cout << "b_44: LIỆT KÊ SINH VIÊN THEO NGÀNH" << endl;
     string line;
     if (!getline(file, line)) {
         cerr << "Khong co dong tiep theo" << endl;

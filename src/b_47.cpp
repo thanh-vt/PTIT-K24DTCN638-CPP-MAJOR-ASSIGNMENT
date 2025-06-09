@@ -1,17 +1,10 @@
-#include <fstream>
 #include <iostream>
 #include "util.h"
 #include "b_47.h"
 
-// LOẠI BỎ 100
 int main() {
     using namespace std;
-    const string filename = "K24DTCN638_VuTatThanh_BT47.txt";
-    ifstream file(filename); // Mở file để đọc
-    if (!file) {
-        cerr << "Khong the mo file input " << filename << endl;
-        return 1;
-    }
+    cout << "b_47: LOẠI BỎ 100" << endl;
 
     string line;
     if (!getline(file, line)) {

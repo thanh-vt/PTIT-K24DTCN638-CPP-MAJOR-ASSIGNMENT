@@ -5,16 +5,9 @@
 #include "util.h"
 #include "b_43.h"
 
-// SẮP XẾP THEO MÃ SINH VIÊN
 int main() {
     using namespace std;
-    const string filename = "K24DTCN638_VuTatThanh_BT43.txt";
-    ifstream file(filename); // Mở file để đọc
-    if (!file) {
-        cerr << "Khong the mo file input " << filename << endl;
-        return 1;
-    }
-
+    cout << "b_43: SẮP XẾP THEO MÃ SINH VIÊN" << endl;
     int i = 0;
     vector<Student> students;
     while (i % 4 == 0) {

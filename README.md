@@ -1,1 +1,1 @@
-# cpp-homework
+**Bài tập nhỏ môn Ngôn ngữ lập trình C++ - Lớp D24TXCN15-K - K24DTCN638**

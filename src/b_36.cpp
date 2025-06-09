@@ -1,23 +1,15 @@
 #include <iomanip>
 #include <ios>
 #include <stdexcept>
-#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <algorithm>
 #include "util.h"
 #include "b_36.h"
 
-
-// DANH SÁCH SINH VIÊN - 3
 int main() {
     using namespace std;
-    const string filename = "K24DTCN638_VuTatThanh_BT36.txt";
-    ifstream file(filename); // Mở file để đọc
-    if (!file) {
-        cerr << "Khong the mo file input " << filename << endl;
-        return 1;
-    }
+    cout << "b_36: DANH SÁCH SINH VIÊN - 3" << endl;
 
     string line;
     if (!getline(file, line)) {

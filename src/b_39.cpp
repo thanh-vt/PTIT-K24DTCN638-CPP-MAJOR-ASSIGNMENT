@@ -1,22 +1,15 @@
 #include <iomanip>
 #include <ios>
 #include <stdexcept>
-#include <fstream>
 #include <iostream>
 #include <functional>
 #include <algorithm>
 #include "util.h"
 #include "b_39.h"
 
-// LIỆT KÊ SINH VIÊN THEO NGÀNH
 int main() {
     using namespace std;
-    const string filename = "K24DTCN638_VuTatThanh_BT42.txt";
-    ifstream file(filename); // Mở file để đọc
-    if (!file) {
-        cerr << "Khong the mo file input " << filename << endl;
-        return 1;
-    }
+    cout << "b_39: LIỆT KÊ SINH VIÊN THEO NGÀNH" << endl;
 
     string line;
     if (!getline(file, line)) {

@@ -1,4 +1,3 @@
-#include <fstream>
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -7,15 +6,9 @@
 #include "util.h"
 #include "b_37.h"
 
-// SẮP XẾP DANH SÁCH NHÂN VIÊN
 int main() {
     using namespace std;
-    const string filename = "K24DTCN638_VuTatThanh_BT37.txt";
-    ifstream file(filename); // Mở file để đọc
-    if (!file) {
-        cerr << "Khong the mo file input " << filename << endl;
-        return 1;
-    }
+    cout << "b_37: SẮP XẾP DANH SÁCH NHÂN VIÊN" << endl;
 
     string line;
     if (!getline(file, line)) {

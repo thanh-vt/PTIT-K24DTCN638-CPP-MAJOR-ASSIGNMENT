@@ -5,16 +5,9 @@
 #include "util.h"
 #include "b_46.h"
 
-// DANH SÁCH DOANH NGHIỆP NHẬN SINH VIÊN THỰC TẬP - 1
 int main() {
     using namespace std;
-    const string filename = "K24DTCN638_VuTatThanh_BT46.txt";
-    ifstream file(filename); // Mở file để đọc
-    if (!file) {
-        cerr << "Khong the mo file input " << filename << endl;
-        return 1;
-    }
-
+    cout << "b_46: DANH SÁCH DOANH NGHIỆP NHẬN SINH VIÊN THỰC TẬP - 1" << endl;
     string line;
     if (!getline(file, line)) {
         cerr << "Khong co dong tiep theo" << endl;
