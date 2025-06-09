@@ -3,15 +3,18 @@
 #include <stdexcept>
 #include <fstream>
 #include <iostream>
-#include <functional>
-#include <algorithm>
 #include "util.h"
-#include "b_39.h"
+#include "K24DTCN638_VuTatThanh_BT44.h"
+
+#include <algorithm>
+#include <map>
+
+std::map<std::string, std::string> major_alias_to_code;
 
 // LIỆT KÊ SINH VIÊN THEO NGÀNH
 int main() {
     using namespace std;
-    const string filename = "K24DTCN638_VuTatThanh_BT42.txt";
+    const string filename = "K24DTCN638_VuTatThanh_BT44.txt";
     ifstream file(filename); // Mở file để đọc
     if (!file) {
         cerr << "Khong the mo file input " << filename << endl;
@@ -59,24 +62,55 @@ int main() {
             return 2;
         }
     }
-
-    file.close();
-    function<bool(const Student&, const Student&)> compare_student = [](const Student &s1, const Student &s2) {
-        using namespace std;
-        const string code1 = s1.code;
-        const string code2 = s2.code;
-        // Compare code
-        return code1 < code2;
-    };
-
-    // Sắp xếp theo ngày sinh từ già nhất đến trẻ nhất
-    sort(students.begin(), students.end(), compare_student);
-
-    for (const auto & student : students) {
-        cout << student << endl;
+    // ánh xạ tên chuyen ngành với mã chuyên nganh
+    major_alias_to_code["ke toan"] = "DCKT";
+    major_alias_to_code["cong nghe thong tin"] = "DCCN";
+    major_alias_to_code["an toan thong tin"] = "DCAT";
+    major_alias_to_code["vien thong"] = "DCKT";
+    major_alias_to_code["dien tu"] = "DCDT";
+    if (!getline(file, line)) {
+        cerr << "Khong co dong tiep theo" << endl;
+        return 2;
+    }
+    const int M = parse_int(line);
+    for (int i = 0; i < M; i++) {
+        string Q;
+        if (!getline(file, Q)) {
+            cerr << "Khong co dong tiep theo" << endl;
+            return 2;
+        }
+        filter_students_by_major(students, Q);
     }
 
+    file.close();
+
     return 0;
+}
+
+void filter_students_by_major(const std::vector<Student>& students, const std::string& majorAlias) {
+    using namespace std;
+    cout << "DANH SACH SINH VIEN NGANH " << majorAlias << ":" << endl;
+    for (const auto& student : students) {
+        string studentMajorCode = student.code.substr(3, 4); // Lấy ngành học từ mã sinh viên (4 chữ cái từ thứ 4 đến thứ 7)
+        string normalizeMajorAlias = trim(majorAlias); // trim khoảng trắng chuỗi truy vấn
+        transform(normalizeMajorAlias.begin(), normalizeMajorAlias.end(), normalizeMajorAlias.begin(), ::tolower); // viết thường chuỗi truy vấn
+
+        if (major_alias_to_code.count(normalizeMajorAlias) == 0) {
+            throw invalid_argument("Ten nganh hoc khong hop le");
+        }
+        string majorCode = major_alias_to_code[normalizeMajorAlias];
+
+        if (studentMajorCode == majorCode) {
+            // Kiểm tra điều kiện cho từng ngành
+            if (majorCode == "DCKT" || // Kế toán
+                (majorCode == "DCCN" && student.clazz[0] != 'E') || // Công nghệ thông tin
+                (majorCode == "DCAT" && student.clazz[0] != 'E') || // An toàn thông tin
+                majorCode == "DCVT" || // Viễn thông
+                majorCode == "DCDT") { // Điện tử
+                cout << student.code << " " << student.fullname << " " << student.clazz << " " << student.email << endl;
+                }
+        }
+    }
 }
 
 Student::Student(const std::string &code, const std::string &fullname, const std::string &clazz, const std::string &email) {
