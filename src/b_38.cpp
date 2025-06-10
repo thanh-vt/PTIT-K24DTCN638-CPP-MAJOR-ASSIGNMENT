@@ -48,7 +48,7 @@ int main() {
                     cerr << "Mã không được có khoảng trắng" << endl;
                     continue;
                 }
-                code = line;
+                code = move(line);
             } catch (const exception &e) {
                 cerr << e.what() << endl;
                 continue;
@@ -82,7 +82,7 @@ int main() {
                     cerr << "Lớp không được có khoảng trắng" << endl;
                     continue;
                 }
-                clazz = line;
+                clazz = move(line);
             } catch (const exception &e) {
                 cerr << e.what() << endl;
                 continue;

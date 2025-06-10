@@ -4,70 +4,116 @@
 #include <ostream>
 #include <string>
 #include <algorithm>
+#include <utility>
 #include "util.h"
 
 int main() {
     using namespace std;
-    cout << "b_45: TÌM KIẾM GIẢNG VIÊN" << endl;
+    cerr << "b_45: TÌM KIẾM GIẢNG VIÊN" << endl;
     string line;
-    if (!getline(file, line)) {
-        cerr << "Khong co dong tiep theo" << endl;
-        return 2;
-    }
-    const int total_tests = parse_int(line);
-    if (total_tests < 1 || total_tests > 100) {
-        cerr << "T phai lon hon hoac bang 1 va nho hon hoac bang 100" << endl;
-        return 2;
-    }
+    cerr << "Nhập số giảng viên N:" << endl;
+    bool is_valid = false;
+    int N = 0;
+    do {
+        getline(cin, line);
+        try {
+            N = parse_int(line);
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
+            continue;
+        }
+        if (N < 1) {
+            cerr << "N phải >= 1" << endl;
+            continue;
+        }
+        is_valid = true;
+    } while (!is_valid);
     vector<Teacher> teachers;
-    for (int i = 0; i < total_tests; i++) {
-        // Xử lý dòng đọc được
-        string fullname, subject;
-        if (!getline(file, fullname)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        if (!getline(file, subject)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
+    vector<string> Q_inputs;
+    for (int i = 0; i < N; i++) {
+        cerr << "Nhập họ tên của giảng viên " << i + 1 << ":" << endl;
+        string fullname;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                fullname = trim_and_validate_name(line, 50);
+            } catch (const exception &e) {
+                cerr << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        cerr << "Nhập bộ môn của giảng viên " << i + 1 << ":" << endl;
+        string subject;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                if (line.size() > 30) {
+                    cerr << "Lớp không quá 30 ký tự" << endl;
+                    continue;
+                }
+                subject = move(line);
+            } catch (const exception &e) {
+                cerr << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
         Teacher teacher(fullname, subject);
         teachers.push_back(teacher);
     }
-    if (!getline(file, line)) {
-        cerr << "Khong co dong tiep theo" << endl;
-        return 2;
-    }
-    const int total_queries = parse_int(line);
-    string query;
-    for (int i = 0; i < total_queries; i++) {
-        if (!getline(file, query)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
+    cerr << "Nhập số truy vấn Q:" << endl;
+    int Q = 0;
+    do {
+        getline(cin, line);
+        try {
+            Q = parse_int(line);
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
+            continue;
         }
+        if (Q < 1) {
+            cerr << "Q phải >= 1" << endl;
+            continue;
+        }
+        is_valid = true;
+    } while (!is_valid);
+    for (int i = 0; i < Q; i++) {
+        cerr << "Nhập chuỗi truy vấn thứ " << i + 1 << endl;
+        do {
+            is_valid = false;
+            getline(cin, line);
+            if (trim(line).empty()) {
+                cerr << "Chuỗi truy vẫn ko được bỏ trống" << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        Q_inputs.push_back(move(line));
+    }
+    cerr << "Kết quả:" << endl;
+    for (int i = 0; i < Q; ++i) {
+        const string& query = Q_inputs[i];
         cout << "DANH SACH GIANG VIEN THEO TU KHOA " << query << ":" << endl;
-        for (const auto &teacher: teachers) {
+        for (const Teacher &teacher: teachers) {
             if (teacher.is_matched(query)) {
                 cout << teacher << endl;
             }
         }
     }
-    file.close();
     return 0;
 }
 
-Teacher::Teacher(const std::string &fullname, const std::string &subject) {
+Teacher::Teacher(std::string fullname, std::string subject):
+    fullname(std::move(fullname)), subject(std::move(subject)){
     using namespace std;
-    ++count;
+    ++counter;
     std::ostringstream oss;
-    oss << "GV" << setw(2) << setfill('0') << Student::counter;
+    oss << "GV" << setw(2) << setfill('0') << counter;
     this->code = oss.str();
-    this->fullname = trim_and_validate_name(fullname, 50);
-    if (subject.size() > 30) {
-        throw invalid_argument("Bo mon khong qua 30 ky tu");
-    }
-    this->subject = subject;
-    this->shortenedSubject = shorten(subject);
+    this->shortenedSubject = shorten(this->subject);
 }
 
 bool Teacher::is_matched(const std::string &query) const {

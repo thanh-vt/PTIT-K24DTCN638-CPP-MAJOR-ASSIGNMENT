@@ -1,8 +1,10 @@
 @echo off
 setlocal enabledelayedexpansion
 :: Add JetBrains CLion toolchains to PATH for this session
-set "PATH=D:\Jetbrains\CLion\bin\cmake\win\x64\bin;D:\Jetbrains\CLion\bin\mingw\bin;D:\Jetbrains\CLion\bin\ninja\win\x64;%PATH%"
-
+@REM set "CLION_PATH=D:\Jetbrains\CLion"
+set "CLION_PATH=C:\Users\pysga\AppData\Local\Programs\CLion"
+set "PATH=%CLION_PATH%\bin\cmake\win\x64\bin;%CLION_PATH%\bin\mingw\bin;%CLION_PATH%\bin\ninja\win\x64;%PATH%"
+@REM echo Path: %PATH%
 REM Check for required arguments
 if "%~1"=="" (
     echo Usage: %~nx0 START END
@@ -24,7 +26,6 @@ for /l %%i in (%START%,1,%END%) do (
     echo Building b_!num!...
     cmake --build "cmake-build-debug" --target b_!num! -j 6
 
-    pushd cmake-build-debug
     echo Command: call test_redirect_io.cmd b_!num!
     call test_redirect_io.cmd b_!num!
     popd

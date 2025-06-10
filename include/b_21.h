@@ -4,8 +4,8 @@
 #include "util.h"
 
 struct Staff {
-    Staff(const std::string &fullname, Gender gender, const std::tm &date_of_birth, const std::string &address,
-        const std::string &tax_code, const std::tm &contract_sign_date);
+    Staff(std::string fullname, Gender gender, const std::tm &date_of_birth, std::string address,
+             std::string tax_code, const std::tm &contract_sign_date);
 
     friend std::ostream &operator<<(std::ostream &os, const Staff &staff);
 

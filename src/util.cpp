@@ -1,14 +1,13 @@
 #include <iomanip>
 #include <iostream>
 #include <regex>
-#include "util.h"
-
 #include <cmath>
+#include "util.h"
 
 void validation_termination() {
     using namespace std;
     // Try to get the current exception
-    if (auto eptr = std::current_exception()) {
+    if (exception_ptr eptr = std::current_exception()) {
         try {
             std::rethrow_exception(eptr);
         } catch (const exit_code_exception &e) {

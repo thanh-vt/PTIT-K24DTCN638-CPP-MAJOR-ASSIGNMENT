@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <utility>
 #include "b_21.h"
 
 int main() {
@@ -49,15 +50,11 @@ int main() {
     cerr << "Nhập địa chỉ của nhân viên:" << endl;
     string address;
     do {
-        try {
-            is_valid = false;
-            getline(cin, line);
-            address = line;
-            if (address.size() > 100) {
-                throw invalid_argument("Dia chi do dai khong vuot qua 100");
-            }
-        } catch (const exception &e) {
-            cerr << e.what() << endl;
+        is_valid = false;
+        getline(cin, line);
+        address = move(line);
+        if (address.size() > 100) {
+            cerr << "Địa chỉ có độ dài không vượt quá 100" << endl;
             continue;
         }
         is_valid = true;
@@ -94,14 +91,14 @@ int main() {
     return 0;
 }
 
-Staff::Staff(const std::string &fullname, Gender gender, const std::tm &date_of_birth, const std::string &address,
-             const std::string &tax_code, const std::tm &contract_sign_date)
+Staff::Staff(std::string fullname, const Gender gender, const std::tm &date_of_birth, std::string address,
+             std::string tax_code, const std::tm &contract_sign_date)
     : code("00001"),
-      fullname(fullname),
+      fullname(std::move(fullname)),
       gender(gender),
       dateOfBirth(date_of_birth),
-      address(address),
-      taxCode(tax_code),
+      address(std::move(address)),
+      taxCode(std::move(tax_code)),
       contractSignDate(contract_sign_date) {
 }
 

@@ -8,7 +8,7 @@ std::string toLower(std::string s);
 
 class Teacher {
 public:
-    Teacher(const std::string &fullname, const std::string& subject);
+    Teacher(std::string fullname, std::string subject);
 
     bool is_matched(const std::string &query) const;
 
@@ -21,13 +21,13 @@ public:
     friend std::ostream & operator<<(std::ostream &os, const Teacher &teacher);
 
 private:
+    static int counter;
     std::string code;
     std::string fullname;
     std::string subject;
     std::string shortenedSubject;
-    static int count;
 };
 
-int Teacher::count = 0;
+int Teacher::counter = 0;
 
 #endif //B_45_H

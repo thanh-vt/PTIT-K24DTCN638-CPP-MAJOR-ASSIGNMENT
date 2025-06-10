@@ -83,7 +83,7 @@ int main() {
                     cerr << "Địa chỉ phải <= 100 chữ cái" << endl;
                     continue;
                 }
-                address = line;
+                address = move(line);
             } catch (const exception &e) {
                 cerr << e.what() << endl;
                 continue;

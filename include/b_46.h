@@ -3,7 +3,7 @@
 
 class Enterprise {
 public:
-    Enterprise(const std::string &code, const std::string &name, const std::string &numberOfInternsStr);
+    Enterprise(std::string code, std::string name, int numberOfInterns);
     friend std::ostream &operator<<(std::ostream &os, const Enterprise &enterprise);
 
 private:

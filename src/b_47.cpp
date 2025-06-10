@@ -1,38 +1,66 @@
 #include <iostream>
+#include <algorithm>
 #include "util.h"
 #include "b_47.h"
 
 int main() {
     using namespace std;
-    cout << "b_47: LOẠI BỎ 100" << endl;
-
+    cerr << "b_47: LOẠI BỎ 100" << endl;
     string line;
-    if (!getline(file, line)) {
-        cerr << "Khong co dong tiep theo" << endl;
-        return 2;
-    }
-    const int total_tests = parse_int(line);
-    if (total_tests < 1 || total_tests > 100) {
-        cerr << "T phải lon hon hoac bang 1 va nho hon hoac bang 100" << endl;
-        return 2;
-    }
-    for (int i = 0; i < total_tests; i++) {
-        // Xử lý dòng đọc được
-        if (!getline(file, line)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
+    cerr << "Nhập số bộ test T:" << endl;
+    bool is_valid = false;
+    int T = 0;
+    do {
+        getline(cin, line);
+        try {
+            T = parse_int(line);
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
+            continue;
         }
-        if (line.size() > 100000) {
-            cerr << "Length(S) phải nho hon hoac bang 100000" << endl;
-            return 2;
+        if (T < 1) {
+            cerr << "T phải >= 1" << endl;
+            continue;
         }
-        const int result = max_deleted_length(line);
+        if (T > 100) {
+            cerr << "T phải <= 100" << endl;
+            continue;
+        }
+        is_valid = true;
+    } while (!is_valid);
+    vector<string> S_inputs(T);
+    for (int i = 0; i < T; i++) {
+        cerr << "Nhập bộ test " << i + 1 << ":" << endl;
+        do {
+            is_valid = false;
+            getline(cin, line);
+            if (line.size() > 100000) {
+                cerr << "Length(S) phải <= 100000" << endl;
+                continue;
+            }
+            if (!is_binary(line)) {
+                cerr << "S chỉ bao gồm ký tự 0 và 1" << endl;
+                continue;
+            }
+            is_valid = true;
+            S_inputs[i] = move(line);
+        } while (!is_valid);
+
+    }
+    cerr << "Kết quả:" << endl;
+    for (int i = 0; i < T; ++i) {
+        const string& S = S_inputs[i];
+        const int result = max_deleted_length(S);
         cout << result << endl;
     }
-
-    file.close();
-
     return 0;
+}
+
+bool is_binary(const std::string &str) {
+    using namespace std;
+    return all_of(str.begin(), str.end(), [](const char c) {
+            return c == '0' || c == '1';
+        });
 }
 
 int max_deleted_length(const std::string& s) {

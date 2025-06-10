@@ -69,7 +69,7 @@ int main() {
         is_valid = true;
     } while (!is_valid);
     cerr << "Kết quả:" << endl;
-    // Xử lý dòng đọc được
+
     const Fraction fraction1(numerator1, denominator1);
     const Fraction fraction2(numerator2, denominator2);
     const Fraction fraction = fraction1 + fraction2;

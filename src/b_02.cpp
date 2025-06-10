@@ -27,7 +27,7 @@ int main() {
     } while (!is_valid);
     vector<char> inputs(T);
     for (int i = 0; i < T; i++) {
-        // Xử lý dòng đọc được
+
         cerr << "Nhập bộ test " << i + 1 << ":" << endl;
         do {
             is_valid = false;

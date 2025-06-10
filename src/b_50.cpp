@@ -7,7 +7,7 @@
 
 int main() {
     using namespace std;
-    cout << "b_50: HỢP VÀ GIAO CỦA HAI FILE VĂN BẢN" << endl;
+    cerr << "b_50: HỢP VÀ GIAO CỦA HAI FILE VĂN BẢN" << endl;
     // Lấy từ từ mỗi file
     ifstream in1File("DATA1.in");
     if (!in1File) {
@@ -22,22 +22,18 @@ int main() {
     }
     set<string> s2 = collect_words_from_file(in2File);
 
-    // Hợp
     set<string> uni;
     set_union(s1.begin(), s1.end(), s2.begin(), s2.end(),
               inserter(uni, uni.begin()));
 
-    // Giao
     set<string> inter;
     set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(),
                      inserter(inter, inter.begin()));
 
-    // In hợp
+    cerr << "Kết quả:" << endl;
     for (const string& word : uni)
         cout << word << " ";
     cout << endl;
-
-    // In giao
     for (const string& word : inter)
         cout << word << " ";
     cout << endl;

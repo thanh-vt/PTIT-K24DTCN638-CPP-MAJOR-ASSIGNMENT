@@ -8,7 +8,7 @@
 
 int main() {
     using namespace std;
-    cout << "b_49: LIỆT KÊ TỪ KHÁC NHAU" << endl;
+    cerr << "b_49: LIỆT KÊ TỪ KHÁC NHAU" << endl;
     ifstream fin("VANBAN.in");
     if (!fin) {
         cerr << "Không thể mở file VANBAN.in" << endl;
@@ -26,7 +26,7 @@ int main() {
     }
 
     // In ra kết quả
-    for (const auto& word : uniqueWords) {
+    for (const string& word : uniqueWords) {
         cout << word << endl;
     }
     return 0;

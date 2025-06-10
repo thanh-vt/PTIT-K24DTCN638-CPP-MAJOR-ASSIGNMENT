@@ -32,7 +32,7 @@ int main() {
     // Dùng thuật toán sàng nguyên tố Eratosthenes để tìm các số nguyên tố đến 1000 (vì 1000^2 = 1,000,000)
     const vector<int> squares = sieve(1000);
     for (int i = 0; i < T; i++) {
-        // Xử lý dòng đọc được
+
         cerr << "Nhập bộ test " << i + 1 << ":" << endl;
         do {
             is_valid = false;

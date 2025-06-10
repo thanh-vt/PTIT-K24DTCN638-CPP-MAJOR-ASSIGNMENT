@@ -13,7 +13,7 @@ int main() {
     int a, b;
     do {
         getline(cin, line);
-        // Xử lý dòng đọc được
+
         static regex ws_re(" +"); // tách chuỗi bởi khoảng trắng, static để tránh compile lại regex nhiều lần khi chạy chương trình
         const sregex_token_iterator iter(line.begin(), line.end(), ws_re, -1);
         const sregex_token_iterator end;

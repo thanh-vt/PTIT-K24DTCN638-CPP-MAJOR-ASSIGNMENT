@@ -57,7 +57,7 @@ int main() {
                     cerr << "Mã" << line << " đã tồn tại" << endl;
                     continue;
                 }
-                code = line;
+                code = move(line);
             } catch (const exception &e) {
                 cerr << e.what() << endl;
                 continue;
@@ -91,7 +91,7 @@ int main() {
                     cerr << "Lớp không có khoảng trống" << endl;
                     continue;
                 }
-                clazz = line;
+                clazz = move(line);
             } catch (const exception &e) {
                 cerr << e.what() << endl;
                 continue;
@@ -104,15 +104,15 @@ int main() {
             try {
                 is_valid = false;
                 getline(cin, line);
-                if (line.size() > 20) {
-                    cerr << "Email không quá 20 ký tự" << endl;
+                if (line.size() > 50) {
+                    cerr << "Email không quá 50 ký tự" << endl;
                     continue;
                 }
                 if (line.find(' ') != std::string::npos) {
                     cerr << "Email không có khoảng trống" << endl;
                     continue;
                 }
-                email = line;
+                email = move(line);
             } catch (const exception &e) {
                 cerr << e.what() << endl;
                 continue;

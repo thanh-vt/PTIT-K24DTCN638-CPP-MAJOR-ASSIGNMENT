@@ -5,7 +5,7 @@
 
 int main() {
     using namespace std;
-    cout << "b_48: SỐ KHÁC NHAU TRONG FILE" << endl;
+    cerr << "b_48: SỐ KHÁC NHAU TRONG FILE" << endl;
     ifstream fin("DATA.in");
     if (!fin) {
         cerr << "Không thể mở file DATA.in " << endl;
