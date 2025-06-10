@@ -9,7 +9,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_36: DANH SÁCH SINH VIÊN - 3" << endl;
+    // cerr << "b_36: DANH SÁCH SINH VIÊN - 3" << endl;
     string line;
     cerr << "Nhập số sinh viên N:" << endl;
     bool is_valid = false;
@@ -107,7 +107,7 @@ int main() {
         const Student student(fullname, clazz, date_of_birth, gpaMark);
         S_inputs.push_back(student);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     sort(S_inputs.begin(), S_inputs.end());
     for (const Student& student : S_inputs) {
         cout << student << endl;

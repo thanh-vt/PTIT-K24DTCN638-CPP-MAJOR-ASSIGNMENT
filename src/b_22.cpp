@@ -6,7 +6,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_22: KHAI BÁO LỚP PHÂN SỐ" << endl;
+    // cerr << "b_22: KHAI BÁO LỚP PHÂN SỐ" << endl;
     string line;
     bool is_valid = false;
     cerr << "Nhập tử số và mẫu số:" << endl;
@@ -46,7 +46,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     const Fraction fraction(numerator, denominator);
     cout << fraction << endl;
     return 0;

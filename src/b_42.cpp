@@ -9,7 +9,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_42: SẮP XẾP SINH VIÊN THEO LỚP" << endl;
+    // cerr << "b_42: SẮP XẾP SINH VIÊN THEO LỚP" << endl;
     string line;
     cerr << "Nhập số sinh viên N:" << endl;
     bool is_valid = false;
@@ -123,7 +123,7 @@ int main() {
         S_inputs.push_back(student);
         S_codes.insert(code);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     sort(S_inputs.begin(), S_inputs.end());
     for (int i = 0; i < N; ++i) {
         const Student& student = S_inputs[i];

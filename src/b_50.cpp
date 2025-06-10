@@ -7,7 +7,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_50: HỢP VÀ GIAO CỦA HAI FILE VĂN BẢN" << endl;
+    // cerr << "b_50: HỢP VÀ GIAO CỦA HAI FILE VĂN BẢN" << endl;
     // Lấy từ từ mỗi file
     ifstream in1File("DATA1.in");
     if (!in1File) {
@@ -30,7 +30,7 @@ int main() {
     set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(),
                      inserter(inter, inter.begin()));
 
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (const string& word : uni)
         cout << word << " ";
     cout << endl;

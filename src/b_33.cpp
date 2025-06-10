@@ -7,7 +7,7 @@
 // SẮP XẾP XEN KẼ - 2
 int main() {
     using namespace std;
-    cerr << "b_32: HỢP VÀ GIAO CỦA HAI DÃY SỐ -2" << endl;
+    // cerr << "b_32: HỢP VÀ GIAO CỦA HAI DÃY SỐ -2" << endl;
     string line;
     cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
@@ -79,7 +79,7 @@ int main() {
         } while (!is_valid);
 
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (int i = 0; i < T; i++) {
         vector<int> &A = A_inputs[i];
         vector<int> result = sort_alternating(A);

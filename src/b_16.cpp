@@ -5,7 +5,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_16: NHỎ NHẤT - LỚN NHẤT" << endl;
+    // cerr << "b_16: NHỎ NHẤT - LỚN NHẤT" << endl;
     string line;
     cerr << "Nhập 2 số m và s:" << endl;
     bool is_valid = false;
@@ -61,7 +61,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     cout << find_min(m, s) << " " << find_max(m, s) << endl;
     return 0;
 }

@@ -5,7 +5,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_27: CỬA SỔ TRƯỢT" << endl;
+    // cerr << "b_27: CỬA SỔ TRƯỢT" << endl;
     string line;
     cerr << "Nhập số N:" << endl;
     bool is_valid = false;
@@ -108,7 +108,7 @@ int main() {
             is_valid = true;
         } while (!is_valid);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     const vector<vector<int>> result = print_convolution_matrix(A, B);
     // In ra ma trận kết quả
     for (int i = 0; i < N; i++) {

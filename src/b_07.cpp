@@ -4,7 +4,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_07: ƯỚC SỐ NGUYÊN TỐ" << endl;
+    // cerr << "b_07: ƯỚC SỐ NGUYÊN TỐ" << endl;
     string line;
     cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
@@ -54,7 +54,7 @@ int main() {
             inputs[i] = N;
         } while (!is_valid);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (const int N: inputs) {
         print_factorization(N);
     }

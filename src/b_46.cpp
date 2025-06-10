@@ -8,7 +8,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_46: DANH SÁCH DOANH NGHIỆP NHẬN SINH VIÊN THỰC TẬP - 1" << endl;
+    // cerr << "b_46: DANH SÁCH DOANH NGHIỆP NHẬN SINH VIÊN THỰC TẬP - 1" << endl;
     string line;
     cerr << "Nhập số doanh nghiệp N:" << endl;
     bool is_valid = false;
@@ -88,7 +88,7 @@ int main() {
         Enterprise enterprise(code, fullname, numberOfInterns);
         E_inputs.push_back(enterprise);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     sort(E_inputs.begin(), E_inputs.end());
     for (int i = 0; i < N; ++i) {
         const Enterprise& enterprise = E_inputs[i];

@@ -6,7 +6,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_20: CẤU TRÚC THÍ SINH" << endl;
+    // cerr << "b_20: CẤU TRÚC THÍ SINH" << endl;
     string line;
     bool is_valid = false;
     cerr << "Nhập tên của thí sinh:" << endl;
@@ -74,7 +74,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     const Candidate candidate(fullname, dateOfBirth, subject1Mark, subject2Mark, subject3Mark);
     cout << candidate << endl;
     return 0;

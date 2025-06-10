@@ -8,7 +8,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_35: DANH SÁCH SINH VIÊN - 2" << endl;
+    // cerr << "b_35: DANH SÁCH SINH VIÊN - 2" << endl;
     string line;
     cerr << "Nhập số sinh viên N:" << endl;
     bool is_valid = false;
@@ -106,7 +106,7 @@ int main() {
         const Student student(fullname, clazz, date_of_birth, gpaMark);
         S_inputs.push_back(student);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (int i = 0; i < N; i++) {
         const Student& student = S_inputs[i];
         cout << student << endl;

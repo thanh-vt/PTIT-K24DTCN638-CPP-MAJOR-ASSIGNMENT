@@ -7,7 +7,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_40: TRẺ NHẤT – GIÀ NHẤT" << endl;
+    // cerr << "b_40: TRẺ NHẤT – GIÀ NHẤT" << endl;
     string line;
     cerr << "Nhập số người N:" << endl;
     bool is_valid = false;
@@ -59,7 +59,7 @@ int main() {
         Person person(name, date_of_birth);
         P_inputs.push_back(person);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     sort(P_inputs.begin(), P_inputs.end());
     cout << P_inputs.front() << endl;
     cout << P_inputs.back() << endl;

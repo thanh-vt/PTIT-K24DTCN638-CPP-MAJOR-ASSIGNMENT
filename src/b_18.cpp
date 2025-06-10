@@ -4,7 +4,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_18: LOẠI BỎ NGUYÊN ÂM" << endl;
+    // cerr << "b_18: LOẠI BỎ NGUYÊN ÂM" << endl;
     string S;
     cerr << "Nhập chuỗi S:" << endl;
     bool is_valid = false;
@@ -17,7 +17,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     cout << remove_vowels(S) << endl;
     return 0;
 }

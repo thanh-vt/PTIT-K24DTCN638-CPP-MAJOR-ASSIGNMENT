@@ -6,7 +6,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_12: BIẾN ĐỔI NHỊ PHÂN" << endl;
+    // cerr << "b_12: BIẾN ĐỔI NHỊ PHÂN" << endl;
     string line;
     cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
@@ -104,7 +104,7 @@ int main() {
         }
         A_inputs[i] = A;
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (int i = 0; i < T; i++) {
         int n = n_inputs[i];
         int m = m_inputs[i];

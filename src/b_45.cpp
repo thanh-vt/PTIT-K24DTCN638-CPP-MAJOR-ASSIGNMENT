@@ -9,7 +9,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_45: TÌM KIẾM GIẢNG VIÊN" << endl;
+    // cerr << "b_45: TÌM KIẾM GIẢNG VIÊN" << endl;
     string line;
     cerr << "Nhập số giảng viên N:" << endl;
     bool is_valid = false;
@@ -93,7 +93,7 @@ int main() {
         } while (!is_valid);
         Q_inputs.push_back(move(line));
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (int i = 0; i < Q; ++i) {
         const string& query = Q_inputs[i];
         cout << "DANH SACH GIANG VIEN THEO TU KHOA " << query << ":" << endl;

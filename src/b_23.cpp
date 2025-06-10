@@ -6,7 +6,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_23: TÍNH TỔNG HAI ĐỐI TƯỢNG PHÂN SỐ" << endl;
+    // cerr << "b_23: TÍNH TỔNG HAI ĐỐI TƯỢNG PHÂN SỐ" << endl;
     string line;
     bool is_valid = false;
     cerr << "Nhập 2 cặp tử số và mẫu số:" << endl;
@@ -68,7 +68,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
 
     const Fraction fraction1(numerator1, denominator1);
     const Fraction fraction2(numerator2, denominator2);

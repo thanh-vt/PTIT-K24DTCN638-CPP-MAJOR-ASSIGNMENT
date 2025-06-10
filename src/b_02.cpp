@@ -5,7 +5,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_02: CHỮ HOA – CHỮ THƯỜNG" << endl;
+    // cerr << "b_02: CHỮ HOA – CHỮ THƯỜNG" << endl;
     string line;
     cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
@@ -43,7 +43,7 @@ int main() {
             inputs[i] = c;
         } while (!is_valid);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (const char c: inputs) {
         cout << convert_char(c) << endl;
     }

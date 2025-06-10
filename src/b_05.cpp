@@ -4,7 +4,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_05: SỐ MAY MẮN" << endl;
+    // cerr << "b_05: SỐ MAY MẮN" << endl;
     string line;
     cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
@@ -49,7 +49,7 @@ int main() {
             inputs[i] = N;
         } while (!is_valid);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (const int N: inputs) {
         cout << ends_with(N, 86) << endl;
     }

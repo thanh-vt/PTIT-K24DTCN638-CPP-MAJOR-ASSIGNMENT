@@ -6,7 +6,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_15: ĐẾM SỐ PHẦN TỬ LẶP LẠI" << endl;
+    // cerr << "b_15: ĐẾM SỐ PHẦN TỬ LẶP LẠI" << endl;
     string line;
     cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
@@ -78,7 +78,7 @@ int main() {
             v_inputs[i] = A;
         } while (!is_valid);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (int i = 0; i < T; i++) {
         const vector<int>& A = v_inputs[i];
         const int count = count_array_duplicated_elements(A);

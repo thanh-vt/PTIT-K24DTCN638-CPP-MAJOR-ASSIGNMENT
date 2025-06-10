@@ -9,7 +9,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_37: SẮP XẾP DANH SÁCH NHÂN VIÊN" << endl;
+    // cerr << "b_37: SẮP XẾP DANH SÁCH NHÂN VIÊN" << endl;
     string line;
     cerr << "Nhập số nhân viên N:" << endl;
     bool is_valid = false;
@@ -120,7 +120,7 @@ int main() {
         const Employee employee(fullname, gender, date_of_birth, address, tax_code, contract_sign_date);
         E_inputs.push_back(employee);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     sort(E_inputs.begin(), E_inputs.end());
     for (const Employee &employee: E_inputs) {
         cout << employee << endl;

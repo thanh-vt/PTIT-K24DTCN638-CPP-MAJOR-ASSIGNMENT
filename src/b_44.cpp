@@ -13,7 +13,7 @@ std::map<std::string, std::string> major_alias_to_code;
 
 int main() {
     using namespace std;
-    cerr << "b_44: LIỆT KÊ SINH VIÊN THEO NGÀNH" << endl;
+    // cerr << "b_44: LIỆT KÊ SINH VIÊN THEO NGÀNH" << endl;
     string line;
     cerr << "Nhập số sinh viên N:" << endl;
     bool is_valid = false;
@@ -163,7 +163,7 @@ int main() {
         } while (!is_valid);
         Q_inputs.push_back(move(line));
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (int i = 0; i < Q; ++i) {
         filter_students_by_major(S_inputs, Q_inputs[i]);
     }

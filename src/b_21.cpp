@@ -5,7 +5,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_21: CẤU TRÚC NHÂN VIÊN" << endl;
+    // cerr << "b_21: CẤU TRÚC NHÂN VIÊN" << endl;
     string line;
     bool is_valid = false;
     cerr << "Nhập tên của nhân viên:" << endl;
@@ -85,7 +85,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     Staff staff(fullname, gender, date_of_birth, address, tax_code, contract_sign_date);
     cout << staff << endl;
     return 0;

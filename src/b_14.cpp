@@ -7,7 +7,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_14: LIỆT KÊ SỐ KHÁC NHAU" << endl;
+    // cerr << "b_14: LIỆT KÊ SỐ KHÁC NHAU" << endl;
     string line;
     cerr << "Nhập số N:" << endl;
     bool is_valid = false;
@@ -55,7 +55,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     print_unique_element(A);
     return 0;
 }

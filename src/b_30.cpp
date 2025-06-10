@@ -4,7 +4,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_30: TÁCH CHỮ SỐ" << endl;
+    // cerr << "b_30: TÁCH CHỮ SỐ" << endl;
     string line;
     cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
@@ -47,7 +47,7 @@ int main() {
             is_valid = true;
         } while (!is_valid);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (int i = 0; i < T; i++) {
         const string& S = s_inputs[i];
         cout << separate_alphabet_and_numeric(S) << endl;

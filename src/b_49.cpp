@@ -8,7 +8,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_49: LIỆT KÊ TỪ KHÁC NHAU" << endl;
+    // cerr << "b_49: LIỆT KÊ TỪ KHÁC NHAU" << endl;
     ifstream fin("VANBAN.in");
     if (!fin) {
         cerr << "Không thể mở file VANBAN.in" << endl;

@@ -6,7 +6,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_06: LIỆT KÊ SỐ NGUYÊN TỐ - 1" << endl;
+    // cerr << "b_06: LIỆT KÊ SỐ NGUYÊN TỐ - 1" << endl;
     string line;
     cerr << "Nhập 2 số nguyên dương a và b:" << endl;
     bool is_valid = false;
@@ -39,7 +39,7 @@ int main() {
             continue;
         }
         if (a < 1 || b < 1) {
-            cerr << "b  phải là số nguyên dương" << endl;
+            // cerr << "b  phải là số nguyên dương" << endl;
             continue;
         }
         if (a > 1000000) {
@@ -47,7 +47,7 @@ int main() {
             continue;
         }
         if (b > 1000000) {
-            cerr << "b phải <= 1000000" << endl;
+            // cerr << "b phải <= 1000000" << endl;
             continue;
         }
         if (a > b) {
@@ -55,7 +55,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (int i = a; i <= b; ++i) {
         if (is_prime(i)) {
             cout << i << " ";

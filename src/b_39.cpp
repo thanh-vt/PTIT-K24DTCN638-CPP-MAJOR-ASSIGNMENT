@@ -7,7 +7,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_39: BẢNG ĐIỂM THÀNH PHẦN - 2" << endl;
+    // cerr << "b_39: BẢNG ĐIỂM THÀNH PHẦN - 2" << endl;
     string line;
     cerr << "Nhập số sinh viên N:" << endl;
     bool is_valid = false;
@@ -154,7 +154,7 @@ int main() {
         const Student student(code, fullname, clazz, subject_1_mark, subject_2_mark, subject_3_mark);
         S_inputs.push_back(student);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     sort(S_inputs.begin(), S_inputs.end());
     for (int i = 0; i < N; ++i) {
         const Student& student = S_inputs[i];

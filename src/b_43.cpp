@@ -7,7 +7,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_43: SẮP XẾP THEO MÃ SINH VIÊN" << endl;
+    // cerr << "b_43: SẮP XẾP THEO MÃ SINH VIÊN" << endl;
     string line;
     bool is_valid = false;
     int i = 0;
@@ -111,7 +111,7 @@ int main() {
         S_codes.insert(code);
     }
     result:
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (const Student &student: S_inputs) {
         cout << student << endl;
     }

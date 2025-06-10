@@ -8,7 +8,7 @@
 
 int main() {
     using namespace std;
-    cerr << "b_41: DANH SÁCH ĐỐI TƯỢNG NHÂN VIÊN" << endl;
+    // cerr << "b_41: DANH SÁCH ĐỐI TƯỢNG NHÂN VIÊN" << endl;
     string line;
     cerr << "Nhập số nhân viên N:" << endl;
     bool is_valid = false;
@@ -119,7 +119,7 @@ int main() {
         Employee employee(fullname, gender, date_of_birth, address, tax_code, contract_sign_date);
         E_inputs.push_back(employee);
     }
-    cerr << "Kết quả:" << endl;
+    // cerr << "Kết quả:" << endl;
     for (int i = 0; i < N; ++i) {
         const Employee& employee = E_inputs[i];
         cout << employee << endl;
