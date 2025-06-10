@@ -27,6 +27,7 @@ endforeach()
 foreach(NUM ${EXERCISE_NUMBERS})
     add_executable(b_${NUM}
         "${CMAKE_CURRENT_SOURCE_DIR}/src/b_${NUM}.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/include/b_${NUM}.h"
         ${COMMON_SOURCES}
     )
     

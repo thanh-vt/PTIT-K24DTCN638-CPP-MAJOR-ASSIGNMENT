@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT45_H
-#define K24DTCN638_VUTATTHANH_BT45_H
+#ifndef B_45_H
+#define B_45_H
 #include <sstream>
 
 std::string shorten(const std::string& s);
@@ -30,4 +30,4 @@ private:
 
 int Teacher::count = 0;
 
-#endif //K24DTCN638_VUTATTHANH_BT45_H
+#endif //B_45_H

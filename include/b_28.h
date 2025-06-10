@@ -1,6 +1,6 @@
-#ifndef K24DTCN638_VUTATTHANH_BT28_H
-#define K24DTCN638_VUTATTHANH_BT28_H
+#ifndef B_28_H
+#define B_28_H
 
 int find_largest_smaller_number(int n);
 
-#endif //K24DTCN638_VUTATTHANH_BT28_H
+#endif //B_28_H

@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT21_H
-#define K24DTCN638_VUTATTHANH_BT21_H
+#ifndef B_21_H
+#define B_21_H
 #include <string>
 #include "util.h"
 
@@ -18,4 +18,4 @@ struct Staff {
     std::tm contractSignDate;
 };
 
-#endif //K24DTCN638_VUTATTHANH_BT21_H
+#endif //B_21_H

@@ -1,6 +1,6 @@
-#ifndef K24DTCN638_VUTATTHANH_BT15_H
-#define K24DTCN638_VUTATTHANH_BT15_H
+#ifndef B_15_H
+#define B_15_H
 
 int count_array_duplicated_elements(const std::vector<int> &A);
 
-#endif //K24DTCN638_VUTATTHANH_BT15_H
+#endif //B_15_H

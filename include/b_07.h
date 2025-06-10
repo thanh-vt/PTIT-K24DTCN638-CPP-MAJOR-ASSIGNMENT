@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT07_H
-#define K24DTCN638_VUTATTHANH_BT07_H
+#ifndef B_07_H
+#define B_07_H
 
 /**
  * In các ước số nguyên tố
@@ -8,4 +8,4 @@
  */
 void print_factorization(long n);
 
-#endif //K24DTCN638_VUTATTHANH_BT07_H
+#endif //B_07_H

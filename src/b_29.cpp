@@ -39,8 +39,8 @@ int main() {
                 continue;
             }
             try {
-                string S = validate_lower_alphanumeric(line);
-                s_inputs.push_back(S);
+                const string S = validate_lower_alphanumeric(line);
+                s_inputs[i] = S;
             } catch (const exception &e) {
                 cerr << e.what() << endl;
                 continue;

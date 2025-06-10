@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT41_H
-#define K24DTCN638_VUTATTHANH_BT41_H
+#ifndef B_41_H
+#define B_41_H
 
 class Employee {
 public:
@@ -21,4 +21,4 @@ private:
 
 int Employee::counter = 0;
 
-#endif //K24DTCN638_VUTATTHANH_BT41_H
+#endif //B_41_H

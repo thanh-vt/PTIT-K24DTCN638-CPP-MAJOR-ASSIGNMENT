@@ -1,7 +1,7 @@
-#ifndef K24DTCN638_VUTATTHANH_BT17_H
-#define K24DTCN638_VUTATTHANH_BT17_H
+#ifndef B_17_H
+#define B_17_H
 #include <string>
 
 int count_substring_begin_end_equals(const std::string &S);
 
-#endif //K24DTCN638_VUTATTHANH_BT17_H
+#endif //B_17_H

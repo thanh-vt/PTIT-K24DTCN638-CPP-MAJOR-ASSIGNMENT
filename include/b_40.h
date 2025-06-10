@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT40_H
-#define K24DTCN638_VUTATTHANH_BT40_H
+#ifndef B_40_H
+#define B_40_H
 
 struct Person {
     Person(std::string name, const std::tm &date_of_birth);
@@ -9,4 +9,4 @@ struct Person {
     std::tm dateOfBirth;
 };
 
-#endif //K24DTCN638_VUTATTHANH_BT40_H
+#endif //B_40_H

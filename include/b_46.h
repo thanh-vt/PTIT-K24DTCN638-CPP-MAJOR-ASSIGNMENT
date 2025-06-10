@@ -1,10 +1,9 @@
-#ifndef K24DTCN638_VUTATTHANH_BT46_H
-#define K24DTCN638_VUTATTHANH_BT46_H
+#ifndef B_46_H
+#define B_46_H
 
 class Enterprise {
 public:
     Enterprise(const std::string &code, const std::string &name, const std::string &numberOfInternsStr);
-
     friend std::ostream &operator<<(std::ostream &os, const Enterprise &enterprise);
 
 private:
@@ -17,4 +16,4 @@ public:
     bool operator <(const Enterprise &other) const;
 };
 
-#endif //K24DTCN638_VUTATTHANH_BT46_H
+#endif //B_46_H

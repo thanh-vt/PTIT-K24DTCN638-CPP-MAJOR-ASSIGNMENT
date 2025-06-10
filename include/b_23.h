@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT23_H
-#define K24DTCN638_VUTATTHANH_BT23_H
+#ifndef B_23_H
+#define B_23_H
 
 class Fraction {
 public:
@@ -16,4 +16,4 @@ private:
     void reduce();
 };
 
-#endif //K24DTCN638_VUTATTHANH_BT23_H
+#endif //B_23_H

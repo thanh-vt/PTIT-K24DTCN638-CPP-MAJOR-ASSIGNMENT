@@ -1,4 +1,5 @@
 @echo off
+
 :: Check if the user provided a program name
 if "%1"=="" (
     echo Please provide the program name as a parameter.

@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT04_H
-#define K24DTCN638_VUTATTHANH_BT04_H
+#ifndef B_04_H
+#define B_04_H
 
 /**
  * Cân bằng chẵn lẻ
@@ -9,4 +9,4 @@
  */
 bool has_equal_odd_even_digits(int n);
 
-#endif //K24DTCN638_VUTATTHANH_BT04_H
+#endif //B_04_H

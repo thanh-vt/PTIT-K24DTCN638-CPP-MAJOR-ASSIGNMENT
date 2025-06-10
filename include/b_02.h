@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT02_H
-#define K24DTCN638_VUTATTHANH_BT02_H
+#ifndef B_02_H
+#define B_02_H
 
 /**
  * Chuyển đổi ký tự in hoa và in thường hoặc ngược lại
@@ -9,4 +9,4 @@
  */
 char convert_char(char c);
 
-#endif //K24DTCN638_VUTATTHANH_BT02_H
+#endif //B_02_H

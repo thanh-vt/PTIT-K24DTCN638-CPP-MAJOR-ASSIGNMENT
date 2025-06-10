@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT36_H
-#define K24DTCN638_VUTATTHANH_BT36_H
+#ifndef B_36_H
+#define B_36_H
 
 struct Student {
     Student(std::string fullname, std::string clazz, const std::tm &date_of_birth, float gpa_mark);
@@ -16,4 +16,4 @@ struct Student {
 
 int Student::counter = 0;
 
-#endif //K24DTCN638_VUTATTHANH_BT36_H
+#endif //B_36_H

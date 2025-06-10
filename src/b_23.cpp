@@ -46,7 +46,7 @@ int main() {
         }
         try {
             is_valid = false;
-            numerator2 = parse_int(result.at(0));
+            numerator2 = parse_int(result.at(2));
             if (numerator2 <= 0) {
                 cerr << "Tử số 2 là số nguyên dương" << endl;
                 continue;
@@ -57,7 +57,7 @@ int main() {
         }
         try {
             is_valid = false;
-            denominator2 = parse_int(result.at(1));
+            denominator2 = parse_int(result.at(3));
             if (denominator2 <= 0) {
                 cerr << "Mẫu số 2 là số nguyên dương" << endl;
                 continue;

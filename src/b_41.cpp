@@ -47,7 +47,7 @@ int main() {
             }
             is_valid = true;
         } while (!is_valid);
-        cerr << "Nhập giới tính của viên " << i + 1 << ":" << endl;
+        cerr << "Nhập giới tính của nhân viên " << i + 1 << ":" << endl;
         Gender gender;
         do {
             try {

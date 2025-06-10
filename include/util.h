@@ -5,6 +5,7 @@
 #include <utility>
 #include <vector>
 #include <functional>
+#include <cctype>
 
 class exit_code_exception : public std::exception {
     int code;

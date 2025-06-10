@@ -1,6 +1,6 @@
-#ifndef K24DTCN638_VUTATTHANH_BT05_H
-#define K24DTCN638_VUTATTHANH_BT05_H
+#ifndef B_05_H
+#define B_05_H
 
 bool ends_with(int value, int suffix);
 
-#endif //K24DTCN638_VUTATTHANH_BT05_H
+#endif //B_05_H

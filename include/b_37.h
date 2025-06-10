@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT37_H
-#define K24DTCN638_VUTATTHANH_BT37_H
+#ifndef B_37_H
+#define B_37_H
 #include <string>
 
 struct Employee {
@@ -22,4 +22,4 @@ struct Employee {
 
 int Employee::counter = 0;
 
-#endif //K24DTCN638_VUTATTHANH_BT37_H
+#endif //B_37_H

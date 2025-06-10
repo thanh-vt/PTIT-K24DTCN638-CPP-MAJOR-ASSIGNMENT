@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT35_H
-#define K24DTCN638_VUTATTHANH_BT35_H
+#ifndef B_35_H
+#define B_35_H
 #include <string>
 
 struct Student {
@@ -15,4 +15,4 @@ struct Student {
 
 int Student::counter = 0;
 
-#endif //K24DTCN638_VUTATTHANH_BT35_H
+#endif //B_35_H

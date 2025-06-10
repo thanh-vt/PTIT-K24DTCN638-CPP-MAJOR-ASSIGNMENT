@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT38_H
-#define K24DTCN638_VUTATTHANH_BT38_H
+#ifndef B_38_H
+#define B_38_H
 
 struct Student {
     Student(std::string code, std::string fullname, std::string clazz, float subject1_mark,
@@ -14,4 +14,4 @@ struct Student {
     float subject3Mark;
 };
 
-#endif //K24DTCN638_VUTATTHANH_BT38_H
+#endif //B_38_H

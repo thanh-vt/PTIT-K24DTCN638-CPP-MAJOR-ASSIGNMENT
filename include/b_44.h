@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT44_H
-#define K24DTCN638_VUTATTHANH_BT44_H
+#ifndef B_44_H
+#define B_44_H
 
 struct Student {
     Student(const std::string &code, const std::string &fullname, const std::string &clazz, const std::string &email);
@@ -12,4 +12,4 @@ struct Student {
 
 void filter_students_by_major(const std::vector<Student>& students, const std::string& majorAlias);
 
-#endif //K24DTCN638_VUTATTHANH_BT44_H
+#endif //B_44_H

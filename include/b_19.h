@@ -1,7 +1,7 @@
-#ifndef K24DTCN638_VUTATTHANH_BT19_H
-#define K24DTCN638_VUTATTHANH_BT19_H
+#ifndef B_19_H
+#define B_19_H
 #include <set>
 
 std::set<int> sort_digits_array(const std::vector<long>& A);
 
-#endif //K24DTCN638_VUTATTHANH_BT19_H
+#endif //B_19_H

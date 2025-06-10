@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT08_H
-#define K24DTCN638_VUTATTHANH_BT08_H
+#ifndef B_08_H
+#define B_08_H
 
 /**
  * Sàng các số nguyên tố trong khoảng từ 1 đến max
@@ -9,4 +9,4 @@
  */
 std::vector<int> sieve(int max);
 
-#endif //K24DTCN638_VUTATTHANH_BT08_H
+#endif //B_08_H

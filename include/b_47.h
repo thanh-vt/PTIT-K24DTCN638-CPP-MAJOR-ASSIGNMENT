@@ -1,7 +1,7 @@
-#ifndef K24DTCN638_VUTATTHANH_BT47_H
-#define K24DTCN638_VUTATTHANH_BT47_H
+#ifndef B_47_H
+#define B_47_H
 #include <string>
 
 int max_deleted_length(const std::string& s);
 
-#endif //K24DTCN638_VUTATTHANH_BT47_H
+#endif //B_47_H

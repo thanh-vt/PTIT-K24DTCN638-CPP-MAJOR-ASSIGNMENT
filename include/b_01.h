@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT01_H
-#define K24DTCN638_VUTATTHANH_BT01_H
+#ifndef B_01_H
+#define B_01_H
 
 /**
  * Tính tổng từ 1 đến n
@@ -9,4 +9,4 @@
  */
 int sum_1_to_n(int n);
 
-#endif //K24DTCN638_VUTATTHANH_BT01_H
+#endif //B_01_H

@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT20_H
-#define K24DTCN638_VUTATTHANH_BT20_H
+#ifndef B_20_H
+#define B_20_H
 #include <string>
 
 struct Candidate {
@@ -15,4 +15,4 @@ struct Candidate {
     float totalMark;
 };
 
-#endif //K24DTCN638_VUTATTHANH_BT20_H
+#endif //B_20_H

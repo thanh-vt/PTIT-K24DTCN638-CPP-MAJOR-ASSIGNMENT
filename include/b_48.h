@@ -1,4 +1,4 @@
-#ifndef K24DTCN638_VUTATTHANH_BT48_H
-#define K24DTCN638_VUTATTHANH_BT48_H
+#ifndef B_48_H
+#define B_48_H
 
-#endif //K24DTCN638_VUTATTHANH_BT48_H
+#endif //B_48_H

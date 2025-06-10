@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT03_H
-#define K24DTCN638_VUTATTHANH_BT03_H
+#ifndef B_03_H
+#define B_03_H
 
 /**
  * Tính tổng giai thừa
@@ -9,4 +9,4 @@
  */
 int sum_products(int n);
 
-#endif //K24DTCN638_VUTATTHANH_BT03_H
+#endif //B_03_H

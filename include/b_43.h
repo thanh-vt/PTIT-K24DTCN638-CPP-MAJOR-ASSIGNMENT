@@ -1,13 +1,14 @@
-#ifndef K24DTCN638_VUTATTHANH_BT43_H
-#define K24DTCN638_VUTATTHANH_BT43_H
+#ifndef B_43_H
+#define B_43_H
 
 struct Student {
-    Student(const std::string &code, const std::string &fullname, const std::string &clazz, const std::string &email);
+    Student(std::string code, std::string fullname, std::string clazz, std::string email);
     friend std::ostream& operator<<(std::ostream& os, const Student& student);
+    bool operator <(const Student &other) const;
     std::string code;
     std::string fullname;
     std::string clazz;
     std::string email;
 };
 
-#endif //K24DTCN638_VUTATTHANH_BT43_H
+#endif //B_43_H

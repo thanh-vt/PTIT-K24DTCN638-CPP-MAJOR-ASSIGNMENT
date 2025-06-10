@@ -1,6 +1,6 @@
-#ifndef K24DTCN638_VUTATTHANH_BT13_H
-#define K24DTCN638_VUTATTHANH_BT13_H
+#ifndef B_13_H
+#define B_13_H
 
 void print_matrix_borders(const std::vector<std::vector<int> > &A);
 
-#endif //K24DTCN638_VUTATTHANH_BT13_H
+#endif //B_13_H

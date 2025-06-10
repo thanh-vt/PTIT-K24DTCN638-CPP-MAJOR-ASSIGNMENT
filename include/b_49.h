@@ -1,6 +1,6 @@
-#ifndef K24DTCN638_VUTATTHANH_BT49_H
-#define K24DTCN638_VUTATTHANH_BT49_H
+#ifndef B_49_H
+#define B_49_H
 
 std::string to_lower(const std::string& s);
 
-#endif //K24DTCN638_VUTATTHANH_BT49_H
+#endif //B_49_H

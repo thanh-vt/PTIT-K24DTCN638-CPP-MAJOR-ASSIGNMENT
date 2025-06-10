@@ -1,7 +1,7 @@
-#ifndef K24DTCN638_VUTATTHANH_BT29_H
-#define K24DTCN638_VUTATTHANH_BT29_H
+#ifndef B_29_H
+#define B_29_H
 #include <string>
 
 int sum_of_numbers(const std::string &S);
 
-#endif //K24DTCN638_VUTATTHANH_BT29_H
+#endif //B_29_H

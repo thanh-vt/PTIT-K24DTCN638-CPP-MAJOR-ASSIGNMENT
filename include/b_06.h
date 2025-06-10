@@ -1,5 +1,5 @@
-#ifndef K24DTCN638_VUTATTHANH_BT06_H
-#define K24DTCN638_VUTATTHANH_BT06_H
+#ifndef B_06_H
+#define B_06_H
 
 /**
  * Kiểm tra số nguyên tố
@@ -9,4 +9,4 @@
  */
 bool is_prime(int n);
 
-#endif //K24DTCN638_VUTATTHANH_BT06_H
+#endif //B_06_H
