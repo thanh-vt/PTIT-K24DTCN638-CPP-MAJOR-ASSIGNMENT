@@ -5,9 +5,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_10: SỐ NHỎ NHẤT CHƯA XUẤT HIỆN" << endl;
+    cerr << "b_10: SỐ NHỎ NHẤT CHƯA XUẤT HIỆN" << endl;
     string line;
-    cout << "Nhập số bộ test T:" << endl;
+    cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
     int T = 0;
     do {
@@ -30,7 +30,7 @@ int main() {
     } while (!is_valid);
     vector<vector<int> > v_inputs(T);
     for (int i = 0; i < T; i++) {
-        cout << "Nhập bộ test " << i + 1 << " - Số N:" << endl;
+        cerr << "Nhập bộ test " << i + 1 << " - Số N:" << endl;
         int N = 0;
         do {
             is_valid = false;
@@ -42,16 +42,16 @@ int main() {
                 continue;
             }
             if (N < 1) {
-                cout << "N phải >= bang 1" << endl;
+                cerr << "N phải >= bang 1" << endl;
                 continue;
             }
             if (N > 1000000) {
-                cout << "N phải <= 1000000" << endl;
+                cerr << "N phải <= 1000000" << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập bộ test " << i + 1 << " - Dãy số A[] gồm " << N << " phần tử:" << endl;
+        cerr << "Nhập bộ test " << i + 1 << " - Dãy số A[] gồm " << N << " phần tử:" << endl;
 
         do {
             is_valid = false;
@@ -78,7 +78,7 @@ int main() {
             v_inputs[i] = A;
         } while (!is_valid);
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     for (const vector<int> &A: v_inputs) {
         cout << find_smallest_missing_positive(A) << endl;
     }

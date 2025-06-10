@@ -5,9 +5,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_16: NHỎ NHẤT - LỚN NHẤT" << endl;
+    cerr << "b_16: NHỎ NHẤT - LỚN NHẤT" << endl;
     string line;
-    cout << "Nhập 2 số m và s:" << endl;
+    cerr << "Nhập 2 số m và s:" << endl;
     bool is_valid = false;
     int m = 0, s = 0;
     do {
@@ -50,18 +50,18 @@ int main() {
             continue;
         }
         if (s == 0) {
-            if (m == 1) cout << "0 0" << endl;
-            else cout << "-1 -1" << endl;
+            if (m == 1) cerr << "0 0" << endl;
+            else cerr << "-1 -1" << endl;
             return 0;
         }
 
         if (s > 9 * m) { // giá trị tối đa của s = 9 * m
-            cout << "-1 -1\n";
+            cerr << "-1 -1\n";
             return 0;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     cout << find_min(m, s) << " " << find_max(m, s) << endl;
     return 0;
 }

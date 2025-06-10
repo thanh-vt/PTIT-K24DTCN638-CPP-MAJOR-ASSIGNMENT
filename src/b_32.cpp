@@ -8,9 +8,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_32: HỢP VÀ GIAO CỦA HAI DÃY SỐ -2" << endl;
+    cerr << "b_32: HỢP VÀ GIAO CỦA HAI DÃY SỐ -2" << endl;
     string line;
-    cout << "Nhập số bộ test T:" << endl;
+    cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
     int T = 0;
     do {
@@ -34,7 +34,7 @@ int main() {
     vector<vector<int> > A_inputs(T);
     vector<vector<int> > B_inputs(T);
     for (int i = 0; i < T; i++) {
-        cout << "Nhập bộ test " << i + 1 << " - Số n và m:" << endl;
+        cerr << "Nhập bộ test " << i + 1 << " - Số n và m:" << endl;
         int n = 0, m = 0;
         do {
             is_valid = false;
@@ -78,7 +78,7 @@ int main() {
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập bộ test " << i + 1 << " - Dãy A[] gồm " << n << " phần tử:" << endl;
+        cerr << "Nhập bộ test " << i + 1 << " - Dãy A[] gồm " << n << " phần tử:" << endl;
         do {
             is_valid = false;
             getline(cin, line);
@@ -102,7 +102,7 @@ int main() {
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập bộ test " << i + 1 << " - Dãy B[] gồm " << m << " phần tử:" << endl;
+        cerr << "Nhập bộ test " << i + 1 << " - Dãy B[] gồm " << m << " phần tử:" << endl;
         do {
             is_valid = false;
             getline(cin, line);
@@ -128,7 +128,7 @@ int main() {
         } while (!is_valid);
 
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     for (int i = 0; i < T; i++) {
         const vector<int> &A = A_inputs[i];
         const vector<int> &B = B_inputs[i];

@@ -5,8 +5,8 @@
 
 int main() {
     using namespace std;
-    cout << "b_04: CÂN BẰNG CHẴN LẺ" << endl;
-    cout << "Nhập N:" << endl;
+    cerr << "b_04: CÂN BẰNG CHẴN LẺ" << endl;
+    cerr << "Nhập N:" << endl;
     string line;
     bool is_valid = false;
     int N = 0;
@@ -32,7 +32,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     const int start = static_cast<int>(pow(10, N - 1));
     const int end = static_cast<int>(pow(10, N)) - 1;
     int count = 0;

@@ -6,10 +6,10 @@
 
 int main() {
     using namespace std;
-    cout << "b_22: KHAI BÁO LỚP PHÂN SỐ" << endl;
+    cerr << "b_22: KHAI BÁO LỚP PHÂN SỐ" << endl;
     string line;
     bool is_valid = false;
-    cout << "Nhập tử số và mẫu số:" << endl;
+    cerr << "Nhập tử số và mẫu số:" << endl;
     int numerator = 0, denominator = 0;
     do {
         getline(cin, line);
@@ -30,7 +30,7 @@ int main() {
                 continue;
             }
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         try {
@@ -41,12 +41,12 @@ int main() {
                 continue;
             }
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     const Fraction fraction(numerator, denominator);
     cout << fraction << endl;
     return 0;

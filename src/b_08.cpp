@@ -5,9 +5,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_08: LIỆT KÊ SỐ CÓ BA ƯỚC SỐ" << endl;
+    cerr << "b_08: LIỆT KÊ SỐ CÓ BA ƯỚC SỐ" << endl;
     string line;
-    cout << "Nhập số bộ test T:" << endl;
+    cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
     int T = 0;
     do {
@@ -33,7 +33,7 @@ int main() {
     const vector<int> squares = sieve(1000);
     for (int i = 0; i < T; i++) {
         // Xử lý dòng đọc được
-        cout << "Nhập bộ test " << i + 1 << ":" << endl;
+        cerr << "Nhập bộ test " << i + 1 << ":" << endl;
         do {
             is_valid = false;
             getline(cin, line);
@@ -45,18 +45,18 @@ int main() {
                 continue;
             }
             if (N < 1) {
-                cout << "N phải >= 1" << endl;
+                cerr << "N phải >= 1" << endl;
                 continue;
             }
             if (N > 1000000) {
-                cout << "N phải <= 1000000" << endl;
+                cerr << "N phải <= 1000000" << endl;
                 continue;
             }
             is_valid = true;
             inputs[i] = N;
         } while (!is_valid);
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     for (const int N: inputs) {
         bool first = true;
         for (const int x : squares) {

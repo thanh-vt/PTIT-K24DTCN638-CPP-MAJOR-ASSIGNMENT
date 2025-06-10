@@ -9,9 +9,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_37: SẮP XẾP DANH SÁCH NHÂN VIÊN" << endl;
+    cerr << "b_37: SẮP XẾP DANH SÁCH NHÂN VIÊN" << endl;
     string line;
-    cout << "Nhập số nhân viên N:" << endl;
+    cerr << "Nhập số nhân viên N:" << endl;
     bool is_valid = false;
     int N = 0;
     do {
@@ -35,7 +35,7 @@ int main() {
     vector<Employee> E_inputs;
 
     for (int i = 0; i < N; i++) {
-        cout << "Nhập họ tên của nhân viên " << i + 1 << ":" << endl;
+        cerr << "Nhập họ tên của nhân viên " << i + 1 << ":" << endl;
         string fullname;
         do {
             try {
@@ -43,12 +43,12 @@ int main() {
                 getline(cin, line);
                 fullname = trim_and_validate_name(line, 40);
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập giới tính của nhân viên " << i + 1 << ":" << endl;
+        cerr << "Nhập giới tính của nhân viên " << i + 1 << ":" << endl;
         Gender gender;
         do {
             try {
@@ -56,12 +56,12 @@ int main() {
                 getline(cin, line);
                 gender = parse_gender(line);
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập ngày sinh của nhân viên " << i + 1 << ":" << endl;
+        cerr << "Nhập ngày sinh của nhân viên " << i + 1 << ":" << endl;
         tm date_of_birth{};
         do {
             try {
@@ -69,12 +69,12 @@ int main() {
                 getline(cin, line);
                 date_of_birth = parse_date(line);
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập địa chỉ của nhân viên " << i + 1 << ":" << endl;
+        cerr << "Nhập địa chỉ của nhân viên " << i + 1 << ":" << endl;
         string address;
         do {
             try {
@@ -86,25 +86,25 @@ int main() {
                 }
                 address = line;
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
         string tax_code;
-        cout << "Nhập mã số thuế của nhân viên " << i + 1 << ":" << endl;
+        cerr << "Nhập mã số thuế của nhân viên " << i + 1 << ":" << endl;
         do {
             try {
                 is_valid = false;
                 getline(cin, line);
                 tax_code = validate_tax_code(line);
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập ngày ký hợp đồng của nhân viên " << i + 1 << ":" << endl;
+        cerr << "Nhập ngày ký hợp đồng của nhân viên " << i + 1 << ":" << endl;
         tm contract_sign_date{};
         do {
             try {
@@ -112,7 +112,7 @@ int main() {
                 getline(cin, line);
                 contract_sign_date = parse_date(line);
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
@@ -120,7 +120,7 @@ int main() {
         const Employee employee(fullname, gender, date_of_birth, address, tax_code, contract_sign_date);
         E_inputs.push_back(employee);
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     sort(E_inputs.begin(), E_inputs.end());
     for (const Employee &employee: E_inputs) {
         cout << employee << endl;

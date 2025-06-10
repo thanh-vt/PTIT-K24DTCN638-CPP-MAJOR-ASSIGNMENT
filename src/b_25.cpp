@@ -6,9 +6,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_25: QUAY MA TRẬN" << endl;
+    cerr << "b_25: QUAY MA TRẬN" << endl;
     string line;
-    cout << "Nhập số bộ test T:" << endl;
+    cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
     int T = 0;
     do {
@@ -33,7 +33,7 @@ int main() {
     vector<int> m_inputs(T);
     vector<vector<vector<int>>> A_inputs(T);
     for (int i = 0; i < T; i++) {
-        cout << "Nhập bộ test " << i + 1 << " - Số n và m:" << endl;
+        cerr << "Nhập bộ test " << i + 1 << " - Số n và m:" << endl;
         int N = 0, M = 0;
         do {
             is_valid = false;
@@ -79,7 +79,7 @@ int main() {
             is_valid = true;
         } while (!is_valid);
         vector<vector<int> > A(N, vector<int>(M));
-        cout << "Nhập bộ test " << i + 1 << " - Ma trận A[][] gồm " << N << "x" << M << "=" << N*M << " phần tử:" << endl;
+        cerr << "Nhập bộ test " << i + 1 << " - Ma trận A[][] gồm " << N << "x" << M << "=" << N*M << " phần tử:" << endl;
         do {
             is_valid = false;
             getline(cin, line);
@@ -108,7 +108,7 @@ int main() {
         } while (!is_valid);
         A_inputs[i] = A;
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     for (int i = 0; i < T; i++) {
         int n = n_inputs[i];
         int m = m_inputs[i];

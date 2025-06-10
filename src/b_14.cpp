@@ -7,9 +7,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_14: LIỆT KÊ SỐ KHÁC NHAU" << endl;
+    cerr << "b_14: LIỆT KÊ SỐ KHÁC NHAU" << endl;
     string line;
-    cout << "Nhập số N:" << endl;
+    cerr << "Nhập số N:" << endl;
     bool is_valid = false;
     int N = 0;
     do {
@@ -32,7 +32,7 @@ int main() {
         is_valid = true;
     } while (!is_valid);
     vector<int> A;
-    cout << "Nhập dãy A[] gồm " << N << " phần tử:" << endl;
+    cerr << "Nhập dãy A[] gồm " << N << " phần tử:" << endl;
     do {
         is_valid = false;
         getline(cin, line);
@@ -55,7 +55,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     print_unique_element(A);
     return 0;
 }

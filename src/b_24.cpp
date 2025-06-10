@@ -5,7 +5,7 @@
 
 int main() {
     using namespace std;
-    cout << "b_23: SAO CHÉP TỆP TIN" << endl;
+    cerr << "b_23: SAO CHÉP TỆP TIN" << endl;
     ifstream in_file("PTIT.in");      // Mở tệp nguồn để đọc
     ofstream out_file("PTIT.out");    // Mở tệp đích để ghi
 

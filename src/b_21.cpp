@@ -4,10 +4,10 @@
 
 int main() {
     using namespace std;
-    cout << "b_21: CẤU TRÚC NHÂN VIÊN" << endl;
+    cerr << "b_21: CẤU TRÚC NHÂN VIÊN" << endl;
     string line;
     bool is_valid = false;
-    cout << "Nhập tên của nhân viên:" << endl;
+    cerr << "Nhập tên của nhân viên:" << endl;
     string fullname;
     do {
         try {
@@ -15,12 +15,12 @@ int main() {
             getline(cin, line);
             fullname = trim_and_validate_name(line);
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Nhập giới tính của nhân viên:" << endl;
+    cerr << "Nhập giới tính của nhân viên:" << endl;
     Gender gender;
     do {
         try {
@@ -28,12 +28,12 @@ int main() {
             getline(cin, line);
             gender = parse_gender(line);
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Nhập ngày sinh của nhân viên:" << endl;
+    cerr << "Nhập ngày sinh của nhân viên:" << endl;
     tm date_of_birth;
     do {
         try {
@@ -41,12 +41,12 @@ int main() {
             getline(cin, line);
             date_of_birth = parse_date(line);
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Nhập địa chỉ của nhân viên:" << endl;
+    cerr << "Nhập địa chỉ của nhân viên:" << endl;
     string address;
     do {
         try {
@@ -57,12 +57,12 @@ int main() {
                 throw invalid_argument("Dia chi do dai khong vuot qua 100");
             }
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Nhập mã số thuế của nhân viên:" << endl;
+    cerr << "Nhập mã số thuế của nhân viên:" << endl;
     string tax_code;
     do {
         try {
@@ -70,12 +70,12 @@ int main() {
             getline(cin, line);
             tax_code = validate_tax_code(line);
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Nhập ngày sinh của nhân viên:" << endl;
+    cerr << "Nhập ngày sinh của nhân viên:" << endl;
     tm contract_sign_date;
     do {
         try {
@@ -83,12 +83,12 @@ int main() {
             getline(cin, line);
             contract_sign_date = parse_date(line);
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     Staff staff(fullname, gender, date_of_birth, address, tax_code, contract_sign_date);
     cout << staff << endl;
     return 0;

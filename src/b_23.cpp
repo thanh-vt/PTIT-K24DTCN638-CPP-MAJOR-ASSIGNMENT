@@ -6,10 +6,10 @@
 
 int main() {
     using namespace std;
-    cout << "b_23: TÍNH TỔNG HAI ĐỐI TƯỢNG PHÂN SỐ" << endl;
+    cerr << "b_23: TÍNH TỔNG HAI ĐỐI TƯỢNG PHÂN SỐ" << endl;
     string line;
     bool is_valid = false;
-    cout << "Nhập 2 cặp tử số và mẫu số:" << endl;
+    cerr << "Nhập 2 cặp tử số và mẫu số:" << endl;
     int numerator1 = 0, denominator1 = 0, numerator2 = 0, denominator2 = 0;;
     do {
         getline(cin, line);
@@ -30,7 +30,7 @@ int main() {
                 continue;
             }
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         try {
@@ -41,7 +41,7 @@ int main() {
                 continue;
             }
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         try {
@@ -52,7 +52,7 @@ int main() {
                 continue;
             }
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         try {
@@ -63,12 +63,12 @@ int main() {
                 continue;
             }
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     // Xử lý dòng đọc được
     const Fraction fraction1(numerator1, denominator1);
     const Fraction fraction2(numerator2, denominator2);

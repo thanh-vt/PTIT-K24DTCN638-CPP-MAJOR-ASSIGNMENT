@@ -7,9 +7,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_39: BẢNG ĐIỂM THÀNH PHẦN - 2" << endl;
+    cerr << "b_39: BẢNG ĐIỂM THÀNH PHẦN - 2" << endl;
     string line;
-    cout << "Nhập số sinh viên N:" << endl;
+    cerr << "Nhập số sinh viên N:" << endl;
     bool is_valid = false;
     int N = 0;
     do {
@@ -33,7 +33,7 @@ int main() {
     vector<Student> S_inputs;
 
     for (int i = 0; i < N; i++) {
-        cout << "Nhập mã của sinh viên " << i + 1 << ":" << endl;
+        cerr << "Nhập mã của sinh viên " << i + 1 << ":" << endl;
         string code;
         do {
             try {
@@ -49,12 +49,12 @@ int main() {
                 }
                 code = line;
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập họ tên của sinh viên " << i + 1 << ":" << endl;
+        cerr << "Nhập họ tên của sinh viên " << i + 1 << ":" << endl;
         string fullname;
         do {
             try {
@@ -62,12 +62,12 @@ int main() {
                 getline(cin, line);
                 fullname = trim_and_validate_name(line, 50);
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập lớp của sinh viên " << i + 1 << ":" << endl;
+        cerr << "Nhập lớp của sinh viên " << i + 1 << ":" << endl;
         string clazz;
         do {
             try {
@@ -83,12 +83,12 @@ int main() {
                 }
                 clazz = line;
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập điểm môn 1 của sinh viên " << i + 1 << ":" << endl;
+        cerr << "Nhập điểm môn 1 của sinh viên " << i + 1 << ":" << endl;
         float subject_1_mark = 0;
         do {
             try {
@@ -104,13 +104,13 @@ int main() {
                     continue;
                 }
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
         float subject_2_mark = 0;
-        cout << "Nhập điểm môn 2 của sinh viên " << i + 1 << ":" << endl;
+        cerr << "Nhập điểm môn 2 của sinh viên " << i + 1 << ":" << endl;
         do {
             try {
                 is_valid = false;
@@ -125,12 +125,12 @@ int main() {
                     continue;
                 }
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập điểm môn 3 của sinh viên " << i + 1 << ":" << endl;
+        cerr << "Nhập điểm môn 3 của sinh viên " << i + 1 << ":" << endl;
         float subject_3_mark = 0;
         do {
             try {
@@ -146,7 +146,7 @@ int main() {
                     continue;
                 }
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
@@ -154,7 +154,7 @@ int main() {
         const Student student(code, fullname, clazz, subject_1_mark, subject_2_mark, subject_3_mark);
         S_inputs.push_back(student);
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     sort(S_inputs.begin(), S_inputs.end());
     for (int i = 0; i < N; ++i) {
         const Student& student = S_inputs[i];

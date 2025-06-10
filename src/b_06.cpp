@@ -6,9 +6,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_06: LIỆT KÊ SỐ NGUYÊN TỐ - 1" << endl;
+    cerr << "b_06: LIỆT KÊ SỐ NGUYÊN TỐ - 1" << endl;
     string line;
-    cout << "Nhập 2 số nguyên dương a và b:" << endl;
+    cerr << "Nhập 2 số nguyên dương a và b:" << endl;
     bool is_valid = false;
     int a, b;
     do {
@@ -55,7 +55,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     for (int i = a; i <= b; ++i) {
         if (is_prime(i)) {
             cout << i << " ";

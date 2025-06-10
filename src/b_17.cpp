@@ -6,9 +6,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_17: ĐẦU CUỐI GIỐNG NHAU" << endl;
+    cerr << "b_17: ĐẦU CUỐI GIỐNG NHAU" << endl;
     string line;
-    cout << "Nhập số bộ test T:" << endl;
+    cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
     int T = 0;
     do {
@@ -31,7 +31,7 @@ int main() {
     } while (!is_valid);
     vector<string> s_inputs(T);
     for (int i = 0; i < T; i++) {
-        cout << "Nhập bộ test " << i + 1 << ":" << endl;
+        cerr << "Nhập bộ test " << i + 1 << ":" << endl;
         string S;
         do {
             is_valid = false;
@@ -55,7 +55,7 @@ int main() {
             is_valid = true;
         } while (!is_valid);
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     for (int i = 0; i < T; i++) {
         const string& s = s_inputs[i];
         const int count = count_substring_begin_end_equals(s);

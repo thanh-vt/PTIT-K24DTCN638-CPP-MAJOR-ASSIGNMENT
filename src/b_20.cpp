@@ -6,10 +6,10 @@
 
 int main() {
     using namespace std;
-    cout << "b_20: CẤU TRÚC THÍ SINH" << endl;
+    cerr << "b_20: CẤU TRÚC THÍ SINH" << endl;
     string line;
     bool is_valid = false;
-    cout << "Nhập tên của thí sinh:" << endl;
+    cerr << "Nhập tên của thí sinh:" << endl;
     string fullname;
     do {
         try {
@@ -17,12 +17,12 @@ int main() {
             getline(cin, line);
             fullname = trim_and_validate_name(line);
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Nhập ngày sinh của thí sinh:" << endl;
+    cerr << "Nhập ngày sinh của thí sinh:" << endl;
     tm dateOfBirth = {};
     do {
         try {
@@ -30,12 +30,12 @@ int main() {
             getline(cin, line);
             dateOfBirth = parse_date(line);
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Nhập điểm môn 1 của thí sinh:" << endl;
+    cerr << "Nhập điểm môn 1 của thí sinh:" << endl;
     float subject1Mark = 0;
     do {
         try {
@@ -43,12 +43,12 @@ int main() {
             getline(cin, line);
             subject1Mark = parse_float(line);
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Nhập điểm môn 2 của thí sinh:" << endl;
+    cerr << "Nhập điểm môn 2 của thí sinh:" << endl;
     float subject2Mark = 0;
     do {
         try {
@@ -56,12 +56,12 @@ int main() {
             getline(cin, line);
             subject2Mark = parse_float(line);
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Nhập điểm môn 3 của thí sinh:" << endl;
+    cerr << "Nhập điểm môn 3 của thí sinh:" << endl;
     float subject3Mark = 0;
     do {
         try {
@@ -69,13 +69,13 @@ int main() {
             getline(cin, line);
             subject3Mark = parse_float(line);
         } catch (const exception &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             continue;
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Kết quả:" << endl;
-    const Candidate candidate{fullname, dateOfBirth, subject1Mark, subject2Mark, subject3Mark};
+    cerr << "Kết quả:" << endl;
+    const Candidate candidate(fullname, dateOfBirth, subject1Mark, subject2Mark, subject3Mark);
     cout << candidate << endl;
     return 0;
 }

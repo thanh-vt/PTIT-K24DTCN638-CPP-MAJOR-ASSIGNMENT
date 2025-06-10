@@ -5,9 +5,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_02: CHỮ HOA – CHỮ THƯỜNG" << endl;
+    cerr << "b_02: CHỮ HOA – CHỮ THƯỜNG" << endl;
     string line;
-    cout << "Nhập số bộ test T:" << endl;
+    cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
     int T = 0;
     do {
@@ -28,7 +28,7 @@ int main() {
     vector<char> inputs(T);
     for (int i = 0; i < T; i++) {
         // Xử lý dòng đọc được
-        cout << "Nhập bộ test " << i + 1 << ":" << endl;
+        cerr << "Nhập bộ test " << i + 1 << ":" << endl;
         do {
             is_valid = false;
             getline(cin, line);
@@ -43,7 +43,7 @@ int main() {
             inputs[i] = c;
         } while (!is_valid);
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     for (const char c: inputs) {
         cout << convert_char(c) << endl;
     }

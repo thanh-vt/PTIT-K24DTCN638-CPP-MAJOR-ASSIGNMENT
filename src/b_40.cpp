@@ -7,9 +7,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_40: TRẺ NHẤT – GIÀ NHẤT" << endl;
+    cerr << "b_40: TRẺ NHẤT – GIÀ NHẤT" << endl;
     string line;
-    cout << "Nhập số người N:" << endl;
+    cerr << "Nhập số người N:" << endl;
     bool is_valid = false;
     int N = 0;
     do {
@@ -33,7 +33,7 @@ int main() {
     vector<Person> P_inputs;
 
     for (int i = 0; i < N; i++) {
-        cout << "Nhập tên và ngày sinh của người thứ " << i + 1 << ":" << endl;
+        cerr << "Nhập tên và ngày sinh của người thứ " << i + 1 << ":" << endl;
         string name;
         tm date_of_birth{};
         do {
@@ -51,7 +51,7 @@ int main() {
                 name = trim_and_validate_name(result.at(0), 15);
                 date_of_birth = parse_date(result.at(1));
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
@@ -59,7 +59,7 @@ int main() {
         Person person(name, date_of_birth);
         P_inputs.push_back(person);
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     sort(P_inputs.begin(), P_inputs.end());
     cout << P_inputs.front() << endl;
     cout << P_inputs.back() << endl;

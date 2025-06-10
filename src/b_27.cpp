@@ -5,9 +5,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_27: CỬA SỔ TRƯỢT" << endl;
+    cerr << "b_27: CỬA SỔ TRƯỢT" << endl;
     string line;
-    cout << "Nhập số N:" << endl;
+    cerr << "Nhập số N:" << endl;
     bool is_valid = false;
     int N = 0;
     do {
@@ -31,7 +31,7 @@ int main() {
     } while (!is_valid);
     vector<vector<int>>A(N, vector<int>(N));
     for (int j = 0; j < N; ++j) {
-        cout << "Nhập ma trận A[][] hàng " << j + 1 << " gồm " << N << " phần tử:" << endl;
+        cerr << "Nhập ma trận A[][] hàng " << j + 1 << " gồm " << N << " phần tử:" << endl;
         do {
             is_valid = false;
             getline(cin, line);
@@ -56,7 +56,7 @@ int main() {
             is_valid = true;
         } while (!is_valid);
     }
-    cout << "Nhập số M:" << endl;
+    cerr << "Nhập số M:" << endl;
     int M = 0;
     do {
         is_valid = false;
@@ -83,7 +83,7 @@ int main() {
     } while (!is_valid);
     vector<vector<int>>B(M, vector<int>(M));
     for (int j = 0; j < M; ++j) {
-        cout << "Nhập ma trận B[][] hàng " << j + 1 << " gồm " << M << " phần tử:" << endl;
+        cerr << "Nhập ma trận B[][] hàng " << j + 1 << " gồm " << M << " phần tử:" << endl;
         do {
             is_valid = false;
             getline(cin, line);
@@ -108,7 +108,7 @@ int main() {
             is_valid = true;
         } while (!is_valid);
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     const vector<vector<int>> result = print_convolution_matrix(A, B);
     // In ra ma trận kết quả
     for (int i = 0; i < N; i++) {

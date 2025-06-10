@@ -4,8 +4,8 @@
 
 int main() {
     using namespace std;
-    cout << "b_03: TÍNH TỔNG GIAI THỪA" << endl;
-    cout << "Nhập N:" << endl;
+    cerr << "b_03: TÍNH TỔNG GIAI THỪA" << endl;
+    cerr << "Nhập N:" << endl;
     string line;
     bool is_valid = false;
     int N = 0;
@@ -27,7 +27,7 @@ int main() {
         }
         is_valid = true;
     } while (!is_valid);
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     cout << sum_products(N) << endl;
     return 0;
 }

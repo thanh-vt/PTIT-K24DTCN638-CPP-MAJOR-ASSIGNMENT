@@ -8,9 +8,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_35: DANH SÁCH SINH VIÊN - 2" << endl;
+    cerr << "b_35: DANH SÁCH SINH VIÊN - 2" << endl;
     string line;
-    cout << "Nhập số sinh viên N:" << endl;
+    cerr << "Nhập số sinh viên N:" << endl;
     bool is_valid = false;
     int N = 0;
     do {
@@ -33,7 +33,7 @@ int main() {
     } while (!is_valid);
     vector<Student > S_inputs;
     for (int i = 0; i < N; i++) {
-        cout << "Nhập họ tên của sinh viên " << i + 1 << ":" << endl;
+        cerr << "Nhập họ tên của sinh viên " << i + 1 << ":" << endl;
         string fullname;
         do {
             try {
@@ -41,12 +41,12 @@ int main() {
                 getline(cin, line);
                 fullname = normalize_and_validate_name(line, 30);
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập lớp của sinh viên " << i + 1 << ":" << endl;
+        cerr << "Nhập lớp của sinh viên " << i + 1 << ":" << endl;
         string clazz;
         do {
             try {
@@ -54,12 +54,12 @@ int main() {
                 getline(cin, line);
                 clazz = validate_ptit_clazz(line);
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
-        cout << "Nhập ngày sinh của sinh viên " << i + 1 << ":" << endl;
+        cerr << "Nhập ngày sinh của sinh viên " << i + 1 << ":" << endl;
         tm date_of_birth{};
         do {
             try {
@@ -67,13 +67,13 @@ int main() {
                 getline(cin, line);
                 date_of_birth = parse_date(line);
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
         } while (!is_valid);
         float gpaMark = 0;
-        cout << "Nhập điểm GPA của sinh viên " << i + 1 << ":" << endl;
+        cerr << "Nhập điểm GPA của sinh viên " << i + 1 << ":" << endl;
         do {
             try {
                 is_valid = false;
@@ -98,7 +98,7 @@ int main() {
                 }
 
             } catch (const exception &e) {
-                cout << e.what() << endl;
+                cerr << e.what() << endl;
                 continue;
             }
             is_valid = true;
@@ -106,7 +106,7 @@ int main() {
         const Student student(fullname, clazz, date_of_birth, gpaMark);
         S_inputs.push_back(student);
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     for (int i = 0; i < N; i++) {
         const Student& student = S_inputs[i];
         cout << student << endl;

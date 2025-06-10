@@ -6,9 +6,9 @@
 
 int main() {
     using namespace std;
-    cout << "b_01: TÍNH TỔNG 1 ĐẾN N" << endl;
+    cerr << "b_01: TÍNH TỔNG 1 ĐẾN N" << endl;
     string line;
-    cout << "Nhập số bộ test T:" << endl;
+    cerr << "Nhập số bộ test T:" << endl;
     bool is_valid = false;
     int T = 0;
     do {
@@ -32,7 +32,7 @@ int main() {
     vector<int> inputs(T);
     for (int i = 0; i < T; i++) {
         // Xử lý dòng đọc được
-        cout << "Nhập bộ test " << i + 1 << ":" << endl;
+        cerr << "Nhập bộ test " << i + 1 << ":" << endl;
         do {
             is_valid = false;
             getline(cin, line);
@@ -55,7 +55,7 @@ int main() {
             inputs[i] = N;
         } while (!is_valid);
     }
-    cout << "Kết quả:" << endl;
+    cerr << "Kết quả:" << endl;
     for (const int n : inputs) {
         cout << sum_1_to_n(n) << endl;
     }
