@@ -3,6 +3,8 @@
 #include <regex>
 #include "util.h"
 
+#include <cmath>
+
 void validation_termination() {
     using namespace std;
     // Try to get the current exception
@@ -110,7 +112,9 @@ std::string trim_and_validate_name(const std::string &input, const int max_lengt
             }
         }
     }
-
+    if (letterCount == 0) {
+        throw length_error("Họ tên không được bỏ trống.");
+    }
     if (letterCount > max_length) {
         throw length_error(string("Họ tên vượt quá ") + to_string(max_length) + " ký tự.");
     }
@@ -159,6 +163,9 @@ std::string normalize_and_validate_name(const std::string &input, const int max_
         // Append to result
         if (!result.empty()) result += " ";
         result += normalized_word;
+    }
+    if (result.empty()) {
+        throw length_error("Họ tên không được bỏ trống.");
     }
     return result;
 }

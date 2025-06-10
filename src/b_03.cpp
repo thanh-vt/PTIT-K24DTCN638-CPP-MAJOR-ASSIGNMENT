@@ -19,11 +19,11 @@ int main() {
         }
         if (N <= 0) {
             cerr << "N phải là số nguyên dương" << endl;
-            return 2;
+            continue;
         }
         if (N > 20) {
             cerr << "N phải <= 20" << endl;
-            return 2;
+            continue;
         }
         is_valid = true;
     } while (!is_valid);

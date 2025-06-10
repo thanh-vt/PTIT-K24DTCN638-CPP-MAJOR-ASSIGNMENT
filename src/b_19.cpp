@@ -47,7 +47,7 @@ int main() {
             }
             if (N > 10000000) {
                 cerr << "N phải <= 10000000" << endl;
-                return 2;
+                continue;
             }
             is_valid = true;
         } while (!is_valid);

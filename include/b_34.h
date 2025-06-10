@@ -3,7 +3,7 @@
 #include <string>
 
 struct Student {
-    Student(const std::string &fullname, const std::string &clazz, const std::string &dateStr, const std::string &gpaMarkStr);
+    Student(std::string fullname, std::string clazz, const std::tm &date_of_birth, float gpa_mark);
     friend std::ostream& operator<<(std::ostream& os, const Student& student);
     static int counter;
     std::string code;

@@ -2,7 +2,7 @@
 #define K24DTCN638_VUTATTHANH_BT36_H
 
 struct Student {
-    Student(const std::string &fullname, const std::string &clazz, const std::string &dateStr, const std::string &gpaMarkStr);
+    Student(std::string fullname, std::string clazz, const std::tm &date_of_birth, float gpa_mark);
     friend std::ostream& operator<<(std::ostream& os, const Student& student);
     static int counter;
     std::string code;
@@ -10,6 +10,8 @@ struct Student {
     std::string clazz;
     std::tm dateOfBirth;
     float gpaMark;
+    // override toán tử so sánh để sắp xếp theo điểm GPA
+    bool operator <(const Student &other) const;
 };
 
 int Student::counter = 0;

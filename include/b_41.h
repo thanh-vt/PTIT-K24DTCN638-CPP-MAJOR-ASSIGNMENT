@@ -14,7 +14,7 @@ private:
     std::tm dateOfBirth;
     std::string address;
     std::string taxCode;
-    std::tm contractDate;
+    std::tm contractSignDate;
 };
 
 
