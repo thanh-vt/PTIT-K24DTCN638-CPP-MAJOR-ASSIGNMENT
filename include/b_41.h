@@ -3,8 +3,9 @@
 
 class Employee {
 public:
-    Employee(const std::string &fullname, const std::string &genderStr, const std::string &dateOfBirthStr,
-             const std::string &address, const std::string &taxCode, const std::string &contractDateStr);
+    Employee(std::string fullname, Gender gender, const std::tm &date_of_birth, std::string address,
+             std::string tax_code, const std::tm &contract_sign_date);
+
     friend std::ostream &operator<<(std::ostream &os, const Employee &employee);
 private:
     static int counter;

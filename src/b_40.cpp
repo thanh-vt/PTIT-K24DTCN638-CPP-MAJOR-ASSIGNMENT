@@ -1,107 +1,91 @@
-#include <iomanip>
-#include <ios>
-#include <stdexcept>
 #include <iostream>
-#include <functional>
 #include <algorithm>
+#include <regex>
+#include <utility>
 #include "util.h"
 #include "b_40.h"
 
 int main() {
     using namespace std;
-    cout << "b_40: BẢNG ĐIỂM THÀNH PHẦN - 2" << endl;
+    cout << "b_40: TRẺ NHẤT – GIÀ NHẤT" << endl;
     string line;
-    if (!getline(file, line)) {
-        cerr << "Khong co dong tiep theo" << endl;
-        return 2;
-    }
-    const int N = parse_int(line);
-    if (N < 1 || N > 40) {
-        cerr << "N phai lon hon 0 va nho hon 40" << endl;
-        return 2;
-    }
-    vector<Student> students;
+    cout << "Nhập số người N:" << endl;
+    bool is_valid = false;
+    int N = 0;
+    do {
+        getline(cin, line);
+        try {
+            N = parse_int(line);
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
+            continue;
+        }
+        if (N < 1) {
+            cerr << "N phải >= 1" << endl;
+            continue;
+        }
+        if (N > 100) {
+            cerr << "N phải <= 100" << endl;
+            continue;
+        }
+        is_valid = true;
+    } while (!is_valid);
+    vector<Person> P_inputs;
 
     for (int i = 0; i < N; i++) {
-        string code, fullname, clazz, subject1MarkStr, subject2MarkStr, subject3MarkStr;
-
-        if (!getline(file, code)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        if (!getline(file, fullname)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        if (!getline(file, clazz)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        if (!getline(file, subject1MarkStr)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        if (!getline(file, subject2MarkStr)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        if (!getline(file, subject3MarkStr)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        try {
-            Student student(code, fullname, clazz, subject1MarkStr, subject2MarkStr, subject3MarkStr);
-            students.push_back(student);
-        } catch (const exception &ex) {
-            cerr << ex.what() << endl;
-            return 2;
-        }
+        cout << "Nhập tên và ngày sinh của người thứ " << i + 1 << ":" << endl;
+        string name;
+        tm date_of_birth{};
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                static regex ws_re(" +");  // regex tách chuỗi bởi khoảng trắng
+                sregex_token_iterator iter(line.begin(), line.end(), ws_re, -1);
+                sregex_token_iterator end;
+                vector<string> result(iter, end);
+                if (result.size() != 2) {
+                    cerr << "Chuỗi nhập phải có 2 thông tin tên và ngày sinh" << endl;
+                    continue;
+                }
+                name = trim_and_validate_name(result.at(0), 15);
+                date_of_birth = parse_date(result.at(1));
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        Person person(name, date_of_birth);
+        P_inputs.push_back(person);
     }
-
-    function<bool(const Student&, const Student&)> compare_fullname = [](const Student &s1, const Student &s2) {
-        using namespace std;
-        const string fullname1 = s1.fullname;
-        const string fullname2 = s2.fullname;
-        // Compare code
-        return fullname1 < fullname2;
-    };
-
-    // Sắp xếp theo ngày sinh từ già nhất đến trẻ nhất
-    sort(students.begin(), students.end(), compare_fullname);
-
-    file.close();
-    for (int i = 0; i < students.size(); ++i) {
-        cout << i + 1 << " " << students.at(i) << endl;
-    }
-
+    cout << "Kết quả:" << endl;
+    sort(P_inputs.begin(), P_inputs.end());
+    cout << P_inputs.front() << endl;
+    cout << P_inputs.back() << endl;
     return 0;
 }
 
-Student::Student(const std::string &code, const std::string &fullname, const std::string &clazz,
-    const std::string &subject1MarkStr,const std::string &subject2MarkStr, const std::string &subject3MarkStr) {
-    using namespace std;
-    this->code = code;
-    this->fullname = trim_and_validate_name(fullname, 50);
-    if (clazz.size() > 15) {
-        throw invalid_argument("Lop khong qua 15 ky tu");
-    }
-    if (clazz.find(' ') != std::string::npos) {
-        throw invalid_argument("Lop khong co khoang trong");
-    }
-    this->clazz = clazz;
-    this->subject1Mark = parse_float(subject1MarkStr);
-    this->subject2Mark = parse_float(subject2MarkStr);
-    this->subject3Mark = parse_float(subject3MarkStr);
+Person::Person(std::string name, const std::tm &date_of_birth)
+        : name(std::move(name)),
+          dateOfBirth(date_of_birth) {
 }
 
-std::ostream & operator<<(std::ostream &os, const Student &student) {
+bool Person::operator<(const Person &other) const {
+    using namespace std;
+    const tm t1 = dateOfBirth;
+    const tm t2 = other.dateOfBirth;
+    if (t1.tm_year != t2.tm_year) return t1.tm_year > t2.tm_year;
+    if (t1.tm_mon != t2.tm_mon) return t1.tm_mon > t2.tm_mon;
+    if (t1.tm_mday != t2.tm_mday) return t1.tm_mday > t2.tm_mday;
+    if (t1.tm_hour != t2.tm_hour) return t1.tm_hour > t2.tm_hour;
+    if (t1.tm_min != t2.tm_min) return t1.tm_min > t2.tm_min;
+    return t1.tm_sec > t2.tm_sec;
+}
+
+std::ostream & operator<<(std::ostream &os, const Person &person) {
     using namespace std;
     os
-            << student.code << " "
-            << student.fullname << " "
-            << student.clazz << " "
-            << fixed << setprecision(1) << student.subject1Mark << " "
-            << fixed << setprecision(1) << student.subject2Mark << " "
-            << fixed << setprecision(1) << student.subject3Mark;
+            << person.name;
     return os;
 }

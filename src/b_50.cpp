@@ -5,9 +5,9 @@
 #include <iostream>
 #include "b_50.h"
 
-// HỢP VÀ GIAO CỦA HAI FILE VĂN BẢN
 int main() {
     using namespace std;
+    cout << "b_50: HỢP VÀ GIAO CỦA HAI FILE VĂN BẢN" << endl;
     // Lấy từ từ mỗi file
     ifstream in1File("DATA1.in");
     if (!in1File) {

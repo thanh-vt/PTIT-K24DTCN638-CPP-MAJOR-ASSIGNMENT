@@ -6,9 +6,9 @@
 #include <sstream>
 #include "b_49.h"
 
-// LIỆT KÊ TỪ KHÁC NHAU
 int main() {
     using namespace std;
+    cout << "b_49: LIỆT KÊ TỪ KHÁC NHAU" << endl;
     ifstream fin("VANBAN.in");
     if (!fin) {
         cerr << "Không thể mở file VANBAN.in" << endl;

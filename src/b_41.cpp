@@ -1,94 +1,157 @@
 #include <string>
 #include <iomanip>
 #include <iostream>
-#include <functional>
-#include <algorithm>
 #include <regex>
+#include <utility>
 #include "util.h"
 #include "b_41.h"
 
 int main() {
     using namespace std;
-    cout << "b_41: TRẺ NHẤT – GIÀ NHẤT" << endl;
+    cout << "b_41: DANH SÁCH ĐỐI TƯỢNG NHÂN VIÊN" << endl;
     string line;
-    if (!getline(file, line)) {
-        cerr << "Khong co dong tiep theo" << endl;
-        return 2;
-    }
-    const int N = parse_int(line);
-    if (N < 1 || N > 40) {
-        cerr << "N phai lon hon 0 va nho hon 40" << endl;
-        return 2;
-    }
-    vector<Person> people;
-
-    regex ws_re(" +");  // regex tách chuỗi bởi khoảng trắng
-    for (int i = 0; i < N; i++) {
-        // Xử lý dòng đọc được
-        if (!getline(file, line)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        sregex_token_iterator iter(line.begin(), line.end(), ws_re, -1);
-        sregex_token_iterator end;
-        vector<string> result(iter, end);
-        if (result.size() != 2) {
-            cerr << "Input phai co 2 chuoi con" << endl;
-            return 2;
-        }
-        const string& name = result.at(0);
-        const string& dateOfBirthStr = result.at(1);
+    cout << "Nhập số nhân viên N:" << endl;
+    bool is_valid = false;
+    int N = 0;
+    do {
+        getline(cin, line);
         try {
-            Person person(name, dateOfBirthStr);
-            people.push_back(person);
-        } catch (const exception &ex) {
-            cerr << ex.what() << endl;
-            return 2;
+            N = parse_int(line);
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
+            continue;
         }
+        if (N < 1) {
+            cerr << "N phải >= 1" << endl;
+            continue;
+        }
+        if (N > 100) {
+            cerr << "N phải <= 100" << endl;
+            continue;
+        }
+        is_valid = true;
+    } while (!is_valid);
+    vector<Employee> E_inputs;
+
+    for (int i = 0; i < N; i++) {
+        cout << "Nhập họ tên của nhân viên " << i + 1 << ":" << endl;
+        string fullname;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                fullname = trim_and_validate_name(line, 40);
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        cout << "Nhập giới tính của viên " << i + 1 << ":" << endl;
+        Gender gender;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                gender = parse_gender(line);
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        cout << "Nhập ngày sinh của nhân viên " << i + 1 << ":" << endl;
+        tm date_of_birth;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                date_of_birth = parse_date(line);
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        cout << "Nhập địa chỉ của nhân viên " << i + 1 << ":" << endl;
+        string address;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                if (line.size() > 100) {
+                    cerr << "Địa chỉ phải <= 100 chữ cái" << endl;
+                    continue;
+                }
+                address = line;
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        string tax_code;
+        cout << "Nhập mã số thuế của nhân viên " << i + 1 << ":" << endl;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                tax_code = validate_tax_code(line);
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        cout << "Nhập ngày ký hợp đồng của nhân viên " << i + 1 << ":" << endl;
+        tm contract_sign_date;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                contract_sign_date = parse_date(line);
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        Employee employee(fullname, gender, date_of_birth, address, tax_code, contract_sign_date);
+        E_inputs.push_back(employee);
     }
-
-    function<bool(const Person&, const Person&)> compare_birth_date = [](const Person &p1, const Person &p2) {
-        using namespace std;
-        const tm t1 = p1.dateOfBirth;
-        const tm t2 = p2.dateOfBirth;
-        // Compare year
-        if (t1.tm_year != t2.tm_year) return t1.tm_year > t2.tm_year;
-
-        // Compare month
-        if (t1.tm_mon != t2.tm_mon) return t1.tm_mon > t2.tm_mon;
-
-        // Compare day
-        if (t1.tm_mday != t2.tm_mday) return t1.tm_mday > t2.tm_mday;
-
-        // Compare hour
-        if (t1.tm_hour != t2.tm_hour) return t1.tm_hour > t2.tm_hour;
-
-        // Compare minute
-        if (t1.tm_min != t2.tm_min) return t1.tm_min > t2.tm_min;
-
-        // Compare second
-        return t1.tm_sec > t2.tm_sec;
-    };
-
-    // Sắp xếp theo ngày sinh từ trẻ nhất đến già nhất
-    sort(people.begin(), people.end(), compare_birth_date);
-
-    file.close();
-    cout << people.front() << endl;
-    cout << people.back() << endl;
-
+    cout << "Kết quả:" << endl;
+    for (int i = 0; i < N; ++i) {
+        const Employee& employee = E_inputs[i];
+        cout << employee << endl;
+    }
     return 0;
 }
 
-Person::Person(const std::string &name, const std::string &dateOfBirthStr) {
+
+Employee::Employee(std::string fullname, Gender gender, const std::tm &date_of_birth, std::string address,
+                   std::string tax_code, const std::tm &contract_sign_date)
+    : fullname(std::move(fullname)),
+      gender(gender),
+      dateOfBirth(date_of_birth),
+      address(std::move(address)),
+      taxCode(std::move(tax_code)),
+      contractSignDate(contract_sign_date) {
     using namespace std;
-    this->name = trim_and_validate_name(name, 15);
-    this->dateOfBirth = parse_date(dateOfBirthStr);
+    ++counter;
+    std::ostringstream oss;
+    oss << setw(5) << setfill('0') << counter;
+    this->code = oss.str();
 }
 
-std::ostream &operator<<(std::ostream &os, const Person &person) {
+std::ostream &operator<<(std::ostream &os, const Employee &employee) {
     using namespace std;
     os
-            << person.name;
+            << employee.code << " "
+            << employee.fullname << " "
+            << print_gender(employee.gender) << " "
+            << print_date(employee.dateOfBirth) << " "
+            << employee.address << " "
+            << employee.taxCode << " "
+            << print_date(employee.contractSignDate);
     return os;
 }

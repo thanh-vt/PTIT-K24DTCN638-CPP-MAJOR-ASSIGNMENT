@@ -1,95 +1,180 @@
 #include <iomanip>
 #include <ios>
-#include <stdexcept>
 #include <iostream>
-#include <functional>
 #include <algorithm>
 #include "util.h"
 #include "b_39.h"
 
 int main() {
     using namespace std;
-    cout << "b_39: LIỆT KÊ SINH VIÊN THEO NGÀNH" << endl;
-
+    cout << "b_39: BẢNG ĐIỂM THÀNH PHẦN - 2" << endl;
     string line;
-    if (!getline(file, line)) {
-        cerr << "Khong co dong tiep theo" << endl;
-        return 2;
-    }
-    const int N = parse_int(line);
-    if (N < 1 || N > 50) {
-        cerr << "N phai lon hon 0 va nho hon 50" << endl;
-        return 2;
-    }
-    vector<Student> students;
-    for (int i = 0; i < N; i++) {
-        string code, fullname, clazz, email;
-        if (!getline(file, code)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        if (!getline(file, fullname)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        if (!getline(file, clazz)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        if (!getline(file, email)) {
-            cerr << "Khong co dong tiep theo" << endl;
-            return 2;
-        }
-        if (i > 1000) {
-            cerr << "Co hon 1000 sinh vien trong danh sach"<< endl;
-            return 2;
-        }
+    cout << "Nhập số sinh viên N:" << endl;
+    bool is_valid = false;
+    int N = 0;
+    do {
+        getline(cin, line);
         try {
-            Student student(code, fullname, clazz, email);
-            students.push_back(student);
-        } catch (const exception &ex) {
-            cerr << ex.what() << endl;
-            return 2;
+            N = parse_int(line);
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
+            continue;
         }
+        if (N < 1) {
+            cerr << "T phải >= 1" << endl;
+            continue;
+        }
+        if (N > 100) {
+            cerr << "N phải <= 100" << endl;
+            continue;
+        }
+        is_valid = true;
+    } while (!is_valid);
+    vector<Student> S_inputs;
+
+    for (int i = 0; i < N; i++) {
+        cout << "Nhập mã của sinh viên " << i + 1 << ":" << endl;
+        string code;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                if (line.size() > 15) {
+                    cerr << "Mã không quá 15 ký tự" << endl;
+                    continue;
+                }
+                if (line.find(' ') != std::string::npos) {
+                    cerr << "Mã không được có khoảng trắng" << endl;
+                    continue;
+                }
+                code = line;
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        cout << "Nhập họ tên của sinh viên " << i + 1 << ":" << endl;
+        string fullname;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                fullname = trim_and_validate_name(line, 50);
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        cout << "Nhập lớp của sinh viên " << i + 1 << ":" << endl;
+        string clazz;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                if (line.size() > 15) {
+                    cerr << "Lớp không quá 15 ký tự" << endl;
+                    continue;
+                }
+                if (line.find(' ') != std::string::npos) {
+                    cerr << "Lớp không được có khoảng trắng" << endl;
+                    continue;
+                }
+                clazz = line;
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        cout << "Nhập điểm môn 1 của sinh viên " << i + 1 << ":" << endl;
+        float subject_1_mark = 0;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                subject_1_mark = parse_float(line);
+                if (subject_1_mark < 0) {
+                    cerr << "Điểm môn 1 phải >= 0" << endl;
+                    continue;
+                }
+                if (subject_1_mark > 10) {
+                    cerr << "Điểm môn 1 phải <= 10" << endl;
+                    continue;
+                }
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        float subject_2_mark = 0;
+        cout << "Nhập điểm môn 2 của sinh viên " << i + 1 << ":" << endl;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                subject_2_mark = parse_float(line);
+                if (subject_2_mark < 0) {
+                    cerr << "Điểm môn 2 phải >= 0" << endl;
+                    continue;
+                }
+                if (subject_2_mark > 10) {
+                    cerr << "Điểm môn 2 phải <= 10" << endl;
+                    continue;
+                }
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        cout << "Nhập điểm môn 3 của sinh viên " << i + 1 << ":" << endl;
+        float subject_3_mark = 0;
+        do {
+            try {
+                is_valid = false;
+                getline(cin, line);
+                subject_3_mark = parse_float(line);
+                if (subject_3_mark < 0) {
+                    cerr << "Điểm môn 3 phải >= 0" << endl;
+                    continue;
+                }
+                if (subject_3_mark > 10) {
+                    cerr << "Điểm môn 3 phải <= 10" << endl;
+                    continue;
+                }
+            } catch (const exception &e) {
+                cout << e.what() << endl;
+                continue;
+            }
+            is_valid = true;
+        } while (!is_valid);
+        const Student student(code, fullname, clazz, subject_1_mark, subject_2_mark, subject_3_mark);
+        S_inputs.push_back(student);
     }
-
-    file.close();
-    function<bool(const Student&, const Student&)> compare_student = [](const Student &s1, const Student &s2) {
-        using namespace std;
-        const string code1 = s1.code;
-        const string code2 = s2.code;
-        // Compare code
-        return code1 < code2;
-    };
-
-    // Sắp xếp theo ngày sinh từ già nhất đến trẻ nhất
-    sort(students.begin(), students.end(), compare_student);
-
-    for (const auto & student : students) {
-        cout << student << endl;
+    cout << "Kết quả:" << endl;
+    sort(S_inputs.begin(), S_inputs.end());
+    for (int i = 0; i < N; ++i) {
+        const Student& student = S_inputs[i];
+        cout << i + 1 << " " << student << endl;
     }
-
     return 0;
 }
 
-Student::Student(const std::string &code, const std::string &fullname, const std::string &clazz, const std::string &email) {
-    using namespace std;
-    this->code = code;
-    this->fullname = normalize_and_validate_name(fullname);
-    if (clazz.size() > 15) {
-        throw invalid_argument("Lop khong qua 15 ky tu");
-    }
-    if (clazz.find(' ') != std::string::npos) {
-        throw invalid_argument("Lop khong co khoang trong");
-    }
-    this->clazz = clazz;
-    if (email.size() > 20) {
-        throw invalid_argument("Email khong qua 15 ky tu");
-    }
-    if (email.find(' ') != std::string::npos) {
-        throw invalid_argument("Email khong co khoang trong");
-    }
-    this->email = email;
+Student::Student(std::string code, std::string fullname, std::string clazz, const float subject1_mark,
+                 const float subject2_mark, const float subject3_mark)
+    : code(std::move(code)),
+      fullname(std::move(fullname)),
+      clazz(std::move(clazz)),
+      subject1Mark(subject1_mark),
+      subject2Mark(subject2_mark),
+      subject3Mark(subject3_mark) {
+}
+
+bool Student::operator<(const Student &other) const {
+    return fullname < other.fullname;
 }
 
 std::ostream &operator<<(std::ostream &os, const Student &student) {
@@ -98,6 +183,8 @@ std::ostream &operator<<(std::ostream &os, const Student &student) {
             << student.code << " "
             << student.fullname << " "
             << student.clazz << " "
-            << student.email;
+            << fixed << setprecision(1) << student.subject1Mark << " "
+            << fixed << setprecision(1) << student.subject2Mark << " "
+            << fixed << setprecision(1) << student.subject3Mark;
     return os;
 }
