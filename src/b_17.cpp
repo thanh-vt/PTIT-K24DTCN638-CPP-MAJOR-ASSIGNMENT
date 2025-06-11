@@ -1,59 +1,53 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-#include "util.h"
+#include <sstream>
+#include <functional>
+#include <vector>
 #include "b_17.h"
 
 int main() {
     using namespace std;
     // cerr << "b_17: ĐẦU CUỐI GIỐNG NHAU" << endl;
     string line;
-    cerr << "Nhập số bộ test T:" << endl;
-    bool is_valid = false;
-    int T = 0;
-    do {
-        getline(cin, line);
-        try {
-            T = parse_int(line);
-        } catch (const exception &e) {
-            cerr << e.what() << endl;
-            continue;
-        }
+    // cerr << "Nhập số bộ test T:" << endl;
+    getline(cin, line);
+    int T;
+    try {
+        T = parse_int(line);
         if (T < 1) {
             cerr << "T phải >= 1" << endl;
-            continue;
+            return 2;
         }
         if (T > 100) {
             cerr << "T phải <= 100" << endl;
-            continue;
+            return 2;
         }
-        is_valid = true;
-    } while (!is_valid);
+    } catch (const exception &e) {
+        cerr << e.what() << endl;
+        return 2;
+    }
     vector<string> s_inputs(T);
     for (int i = 0; i < T; i++) {
-        cerr << "Nhập bộ test " << i + 1 << ":" << endl;
+        // cerr << "Nhập bộ test " << i + 1 << ":" << endl;
         string S;
-        do {
-            is_valid = false;
-            getline(cin, S);
-            if (S.empty()) {
-                cerr << "Length(S) phải >= 1" << endl;
-                continue;
-            }
-            if (S.size() > 1000) {
-                cerr << "Length(S) phải <= 1000" << endl;
-                continue;
-            }
-            static function<bool(char)> validate_func = [](const char c) {
-                return std::islower(static_cast<unsigned char>(c));
-            };
-            if (!std::all_of(S.begin(), S.end(), validate_func)) {
-                cerr << "k phải >= 1 và <= 26" << endl;
-                continue;
-            }
-            s_inputs[i] = S;
-            is_valid = true;
-        } while (!is_valid);
+        getline(cin, S);
+        if (S.empty()) {
+            cerr << "Length(S) phải >= 1" << endl;
+            return 2;
+        }
+        if (S.size() > 1000) {
+            cerr << "Length(S) phải <= 1000" << endl;
+            return 2;
+        }
+        static function<bool(char)> validate_func = [](const char c) {
+            return std::islower(static_cast<unsigned char>(c));
+        };
+        if (!std::all_of(S.begin(), S.end(), validate_func)) {
+            cerr << "k phải >= 1 và <= 26" << endl;
+            return 2;
+        }
+        s_inputs[i] = S;
     }
     // cerr << "Kết quả:" << endl;
     for (int i = 0; i < T; i++) {
@@ -62,6 +56,23 @@ int main() {
         cout << count << endl;
     }
     return 0;
+}
+
+// Function definitions
+int parse_int(const std::string &line) {
+    using namespace std;
+    try {
+        size_t pos;
+        const int x = stoi(line, &pos);
+        if (pos != line.size()) {
+            throw exit_code_exception(2, "Chuỗi nhập có chứa các ký tự không hợp lệ");
+        }
+        return x;
+    } catch (const invalid_argument &e) {
+        throw exit_code_exception(2, "Chuỗi nhập không phải số kiểu integer hợp lệ");
+    } catch (const out_of_range &e) {
+        throw exit_code_exception(2, "Số vượt quá phạm vi kiểu integer");
+    }
 }
 
 int count_substring_begin_end_equals(const std::string &S) {

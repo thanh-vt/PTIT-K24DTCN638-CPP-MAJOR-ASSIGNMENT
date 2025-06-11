@@ -6,22 +6,18 @@ int main() {
     using namespace std;
     // cerr << "b_18: LOẠI BỎ NGUYÊN ÂM" << endl;
     string S;
-    cerr << "Nhập chuỗi S:" << endl;
-    bool is_valid = false;
-    do {
-        is_valid = false;
-        getline(cin, S);
-        if (S.size() > 100) {
-            cerr << "S độ dài không quá 100" << endl;
-            continue;
-        }
-        is_valid = true;
-    } while (!is_valid);
+    // cerr << "Nhập chuỗi S:" << endl;
+    getline(cin, S);
+    if (S.size() > 100) {
+        cerr << "S độ dài không quá 100" << endl;
+        return 2;
+    }
     // cerr << "Kết quả:" << endl;
     cout << remove_vowels(S) << endl;
     return 0;
 }
 
+// Function definitions
 bool is_vowel(char c) {
     c = tolower(c);
     return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y';

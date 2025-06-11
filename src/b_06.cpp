@@ -3,21 +3,6 @@
 #include <regex>
 #include "b_06.h"
 
-class exit_code_exception : public std::exception {
-    int code;
-    std::string message;
-public:
-    explicit exit_code_exception(const int c, std::string m) : code(c), message(std::move(m)) {}
-    int getCode() const { return code; }
-    const char* what() const noexcept override {
-        return message.c_str();
-    }
-};
-
-// Function declarations
-int parse_int(const std::string &line);
-bool is_prime(const int n);
-
 int main() {
     using namespace std;
     // cerr << "b_06: LIỆT KÊ SỐ NGUYÊN TỐ - 1" << endl;

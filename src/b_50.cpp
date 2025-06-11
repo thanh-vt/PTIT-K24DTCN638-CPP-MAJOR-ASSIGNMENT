@@ -3,6 +3,7 @@
 #include <set>
 #include <string>
 #include <iostream>
+#include <regex>
 #include "b_50.h"
 
 int main() {
@@ -41,7 +42,7 @@ int main() {
     return 0;
 }
 
-// Hàm tách từ trong một file và lưu vào tập hợp
+// Function definitions
 std::set<std::string> collect_words_from_file(std::ifstream &inFile) {
     using namespace std;
     set<string> wordSet;

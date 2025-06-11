@@ -4,121 +4,92 @@
 #include <algorithm>
 #include <set>
 #include <utility>
-#include "util.h"
+#include <vector>
 #include "b_42.h"
+
+#include <regex>
 
 int main() {
     using namespace std;
     // cerr << "b_42: SẮP XẾP SINH VIÊN THEO LỚP" << endl;
     string line;
-    cerr << "Nhập số sinh viên N:" << endl;
-    bool is_valid = false;
-    int N = 0;
-    do {
-        getline(cin, line);
-        try {
-            N = parse_int(line);
-        } catch (const exception &e) {
-            cerr << e.what() << endl;
-            continue;
-        }
+    // cerr << "Nhập số sinh viên N:" << endl;
+    getline(cin, line);
+    int N;
+    try {
+        N = parse_int(line);
         if (N < 1) {
             cerr << "N phải >= 1" << endl;
-            continue;
+            return 2;
         }
         if (N > 1000) {
             cerr << "N phải <= 1000" << endl;
-            continue;
+            return 2;
         }
-        is_valid = true;
-    } while (!is_valid);
+    } catch (const exception &e) {
+        cerr << e.what() << endl;
+        return 2;
+    }
     vector<Student> S_inputs;
     set<string> S_codes;
     for (int i = 0; i < N; i++) {
         string code;
-        cerr << "Nhập mã của sinh viên " << i + 1 << ":" << endl;
-        do {
-            try {
-                is_valid = false;
-                getline(cin, line);
-                if (line.empty()) {
-                    cerr << "Mã không được bỏ trống" << endl;
-                    continue;
-                }
-                if (line.size() > 15) {
-                    cerr << "Mã không quá 15 ký tự" << endl;
-                    continue;
-                }
-                if (line.find(' ') != std::string::npos) {
-                    cerr << "Mã không có khoảng trống" << endl;
-                    continue;
-                }
-                if (S_codes.find(line) != S_codes.end()) {
-                    cerr << "Mã" << line << " đã tồn tại" << endl;
-                    continue;
-                }
-                code = move(line);
-            } catch (const exception &e) {
-                cerr << e.what() << endl;
-                continue;
-            }
-            is_valid = true;
-        } while (!is_valid);
-        cerr << "Nhập họ tên của sinh viên " << i + 1 << ":" << endl;
+        // cerr << "Nhập mã của sinh viên " << i + 1 << ":" << endl;
+        getline(cin, line);
+        if (line.empty()) {
+            cerr << "Mã không được bỏ trống" << endl;
+            return 2;
+        }
+        if (line.size() > 15) {
+            cerr << "Mã không quá 15 ký tự" << endl;
+            return 2;
+        }
+        if (line.find(' ') != std::string::npos) {
+            cerr << "Mã không có khoảng trống" << endl;
+            return 2;
+        }
+        if (S_codes.find(line) != S_codes.end()) {
+            cerr << "Mã" << line << " đã tồn tại" << endl;
+            return 2;
+        }
+        code = move(line);
+        // cerr << "Nhập họ tên của sinh viên " << i + 1 << ":" << endl;
+        getline(cin, line);
         string fullname;
-        do {
-            try {
-                is_valid = false;
-                getline(cin, line);
-                fullname = trim_and_validate_name(line, 100);
-            } catch (const exception &e) {
-                cerr << e.what() << endl;
-                continue;
+        try {
+            fullname = trim_and_validate_name(line, 100);
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
+            return 2;
+        }
+        // cerr << "Nhập lớp của sinh viên " << i + 1 << ":" << endl;
+        getline(cin, line);
+        if (line.size() > 15) {
+            cerr << "Lớp không quá 15 ký tự" << endl;
+            return 2;
+        }
+        if (line.find(' ') != std::string::npos) {
+            cerr << "Lớp không có khoảng trống" << endl;
+            return 2;
+        }
+        const string clazz = move(line);
+        // cerr << "Nhập email của sinh viên " << i + 1 << ":" << endl;
+        getline(cin, line);
+        if (line.size() > 50) {
+            cerr << "Email không quá 50 ký tự" << endl;
+            return 2;
+        }
+        try {
+            if (line.find(' ') != std::string::npos) {
+                cerr << "Email không có khoảng trống" << endl;
+                return 2;
             }
-            is_valid = true;
-        } while (!is_valid);
-        cerr << "Nhập lớp của sinh viên " << i + 1 << ":" << endl;
-        string clazz;
-        do {
-            try {
-                is_valid = false;
-                getline(cin, line);
-                if (line.size() > 15) {
-                    cerr << "Lớp không quá 15 ký tự" << endl;
-                    continue;
-                }
-                if (line.find(' ') != std::string::npos) {
-                    cerr << "Lớp không có khoảng trống" << endl;
-                    continue;
-                }
-                clazz = move(line);
-            } catch (const exception &e) {
-                cerr << e.what() << endl;
-                continue;
-            }
-            is_valid = true;
-        } while (!is_valid);
-        string email;
-        cerr << "Nhập email của sinh viên " << i + 1 << ":" << endl;
-        do {
-            try {
-                is_valid = false;
-                getline(cin, line);
-                if (line.size() > 50) {
-                    cerr << "Email không quá 50 ký tự" << endl;
-                    continue;
-                }
-                if (line.find(' ') != std::string::npos) {
-                    cerr << "Email không có khoảng trống" << endl;
-                    continue;
-                }
-                email = move(line);
-            } catch (const exception &e) {
-                cerr << e.what() << endl;
-                continue;
-            }
-            is_valid = true;
-        } while (!is_valid);
+            line = validate_email(line);
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
+            return 2;
+        }
+        string email = move(line);
         const Student student(code, fullname, clazz, email);
         S_inputs.push_back(student);
         S_codes.insert(code);
@@ -154,5 +125,44 @@ std::ostream &operator<<(std::ostream &os, const Student &student) {
     return os;
 }
 
+int parse_int(const std::string &line) {
+    using namespace std;
+    try {
+        size_t pos;
+        const int x = stoi(line, &pos);
+        if (pos != line.size()) {
+            throw exit_code_exception(2, "Chuỗi nhập có chứa các ký tự không hợp lệ");
+        }
+        return x;
+    } catch (const invalid_argument &e) {
+        throw exit_code_exception(2, "Chuỗi nhập không phải số kiểu integer hợp lệ");
+    } catch (const out_of_range &e) {
+        throw exit_code_exception(2, "Số vượt quá phạm vi kiểu integer");
+    }
+}
 
+std::string trim(const std::string &str) {
+    size_t first = str.find_first_not_of(" \t\n\r");
+    if (first == std::string::npos) return "";
+    size_t last = str.find_last_not_of(" \t\n\r");
+    return str.substr(first, (last - first + 1));
+}
+
+std::string trim_and_validate_name(const std::string &input, int max_length) {
+    std::string trimmed = trim(input);
+    if (trimmed.empty() || trimmed.size() > static_cast<size_t>(max_length)) {
+        throw exit_code_exception(2, "Invalid name length");
+    }
+    return trimmed;
+}
+
+std::string validate_email(const std::string& email) {
+    using namespace std;
+    // REGEX email
+    static const std::regex email_regex(R"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)");
+    if (!std::regex_match(email, email_regex)) {
+        throw invalid_argument("Email không đúng định dạng");
+    }
+    return email;
+}
 
